@@ -1,0 +1,128 @@
+-- SESSION 2
+
+-- participants in T1 using Database Explorer with DBADMIN:
+
+	-- create UPS & T1 user
+	create user UPS password "DnATBG!1" no force_first_password_change set usergroup default;
+	create user T1 password "DnATBG!1" no force_first_password_change set usergroup default;
+
+
+	-- authorize user T1 to create schemas, remote sources, and roles
+	grant create schema to T1;
+	grant create remote source to T1;
+	grant role admin to T1;
+
+
+	-- create PSE and add certificate for HC
+	CREATE PSE FOR_REMOTE_SOURCES;
+	CREATE CERTIFICATE FROM '
+	-----BEGIN CERTIFICATE-----MIIDrzCCApegAwIBAgIQCDvgVpBCRrGhdWrJWZHHSjANBgkqhkiG9w0BAQUFADBhMQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBDQTAeFw0wNjExMTAwMDAwMDBaFw0zMTExMTAwMDAwMDBaMGExCzAJBgNVBAYTAlVTMRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxGTAXBgNVBAsTEHd3dy5kaWdpY2VydC5jb20xIDAeBgNVBAMTF0RpZ2lDZXJ0IEdsb2JhbCBSb290IENBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4jvhEXLeqKTTo1eqUKKPC3eQyaKl7hLOllsBCSDMAZOnTjC3U/dDxGkAV53ijSLdhwZAAIEJzs4bg7/fzTtxRuLWZscFs3YnFo97nh6Vfe63SKMI2tavegw5BmV/Sl0fvBf4q77uKNd0f3p4mVmFaG5cIzJLv07A6Fpt43C/dxC//AH2hdmoRBBYMql1GNXRor5H4idq9Joz+EkIYIvUX7Q6hL+hqkpMfT7PT19sdl6gSzeRntwi5m3OFBqOasv+zbMUZBfHWymeMr/y7vrTC0LUq7dBMtoM1O/4gdW7jVg/tRvoSSiicNoxBN33shbyTApOB6jtSj1etX+jkMOvJwIDAQABo2MwYTAOBgNVHQ8BAf8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUA95QNVbRTLtm8KPiGxvDl7I90VUwHwYDVR0jBBgwFoAUA95QNVbRTLtm8KPiGxvDl7I90VUwDQYJKoZIhvcNAQEFBQADggEBAMucN6pIExIK+t1EnE9SsPTfrgT1eXkIoyQY/EsrhMAtudXH/vTBH1jLuG2cenTnmCmrEbXjcKChzUyImZOMkXDiqw8cvpOp/2PV5Adg06O/nVsJ8dWO41P0jmP6P6fbtGbfYmbW0W5BjfIttep3Sp+dWOIrWcBAI+0tKIJFPnlUkiaY4IBIqDfv8NZ5YBberOgOzW6sRBc4L0na4UU+Krk2U886UAb3LujEV0lsYSEY1QSteDwsOoBrp+uvFRTp2InBuThs4pFsiv9kuXclVzDAGySj4dzp30d8tbQkCAUw7C29C79Fv1C5qfPrmAESrciIxpg0X40KPMbp1ZWVbd4=-----END CERTIFICATE-----'
+	COMMENT 'for remote sources';
+
+	SELECT CERTIFICATE_ID FROM CERTIFICATES WHERE COMMENT = 'for remote sources';
+	ALTER PSE FOR_REMOTE_SOURCES ADD CERTIFICATE 158428;
+
+	SET PSE FOR_REMOTE_SOURCES PURPOSE REMOTE SOURCE;
+
+	-- create schema for virtual tables
+	create schema VT_DATALAKE_T1;
+
+	-- create virtual table in schema VT_DATALAKE_T1 pointing to VT_TLOG_F_H
+
+
+	-- grant insert, update, delete, select on VT_TLOG_F_H to UPS user so it can be granted into BAS project
+	create role LOAD_VT_TLOG_F_H;
+	grant insert,update,delete on VT_DATALAKE_T1.VT_TLOG_F_H to LOAD_VT_TLOG_F_H;
+	grant LOAD_VT_TLOG_F_H to UPS with admin option;
+
+	-- grant select to on VT_TLOG_F_H to all OO users
+	create role SELECT_ON_VT_TLOG_F_H_WITH_GRANT;
+	grant select on VT_DATALAKE_T1.VT_TLOG_F_H to SELECT_ON_VT_TLOG_F_H_WITH_GRANT with grant option;
+	grant SELECT_ON_VT_TLOG_F_H_WITH_GRANT to "_SYS_DI#BROKER_CG"._SYS_DI_OO_DEFAULTS;
+
+	-- grant select to all AP users
+	create role SELECT_ON_VT_TLOG_F_H;
+	grant select on VT_DATALAKE_T1.VT_TLOG_F_H to SELECT_ON_VT_TLOG_F_H;
+	grant SELECT_ON_VT_TLOG_F_H to BROKER_USER.RT_DEFAULTS;
+
+	-- create role that allows creating virtual table on T2
+	create role "createVTOnT2";
+	grant create virtual table on remote source T2 to "createVTOnT2";
+	-- grant role createVTonT2 to UPS so it can be granted into BAS project
+	grant "createVTOnT2" to UPS with admin option;
+
+
+	--> import BASKETANALYSISDATA_ALL
+	
+	-- create role that allows reading from BASKETANALYSISDATA_ALL
+	create role SELECT_ON_BASKETANALYSISDATA_ALL;
+	grant select on COMBINEDBASKETANALYSISDATA.BASKETANALYSISDATA_ALL to SELECT_ON_BASKETANALYSISDATA_ALL;
+	-- grant role SELECT_ON_BASKETANALYSISDATA_ALL to UPS so it can be granted into BAS project
+	grant SELECT_ON_BASKETANALYSISDATA_ALL to UPS with admin option
+
+
+-- in BAS:
+
+
+--> after creating calculation view, modify generated .hdbgrants file and add role LOAD_TLOG_F_C to allow loading of table TLOG_F_C with flowgraph:
+
+{
+  "HANACLOUD-WORKSHOP2-hdidb-ws-wk598": {
+    "object_owner": {
+      "container_roles": [
+        "SELECT_ON_TLOG_F_C_WITH_GRANT#",
+        "LOAD_TLOG_F_C"
+      ]
+    },
+    "application_user": {
+      "container_roles": [
+        "SELECT_ON_TLOG_F_C",
+        "LOAD_TLOG_F_C"
+      ]
+    }
+  }
+}
+
+
+--> create hdbgrants file to provision privileges needed for loading data to tables
+{
+"UPS": {
+		"object_owner": {
+						"roles": [
+										"SELECT_ON_BASKETANALYSISDATA_ALL",
+										"LOAD_VT_TLOG_F_H",
+										"createVTOnT2"
+								]
+						}   
+,
+
+		"application_user": {
+						"roles": [
+										"SELECT_ON_BASKETANALYSISDATA_ALL",
+										"LOAD_VT_TLOG_F_H",
+										"createVTOnT2"
+								]
+							}
+				 
+		}
+}
+
+
+
+
+		--> create synonyms in synonym editor for combined data and data lake
+			{
+			"S_COMBINED": {
+			"target": {
+			"object": "BASKETANALYSISDATA_ALL",
+			"schema": "BASKETANALYSISDATA"
+			}	
+			},
+			"S_VT_DL": {
+			"target": {
+			"object": "VT_TLOG_F_H",
+			"schema": "VT_DATALAKE_T1"
+			},
+			
+		}
+		}
