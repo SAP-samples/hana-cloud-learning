@@ -1,4 +1,5 @@
 # SAP HANA Cloud Learning Repository
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/hana-cloud-learning)](https://api.reuse.software/info/github.com/SAP-samples/hana-cloud-learning)
 
 ## Description
 In this repository, you can find sample code and sample data for SAP HANA Cloud learning content, like Learning Tracks, Tutorials, Missions and Workshops.
