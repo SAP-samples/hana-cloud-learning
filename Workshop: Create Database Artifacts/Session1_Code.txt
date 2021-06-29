@@ -1,0 +1,121 @@
+--[BAS: create dev space, enter commands in terminal]
+-- general prep for each BAS environment only once
+
+git config --global user.email "<YOUR@EMAIL.com>"
+git config --global user.name "<GITUSERNAME>"
+git config --list
+
+--1-establish SSH connection to git (paste these commands in the BAS Terminal)
+ssh-keygen -t ed25519 -C "<YOUR@EMAIL.com>"
+cd .ssh
+ls -lisa
+cat id_ed25519.pub
+chmod 0400 id_ed25519
+
+--[paste public key to git: create new SSH]
+--[BAS: create dev project]
+
+-- 2-create repository (paste these commands in the BAS Terminal)
+echo "# [enter github repository name]" >> README.md
+git init
+git add README.md
+
+--2-1 adjust the .gitignore file
+**/node_modules/**
+.env*
+--only for Mac: add this line to the file as well:
+.DS_Store
+
+[then continue pasting these commands in the BAS terminal:]
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:[enter github username]/[enter github repository name].git
+git push -u origin main
+[type yes]
+
+
+-- 3 - hdbmigrationtable
+
+== version = 1
+
+column table "TLOG_F_C" (
+   "Index"  NVARCHAR(200),
+   "ClientID"  NVARCHAR(200),
+   "Name"  NVARCHAR(200),
+   "Gender"  NVARCHAR(200),
+   "Birthdate"  DATE,
+   "Occupation"  NVARCHAR(200),
+   "City"  NVARCHAR(200),
+   "City_"  NVARCHAR(200),
+   "latitude"  NVARCHAR(200),
+   "longitude"  NVARCHAR(200),
+   "OrderID"  NVARCHAR(200),
+   "OrderDate"  DATE,
+   "OrderYear"  INTEGER,
+   "OrderPrice"  DECIMAL(10, 2),
+   "OrderPay"  DECIMAL(10, 2),
+   "No.OrderItems"  INTEGER,
+   "ProductName"  NVARCHAR(200),
+   "ItemCategory"  NVARCHAR(200),
+   "ItemPrice"  DECIMAL(10, 2),
+   "ItemSoldPrice"  DECIMAL(10, 2),
+   "ItemDiscount"  DECIMAL(10, 2),
+   "No.Item"  INTEGER,	
+   "ItemTotalSoldPrice"  DECIMAL(10, 2)
+)
+
+-- 4 - role 1: SELECT_ON_TLOG_F_C_WITH_GRANT#.hdbrole (paste this code in the code editor of the role)
+
+{
+  "role": {
+    "name": "SELECT_ON_TLOG_F_C_WITH_GRANT#",
+    "object_privileges": [
+      {
+        "name": "TLOG_F_C",
+        "type": "TABLE",
+        "privileges_with_grant_option": [
+          "SELECT"
+        ]
+      }
+    ]
+  }
+}
+
+-- 5 - role 2: SELECT_ON_TLOG_F_C.hdbrole (paste this code in the code editor of the role)
+
+{
+  "role": {
+    "name": "SELECT_ON_TLOG_F_C",
+    "object_privileges": [
+      {
+        "name": "TLOG_F_C",
+        "type": "TABLE",
+        "privileges": [
+          "SELECT"
+        ]
+      }
+    ]
+  }
+} 
+
+
+-- 6 - role 3: LOAD_TLOG_F_C.hdbrole (paste this code in the code editor of the role)
+
+{
+  "role": {
+    "name": "LOAD_TLOG_F_C",
+    "object_privileges": [
+      {
+        "name": "TLOG_F_C",
+        "type": "TABLE",
+        "privileges": [
+          "DELETE",
+          "SELECT",
+          "UPDATE",
+          "INSERT"
+        ]
+      }
+    ]
+  }
+}
