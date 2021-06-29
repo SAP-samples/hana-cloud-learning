@@ -1,0 +1,29 @@
+--> Reference statement:
+
+SELECT TOP 1000 DISTINCT
+	"OrderYear",
+	SUM("ItemPrice") AS "SUM_ItemPrice"
+FROM "FEDERATION_HDI_DB_1"."federation"
+GROUP BY "OrderYear"
+ORDER BY "OrderYear" ASC
+
+
+
+--> Creating users for analytic privileges:
+create user jamesbond password "DnATBG!1" NO FORCE_FIRST_PASSWORD_CHANGE set usergroup default;
+Grant <schemaname>."HistoryReporter" to jamesbond
+
+create user janebond password "DnATBG!1" NO FORCE_FIRST_PASSWORD_CHANGE set usergroup default;
+Grant <schemaname>."CurrentReporter" to janebond
+
+
+--> This is what the adjusted json file should look like:
+{
+  "name": "deploy",
+  "dependencies": {
+    "@sap/hdi-deploy": "^3.*"
+  },
+  "scripts": {
+    "start": "node node_modules/@sap/hdi-deploy/deploy.js --deploy src/defaults/development_debug_role.hdbrole"
+  }
+}
