@@ -2,6 +2,8 @@
 
 ## Description
 
+*currently under construction*
+
 This folder contains accompanying materials to the tutorial mission "Get Started with a Standalone SAP HANA Cloud, Data Lake"
 All instructions on how to use the sample data and sample code can be found directly in the tutorials of this mission.
 
