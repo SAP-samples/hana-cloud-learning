@@ -1,4 +1,4 @@
-# SAP HANA Cloud Tutorial Mission: Jump start your SAP HANA Cloud, SAP HANA database in trial
+# Mission: Jump start your SAP HANA Cloud, SAP HANA database in trial
 
 ## Description
 
