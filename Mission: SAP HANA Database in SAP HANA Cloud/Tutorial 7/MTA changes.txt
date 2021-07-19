@@ -1,12 +1,14 @@
-Open the mta.yaml file and add the following syntax on top of the Resources:
+#Open the mta.yaml file and add the following syntax on top of the Resources:
 
 - name: NAME OF YOUR USER PROVIDED SERVICE
 
-Still on the mta.yaml file, add also the following syntax at the end of the file:
+#Still on the mta.yaml file, add also the following syntax at the end of the file:
 - name: NAME OF YOUR USER PROVIDED SERVICE
   type: org.cloudfoundry.existing-service
 
-Example of working mta.yaml file with correct indentation:
+
+
+#Example of working mta.yaml file with correct indentation:
 
 (_schema-version: "2.1"
 ID: BRT_Data
