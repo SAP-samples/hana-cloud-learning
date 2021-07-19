@@ -1,0 +1,30 @@
+#1. Syntax to add to your hdbrole file
+
+{
+    "role": {
+        "name": "PublicAccessSchema",
+        "schema_privileges": [
+            {
+                "privileges": [
+                    "SELECT",
+                    "EXECUTE"
+                ]
+            }
+        ]
+    }
+}
+
+
+#2. Query to create new user
+
+create user report password <your_password> NO FORCE_FIRST_PASSWORD_CHANGE set usergroup default;
+
+#3. Query to grant access
+
+grant SCHEMA_NAME."PublicAccessSchema" to report
+
+#4. Logging in with your new user
+
+CONNECT report PASSWORD <Your_Password>
+
+
