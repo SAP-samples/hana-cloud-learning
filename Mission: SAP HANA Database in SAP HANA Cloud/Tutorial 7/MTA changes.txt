@@ -10,8 +10,8 @@
 
 #Example of working mta.yaml file with correct indentation:
 
-(_schema-version: "2.1"
-ID: BRT_Data
+_schema-version: "2.1"
+ID: <Name of your project>
 version: 0.0.1
 modules:
 - name: db
@@ -21,12 +21,12 @@ modules:
   - name: hdi_db
     properties:
       TARGET_CONTAINER: ~{hdi-container-name}
-  - name: MYBRT
+  - name: MyConnection
 resources:
 - name: hdi_db
   type: com.sap.xs.hdi-container
   properties:
     hdi-container-name: ${service-name}
-- name: MYBRT
+- name: MyConnection
   type: org.cloudfoundry.existing-service
 
