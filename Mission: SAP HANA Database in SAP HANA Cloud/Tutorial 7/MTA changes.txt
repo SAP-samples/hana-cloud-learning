@@ -1,8 +1,8 @@
-#Open the mta.yaml file and add the following syntax on top of the Resources:
+#Open the mta.yaml file and add the following syntax on top of the resources section, as the last part of the modules section (line 24 in the example code below):
 
 - name: NAME OF YOUR USER PROVIDED SERVICE
 
-#Still on the mta.yaml file, add also the following syntax at the end of the file:
+#Still on the mta.yaml file, add also the following syntax at the end of the file (lines 30 & 31 in the example below:
 - name: NAME OF YOUR USER PROVIDED SERVICE
   type: org.cloudfoundry.existing-service
 
