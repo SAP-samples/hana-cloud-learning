@@ -16,7 +16,7 @@ n/a
 
 ## How to obtain support
 
-[Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
+[Create an issue](https://github.com/SAP-samples/hana-cloud-learning/issues) in this repository if you find a bug or have questions about the content.
  
 For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
 
