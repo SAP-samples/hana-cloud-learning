@@ -52,55 +52,57 @@ REFRESH VIEW "SALARYANON_ZIP" ANONYMIZATION;
 SELECT * FROM "SALARYANON_ZIP";
 
 --11. Create a function for grouping values to ranges (STEP 9: Create a hierarchy function that groups values to ranges)
-create or replace FUNCTION "AgeGroupHierarchy"(value varchar(255), level integer)
-       RETURNS outValue varchar(255)
-       LANGUAGE SQLSCRIPT 
-       SQL SECURITY INVOKER AS 
+create or replace FUNCTION "StartyearGroupHierarchy"(value nvarchar(100), level integer)
+     RETURNS outValue varchar(100)
+     LANGUAGE SQLSCRIPT 
+     SQL SECURITY INVOKER AS 
 BEGIN 
-	DECLARE age integer;
-	age := TO_INTEGER(value);
-	
+     DECLARE start_year integer;
+	start_year := TO_INTEGER(value);
 	IF (level = 0) THEN
 		outValue := value;
 	ELSEIF (level = 1) THEN
-		IF (age < 25) THEN
-			outValue := '< 25';
-		ELSEIF (age <= 29) THEN
-			outValue := '25-29';
-		ELSEIF (age <= 34) THEN
-			outValue := '30-34';
-		ELSEIF (age <= 39) THEN
-			outValue := '35-39';
-		ELSEIF (age <= 44) THEN
-			outValue := '40-44';
-		ELSEIF (age <= 49) THEN
-			outValue := '45-49';
-		ELSEIF (age <= 54) THEN
-			outValue := '50-54';
-		ELSEIF (age <= 59) THEN
-			outValue := '55-59';
-		ELSEIF (age <= 64) THEN
-			outValue := '60-64';
-		ELSEIF (age <= 69) THEN
-			outValue := '65-69';
-		ELSEIF (age <= 74) THEN
-			outValue := '70-74';
-		ELSEIF (age <= 79) THEN
-			outValue := '75-79';
+		IF (start_year <= 1990) THEN
+			outValue := '1986-1990';
+		ELSEIF (start_year <= 1995) THEN
+			outValue := '1991-1995';
+		ELSEIF (start_year <= 2000) THEN
+			outValue := '1996-2000';
+		ELSEIF (start_year <= 2005) THEN
+			outValue := '2001-2005';
+		ELSEIF (start_year <= 2010) THEN
+			outValue := '2006-2010';
+		ELSEIF (start_year <= 2015) THEN
+			outValue := '2011-2015';
+		ELSEIF (start_year <= 2020) THEN
+			outValue := '2016-2020';
 		END IF;
 	ELSEIF (level = 2) THEN
-		IF (age <= 29) THEN
-			outValue := '<=29';
-		ELSEIF (age <= 39) THEN
-			outValue := '30-39';
-		ELSEIF (age <= 49) THEN
-			outValue := '40-49';
-		ELSEIF (age <= 59) THEN
-			outValue := '50-59';
-		ELSEIF (age <= 69) THEN
-			outValue := '60-69';
-		ELSEIF (age <= 79) THEN
-			outValue := '70-79';
+		IF (start_year <= 1990) THEN
+			outValue := '1986-1990';
+		ELSEIF (start_year <= 2000) THEN
+			outValue := '1991-2000';
+		ELSEIF (start_year <= 2010) THEN
+			outValue := '2001-2010';
+		ELSEIF (start_year <= 2020) THEN
+			outValue := '>2010';
 		END IF;
+	ELSEIF (level = 3) THEN
+		outValue := '*';
 	END IF;
 END;
+
+--12. Create an anonymized view using the above funtion
+CREATE VIEW "SALARYANON_SYFN" ("id", "start_year", "gender", "zipcode", "salary")
+AS SELECT "id", "start_year", "gender", "zipcode", "salary" FROM "ANON_SAMPLE"
+WITH ANONYMIZATION (ALGORITHM 'K-ANONYMITY' PARAMETERS '{"k": 8}'
+COLUMN "id" PARAMETERS '{"is_sequence":true}'
+COLUMN "gender" PARAMETERS '{"is_quasi_identifier":true,"hierarchy":{"embedded": [["f"], ["m"]]}}'
+COLUMN "start_year" PARAMETERS '{"is_quasi_identifier":true,"hierarchy":{"schema":"DBADMIN", "function":"StartyearGroupHierarchy", "levels":3}}'
+COLUMN "zipcode" PARAMETERS '{"is_quasi_identifier":true,"hierarchy":{"embedded":[["5004"],["5005"],["5006"],["5104"],["5105"],["5106"],["5204"],["5205"],["5206"],["6006"],["6007"],["6008"],["6106"],["6107"],["6108"],["6206"],["6207"],["6208"],["7002"],["7003"],["7004"],["7102"],["7103"],["7104"],["7202"],["7203"],["7204"]]}}');
+
+--13. Refresh anonymized view
+REFRESH VIEW "SALARYANON_SYFN" ANONYMIZATION;
+
+--14. Query the new anonymized view
+SELECT * FROM "SALARYANON_SYFN";
