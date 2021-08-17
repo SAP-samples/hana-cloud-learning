@@ -2,12 +2,10 @@
 
 ## Description
 
-*currently under construction*
-
-This folder contains accompanying materials to the tutorial mission "Get Started with a Standalone SAP HANA Cloud, Data Lake"
+This folder contains accompanying materials to the tutorial mission "Jump start your SAP HANA Cloud, SAP HANA database in trial"
 All instructions on how to use the sample data and sample code can be found directly in the tutorials of this mission.
 
-[Find the mission here](https://saphanajourney.com/hana-cloud/missions/)
+[Find the mission here](https://developers.sap.com/mission.hana-cloud-database-get-started.html)
 
 In this mission, you will learn the basics of working with your trial of SAP HANA Cloud, SAP HANA database. This includes provisioning your instance, creating users, virtualizing data, and creating calculation views in SAP Business Application Studio.
 
