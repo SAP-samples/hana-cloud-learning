@@ -1,7 +1,7 @@
 # QRC3 2021: Test Examples for "Selected Calculation View Modeling and HDI features"
 
 ## Description
-This folder contains a Business Application Studio project with examples and descriptions of new features that were introduced with SAP HANA Cloud QRC3.2021 in the area of calculation view modeling and HDI. 
+This folder contains an SAP Business Application Studio project with examples and descriptions of new features that were introduced with SAP HANA Cloud QRC3.2021 in the area of calculation view modeling and HDI. 
 Examples of different features can be found in separate folders. The examples are described in the info.md file of the respective folders. 
 
 ## Requirements 
