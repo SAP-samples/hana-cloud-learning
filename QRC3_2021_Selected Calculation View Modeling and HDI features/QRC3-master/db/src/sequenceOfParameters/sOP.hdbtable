@@ -1,0 +1,1 @@
+column table "sOP" ("year" NVARCHAR(20), "SalesOrderID" NVARCHAR(20), "amount" Decimal (10,2))

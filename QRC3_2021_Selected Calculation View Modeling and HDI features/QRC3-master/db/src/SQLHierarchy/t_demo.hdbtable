@@ -1,0 +1,1 @@
+COLUMN TABLE "t_demo" ("parent_id" VARCHAR(2), "node_id" VARCHAR(2), "ord" INTEGER, "amount" INTEGER )

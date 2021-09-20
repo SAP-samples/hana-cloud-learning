@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CVSequenceOfParameters" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVSequenceOfParameters.hdbcalculationview"/>
+<localVariables>
+  <variable id="EndYear" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false" defaultValue="2021" scale="NaN">
+      <valueDomain type="AttributeValue">
+        <attribute name="year"/>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="StartYear" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false" defaultValue="2018" scale="NaN">
+      <valueDomain type="AttributeValue">
+        <attribute name="year"/>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="FilterSalesOrderID">
+    <descriptions defaultDescription="FilterSalesOrderID"/>
+    <variableProperties datatype="NVARCHAR" length="20" scale="NaN" defaultValue="001">
+      <valueDomain type="AttributeValue">
+        <attribute name="SalesOrderID"/>
+      </valueDomain>
+      <selection type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="sOP">
+    <resourceUri>sOP</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="sOP" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="SalesOrderID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID"/>
+      <localVariable>FilterSalesOrderID</localVariable>
+      <keyMapping columnObjectName="sOP" columnName="SalesOrderID"/>
+    </attribute>
+  
+    <attribute id="year" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="year"/>
+  
+      <keyMapping columnObjectName="sOP" columnName="year"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="sOP" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <filter>&quot;year&quot;&gt;='$$StartYear$$' and &quot;year&quot;&lt;='$$EndYear$$'</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,21 @@
+{ "format_version":1,
+  "imports":
+  [
+	{
+	  "target_table":"old",
+	  "source_data": {
+		"data_type": "CSV",
+		  "file_name": "old.csv",
+		  "has_header": true,
+		  "dialect": "HANA",
+		  "type_config": {
+			"delimiter": ","
+		  }
+		},
+	  "import_settings": {
+		"import_columns": [
+		]
+	  }
+	}
+  ]
+}

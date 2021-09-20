@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="CVParentChild" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVParentChild.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="t_demo">
+    <resourceUri>t_demo</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<inlineHierarchy xsi:type="Dimension:ParentChildHierarchy" id="ParentChild" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE_IF_DEFINED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="false">
+  <descriptions defaultDescription="ParentChild"/>
+  <unassignedMemberProperties mode="FALSE"/>
+  <attributeParentPair attribute="node_id" parentAttribute="parent_id"/>
+</inlineHierarchy>
+<logicalModel id="t_demo">
+  <attributes>
+    <attribute id="parent_id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="parent_id"/>
+      <keyMapping columnObjectName="t_demo" columnName="parent_id"/>
+    </attribute>
+    <attribute id="node_id" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="node_id"/>
+      <keyMapping columnObjectName="t_demo" columnName="node_id"/>
+    </attribute>
+    <attribute id="ord" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ord"/>
+      <keyMapping columnObjectName="t_demo" columnName="ord"/>
+    </attribute>
+    <attribute id="amount" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="amount"/>
+      <keyMapping columnObjectName="t_demo" columnName="amount"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
