@@ -22,7 +22,7 @@ n/a
 
 [Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
  
-For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html) using the hashtag #saphanacloud.
+For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html) using the tag **SAP HANA Cloud**.
 
 ## Contributing
 If you wish to contribute code, offer fixes or improvements, please send a pull request (PR). Due to legal reasons, contributors will be asked to accept a Developer Certificate of Origin (DCO) on submitting their first PR to this project. This DCO acceptance can be done in the PR itself - look out for the CLA assistant that will guide you through the simple process. SAP uses the standard DCO text of the Linux Foundation.
