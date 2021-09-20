@@ -1,0 +1,1 @@
+COLUMN TABLE "CityGeo" ("Continent" NVARCHAR(30), "Country" NVARCHAR(2), "State_Code" NVARCHAR(2), "State" NVARCHAR(25), "Region" NVARCHAR(30), "Province" NVARCHAR(30), "County" NVARCHAR(60), "City" NVARCHAR(40)) 

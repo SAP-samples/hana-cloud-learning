@@ -1,0 +1,1 @@
+column table "rD" ("year" NVARCHAR(4), "SalesOrderID" NVARCHAR(20), "amount" Decimal (10,2))

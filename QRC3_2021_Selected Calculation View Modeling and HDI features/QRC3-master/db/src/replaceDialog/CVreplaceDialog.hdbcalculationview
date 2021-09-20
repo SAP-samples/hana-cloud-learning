@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CVreplaceDialog" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVreplaceDialog.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="rD">
+    <resourceUri>rD</resourceUri>
+  </DataSource>
+  <DataSource id="rDM">
+    <resourceUri>rDM</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="IAmSuperflous">
+    <viewAttributes>
+      <viewAttribute id="year"/>
+      <viewAttribute id="SalesOrderID"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="SalesOrderID_ForItem"/>
+      <viewAttribute id="SalesOrderItem"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Join_1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="year"/>
+      <viewAttribute id="SalesOrderID"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="SalesOrderID_ForItem"/>
+      <viewAttribute id="SalesOrderItem"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="rD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="year" source="year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderID" source="SalesOrderID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <input node="rDM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderID_ForItem" source="SalesOrderID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderItem" source="SalesOrderItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderID" source="SalesOrderID"/>
+    </input>
+    <joinAttribute name="SalesOrderID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="IAmSuperflous">
+  <attributes>
+    <attribute id="year" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="year"/>
+      <keyMapping columnObjectName="IAmSuperflous" columnName="year"/>
+    </attribute>
+    <attribute id="SalesOrderID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID"/>
+      <keyMapping columnObjectName="IAmSuperflous" columnName="SalesOrderID"/>
+    </attribute>
+    <attribute id="SalesOrderID_ForItem" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID_1"/>
+      <keyMapping columnObjectName="IAmSuperflous" columnName="SalesOrderID_ForItem"/>
+    </attribute>
+    <attribute id="SalesOrderItem" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderItem"/>
+      <keyMapping columnObjectName="IAmSuperflous" columnName="SalesOrderItem"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="IAmSuperflous" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="IAmSuperflous" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="94" y="196"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="94" y="282"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="rD" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="152.6337890625"/>
+    </shape>
+    <shape modelObjectName="rDM" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="163.02685546875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

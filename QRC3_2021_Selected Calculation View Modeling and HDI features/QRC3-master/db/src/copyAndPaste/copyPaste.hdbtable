@@ -1,0 +1,1 @@
+column table "copyPaste" ("ID" NVARCHAR(20), "rating" NVARCHAR(20), "amount" DECIMAL (10,2))

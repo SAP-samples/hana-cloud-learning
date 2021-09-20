@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="GeoHierarchy" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="GeoHierarchy.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="CityGeo">
+    <resourceUri>CityGeo</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="GeoHierarchy" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+  <descriptions defaultDescription="GeoHierarchy"/>
+  <unassignedMemberProperties mode="FALSE"/>
+  <levels>
+    <level levelAttribute="Continent" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="Continent" sortDirection="ASC"/>
+    <level levelAttribute="Country" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="Country" sortDirection="ASC"/>
+    <level levelAttribute="State" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="State" sortDirection="ASC"/>
+    <level levelAttribute="City" levelType="MDLEVEL_TYPE_REGULAR" order="4" orderAttribute="City" sortDirection="ASC"/>
+  </levels>
+</inlineHierarchy>
+<logicalModel id="CityGeo">
+  <attributes>
+    <attribute id="Continent" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Continent"/>
+      <keyMapping columnObjectName="CityGeo" columnName="Continent"/>
+    </attribute>
+    <attribute id="Country" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Country"/>
+      <keyMapping columnObjectName="CityGeo" columnName="Country"/>
+    </attribute>
+    <attribute id="State" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="State"/>
+      <keyMapping columnObjectName="CityGeo" columnName="State"/>
+    </attribute>
+    <attribute id="City" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="City"/>
+      <keyMapping columnObjectName="CityGeo" columnName="City"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

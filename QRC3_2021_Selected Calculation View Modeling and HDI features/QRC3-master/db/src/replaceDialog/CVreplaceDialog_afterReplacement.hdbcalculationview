@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CVreplaceDialog_afterReplacement" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVreplaceDialog.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="rD">
+    <resourceUri>rD</resourceUri>
+  </DataSource>
+  <DataSource id="rDM">
+    <resourceUri>rDM</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="year"/>
+      <viewAttribute id="SalesOrderID"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="SalesOrderID_ForItem"/>
+      <viewAttribute id="SalesOrderItem"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="rD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="year" source="year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderID" source="SalesOrderID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <input node="rDM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderID_ForItem" source="SalesOrderID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderItem" source="SalesOrderItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderID" source="SalesOrderID"/>
+    </input>
+    <joinAttribute name="SalesOrderID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="year" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="year"/>
+      <keyMapping columnObjectName="Join_1" columnName="year"/>
+    </attribute>
+    <attribute id="SalesOrderID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID"/>
+      <keyMapping columnObjectName="Join_1" columnName="SalesOrderID"/>
+    </attribute>
+    <attribute id="SalesOrderID_ForItem" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID_1"/>
+      <keyMapping columnObjectName="Join_1" columnName="SalesOrderID_ForItem"/>
+    </attribute>
+    <attribute id="SalesOrderItem" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderItem"/>
+      <keyMapping columnObjectName="Join_1" columnName="SalesOrderItem"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="301" y="131"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118" y="256"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="rD" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="152"/>
+    </shape>
+    <shape modelObjectName="rDM" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="163"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

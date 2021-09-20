@@ -1,0 +1,1 @@
+column table "current" ("year" NVARCHAR(20), "ID" NVARCHAR(20),  "amount" int)

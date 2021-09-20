@@ -1,0 +1,1 @@
+column table "eUVF" ("SalesOrderID" NVARCHAR(20), "amount" Decimal (10,2))
