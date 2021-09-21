@@ -1,14 +1,17 @@
-#1. PREPARATION
+Session #1: Project Lifecycle Management & HDI Concepts in SAP HANA Cloud, SAP HANA database
 
-#SHOW CURRENT USER IN DBX ONCE HDI CONTAINER IS CREATED
+[# - Main heading
+ ## - Sub-heading
+ ### - Code explanation ]
 
+*START*-----------------------------------------------
+------------------------------------------------------
+------------------------------------------------------
 
-SELECT CURRENT_USER "current user" FROM DUMMY; 
+#2. Create a table and import data
 
-SELECT * from HANACLOUD_P11111_HDI_DB_1#DI.M_Messages 
+##Add the column definitions to the table
 
-
-#2. CREATE INVENTORY TABLE
 
 column table "INVENTORY" ( 
 
@@ -43,97 +46,37 @@ column table "INVENTORY" (
    "PHYSICALROUTECONNECTIONDESCRIPTION"  NVARCHAR(1) 
 ) 
 
+------------------------------------------------------
+------------------------------------------------------
  
-#3. CHANGE DATA STRUCTURE WITH HDBTABLE: ADDITIONAL ROWS
+#3. Change data structures using HDBTABLE
  
+###Add two rows to the column definition
 
    "ADDITIONALATTRIBUTESTRING" NVARCHAR(10), 
    "ADDITIONALATTRIBUTESTRINGNN" NVARCHAR(10) NOT NULL DEFAULT 'TEST' 
-)
- 
 
+------------------------------------------------------
+------------------------------------------------------
 
-4: CHANGE DATA STRUCTURE WITH HDBMIGRATIONTABLE: VERSION 1 
+#4. Change data structures using HDBMIGRATIONTABLE
+
+##Recreate the table using an hdbmigrationtable object
+
+###Version is created by duplicating the HDBTABLE and adjusting it directly in the code editor
 
 == version = 1 
-
-column table "INVENTORY" ( 
-"PRODUCT" NVARCHAR(10), 
-"PRODUCTDESCRIPTION" NVARCHAR(80), 
-"MATERIAL" NVARCHAR(80), 
-"MATERIALDESCRIPTION" NVARCHAR(80), 
-"DESTINATIONCOUNTRY" NVARCHAR(2), 
-"DESTINATIONCOUNTRYDESCRIPTION" NVARCHAR(80), 
-"DESTINATIONREGION" NVARCHAR(80), 
-"REGIONDESCRIPTION" NVARCHAR(80), 
-"INVENTORYLOCATION" NVARCHAR(80), 
-"INVENTORYLOCATIONDESCRIPTION" NVARCHAR(80), 
-"LOCATIONLAT" DECIMAL(22, 6), 
-"LOCATIONLONG" DECIMAL(22, 6), 
-"TARGETSTOCKQTY" DECIMAL(22, 3), 
-"ONHANDSTOCK" DECIMAL(22, 3), 
-"REPORTINGTIME" DATE, 
-"TARGETANALYSIS" NVARCHAR(80), 
-"TARGETANALYSISDESCRIPTION" NVARCHAR(80), 
-"SOURCECOUNTRY" NVARCHAR(2), 
-"SOURCECOUNTRYDESCRIPTION" NVARCHAR(80), 
-"SOURCEREGION" NVARCHAR(80), 
-"SOURCEREGIODESCRIPTION" NVARCHAR(80), 
-"SOURCESITE" NVARCHAR(80), 
-"SOURCESITEDESCRIPTION" NVARCHAR(80), 
-"SOURCELAT" DECIMAL(10, 6), 
-"SOURCELONG" DECIMAL(10, 6), 
-"LOGISTICCENTERS" NVARCHAR(80), 
-"LOGISTICCENTERDESCRIPTION" NVARCHAR(80), 
-"PHYSICALROUTECONNECTION" NVARCHAR(1), 
-"PHYSICALROUTECONNECTIONDESCRIPTION" NVARCHAR(1),
-"ADDITIONALATTRIBUTESTRING" NVARCHAR(10), 
-"ADDITIONALATTRIBUTESTRINGNN" NVARCHAR(10) NOT NULL DEFAULT 'TEST' 
-)  
-
  
+------------------------------------------------------
 
-4: CHANGE DATA STRUCTURE WITH HDBMIGRATIONTABLE: VERSION 2
+##Add rows to the hdbmigrationtable object
 
-== version = 2 
-
-column table "INVENTORY" ( 
-"PRODUCT" NVARCHAR(10), 
-"PRODUCTDESCRIPTION" NVARCHAR(80), 
-"MATERIAL" NVARCHAR(80), 
-"MATERIALDESCRIPTION" NVARCHAR(80), 
-"DESTINATIONCOUNTRY" NVARCHAR(2), 
-"DESTINATIONCOUNTRYDESCRIPTION" NVARCHAR(80), 
-"DESTINATIONREGION" NVARCHAR(80), 
-"REGIONDESCRIPTION" NVARCHAR(80), 
-"INVENTORYLOCATION" NVARCHAR(80), 
-"INVENTORYLOCATIONDESCRIPTION" NVARCHAR(80), 
-"LOCATIONLAT" DECIMAL(22, 6), 
-"LOCATIONLONG" DECIMAL(22, 6), 
-"TARGETSTOCKQTY" DECIMAL(22, 3), 
-"ONHANDSTOCK" DECIMAL(22, 3), 
-"REPORTINGTIME" DATE, 
-"TARGETANALYSIS" NVARCHAR(80), 
-"TARGETANALYSISDESCRIPTION" NVARCHAR(80), 
-"SOURCECOUNTRY" NVARCHAR(2), 
-"SOURCECOUNTRYDESCRIPTION" NVARCHAR(80), 
-"SOURCEREGION" NVARCHAR(80), 
-"SOURCEREGIODESCRIPTION" NVARCHAR(80), 
-"SOURCESITE" NVARCHAR(80), 
-"SOURCESITEDESCRIPTION" NVARCHAR(80), 
-"SOURCELAT" DECIMAL(10, 6), 
-"SOURCELONG" DECIMAL(10, 6), 
-"LOGISTICCENTERS" NVARCHAR(80), 
-"LOGISTICCENTERDESCRIPTION" NVARCHAR(80), 
-"PHYSICALROUTECONNECTION" NVARCHAR(1), 
-"PHYSICALROUTECONNECTIONDESCRIPTION" NVARCHAR(1), 
-"ADDITIONALATTRIBUTESTRING" NVARCHAR(10), 
-"ADDITIONALATTRIBUTESTRINGNN" NVARCHAR(10) NOT NULL DEFAULT 'TEST' 
 "ADDINTEGER" INTEGER, 
-"ADDINTEGER_NN" INTEGER NOT NULL DEFAULT 0 
-)  
+"ADDINTEGER_NN" INTEGER NOT NULL DEFAULT 0
 
- 
+------------------------------------------------------
+
+###Define migration steps
 
 == migration = 2 
 
@@ -141,43 +84,37 @@ ALTER TABLE "INVENTORY"
 ADD ("ADDINTEGER" INTEGER); 
 
 ALTER TABLE "INVENTORY" 
-ADD ("ADDINTEGER_NN" INTEGER NOT NULL DEFAULT 0); 
+ADD ("ADDINTEGER_NN" INTEGER NOT NULL DEFAULT 0);
 
+------------------------------------------------------
+------------------------------------------------------
  
-
-5. CREATE 2 ROLE WITH SELECT PRIVILEGES WITH AND WITHOUT GRANT OPTION
-
+#Synchronize your project with Git
  
-<<TBD>>
+##Connect your development project to GitHub
 
-Grant role 
-{ 
-"role": { 
-"object_privileges": [ 
-{ 
-"name": "INVENTORY", 
-"type": "TABLE", 
-"privileges_with_grant_option": [ 
-"SELECT" 
-] 
-} 
-] 
-} 
-} 
-
- 
-
- 
-6. GIT
- 
-
-git config --global user.email "you@example.com" 
-git config --global user.name "Your Name " 
+###Initialize the empty Git repository
 
 git init
-git commit -m "first commit"
-git branch -M master
-git remote add origin https://github.com/VolkerSaggau/HC-WS3.git
+
+------------------------------------------------------
+
+##Add a remote origin via HTTPS connection
+
+git remote add origin https://github.com/<Username>/<Repository name>.git
+
+------------------------------------------------------
+
+###To set your user credentials from git
+
+git fetch
+
+------------------------------------------------------
+
+###Push changes to master branch
 
 git push -u origin master
- 
+
+------------------------------------------------------
+------------------------------------------------------
+-------------------------------------------------*END*
