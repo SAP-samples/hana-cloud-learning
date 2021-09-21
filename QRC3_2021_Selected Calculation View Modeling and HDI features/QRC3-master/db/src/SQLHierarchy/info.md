@@ -17,16 +17,18 @@ As an example for a level hierarchy, you can run the following query to retrieve
 
 ```SQL
 SELECT
-    node_id "City",
+    "City",
     "Continent" AS level1,
     "Country" AS level2,
     "State" AS level3
 FROM 
-    "GeoHierarchy/sqlh/GeoHierarchy"
-WHERE 
-    hierarchy_level_name='City' 
-AND 
-    "Continent"='Europe'
+--    "GeoHierarchy/sqlh/GeoHierarchy"
+-- WHERE 
+--    hierarchy_level_name='City' 
+-- AND 
+--    "Continent"='Europe'
+-- for better performance:
+HIERARCHY_DESCENDANTS (SOURCE "GeoHierarchy/sqlh/GeoHierarchy" START WHERE node_id = 'Europe') WHERE "City" is not null 
 ORDER BY
     hierarchy_rank;
 
