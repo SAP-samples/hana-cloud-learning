@@ -8,10 +8,14 @@ Follow along with your own trial account and get help from our experts during th
 
 Learn how to collaborate on database development in SAP HANA Cloud and SAP Business Application Studio. Get to know basic HDI concepts, ways to develop applications and automate their deployment, and create template projects that others in your organization can easily use and modify.
 
+- Session 1: Project Lifecycle Management & HDI Concepts in SAP HANA Cloud, SAP HANA database
+- Session 2: Create a CAP application and automate project deployment using CI/CD
+- Session 3: Creating Project Templates for team members in SAP Business Application Studio
+
+[Save your spot!](https://event.on24.com/wcc/r/3342381/E81F3BBAD36BF0C5BE73AFBC18EF81CD/2764517)
+
 ## Contents of this Directory
 In this directory, you can find code snippets for each of the workshop sessions in .txt files as well as sample data files.
-
-Please refer to the workbooks for more detailed instructions.
 
 ## Requirements
 Here is what you need to prepare before the workshop starts to be able to follow along:
@@ -21,7 +25,7 @@ Here is what you need to prepare before the workshop starts to be able to follow
 - [Add a subscription](https://help.sap.com/viewer/9d1db9835307451daa8c930fbd9ab264/Cloud/en-US/6331319fd9ea4f0ea5331e21df329539.html) to SAP Business Application Studio to your trial. 
 - Subscribe to the CI/CD service in the BTP cockpit.
 - Create a free account on github.com.
--  
+
 If you need help with the preparation, please ask questions in the SAP Community using the tag SAP HANA Cloud. 
 
 ## Download and Installation
