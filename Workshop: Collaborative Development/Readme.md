@@ -3,14 +3,14 @@
 ## Description
 This directory provides additional material for the SAP HANA Cloud Workshop series "Collaborative Database Development in SAP HANA Cloud, SAP HANA database". 
 
-Join the SAP HANA Cloud Workshop series to learn with our experts Volker Saggau and Jan Zwickel in this hands-on workshop. 
+[Join the SAP HANA Cloud Workshop series](https://event.on24.com/wcc/r/3342381/E81F3BBAD36BF0C5BE73AFBC18EF81CD/2764517) to learn with our experts Volker Saggau and Jan Zwickel in this hands-on workshop. 
 Follow along with your own trial account and get help from our experts during the event. Alternatively, catch-up by watching the recordings on-demand.
 
 Learn how to collaborate on database development in SAP HANA Cloud and SAP Business Application Studio. Get to know basic HDI concepts, ways to develop applications and automate their deployment, and create template projects that others in your organization can easily use and modify.
 
-- Session 1: Project Lifecycle Management & HDI Concepts in SAP HANA Cloud, SAP HANA database
-- Session 2: Create a CAP application and automate project deployment using CI/CD
-- Session 3: Creating Project Templates for team members in SAP Business Application Studio
+- [Session 1: Project Lifecycle Management & HDI Concepts in SAP HANA Cloud, SAP HANA database](https://event.on24.com/wcc/r/3342381/E81F3BBAD36BF0C5BE73AFBC18EF81CD/2764517)
+- [Session 2: Create a CAP application and automate project deployment using CI/CD](https://event.on24.com/wcc/r/3342436/140EF0F1D25998E8DA2BA77C77B92F1E)
+- [Session 3: Creating Project Templates for team members in SAP Business Application Studio](https://event.on24.com/wcc/r/3342498/AB8818841B38D16A1C11D9F2BD19FEE2)
 
 [Save your spot!](https://event.on24.com/wcc/r/3342381/E81F3BBAD36BF0C5BE73AFBC18EF81CD/2764517)
 
