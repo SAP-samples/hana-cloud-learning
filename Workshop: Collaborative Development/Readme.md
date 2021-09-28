@@ -17,6 +17,8 @@ Learn how to collaborate on database development in SAP HANA Cloud and SAP Bus
 In this directory, you can find code snippets for each of the workshop sessions in .txt files as well as sample data files.
 
 ## Requirements
+[All necessary preparation steps are documented in our preparation reader. Get it here.](https://www.sap.com/documents/2021/09/4054ec9c-fa7d-0010-bca6-c68f7e60039b.html)
+
 Here is what you need to prepare before the workshop starts to be able to follow along:
 - [Sign-up](https://www.sap.com/cmp/td/sap-hana-cloud-trial.html) for the SAP HANA Cloud trial. We recommend using the US-based server for this workshop.
 - [Provision](https://saphanajourney.com/hana-cloud/learning-article/how-to-create-your-trial-sap-hana-cloud-instance/) a SAP HANA Cloud, SAP HANA database in trial. 
@@ -25,7 +27,7 @@ Here is what you need to prepare before the workshop starts to be able to follow
 - Subscribe to the CI/CD service in the BTP cockpit.
 - Create a free account on github.com.
 
-If you need help with the preparation, please ask questions in the SAP Community using the tag SAP HANA Cloud. 
+If you need help with the preparation, please ask questions in the SAP Community using the tag **SAP HANA Cloud. 
 
 ## Download and Installation
 Code and Sample data can be downloaded from this directory or cloned to a development project in SAP Business Application Studio.
