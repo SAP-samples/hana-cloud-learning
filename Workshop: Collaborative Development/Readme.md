@@ -12,7 +12,6 @@ Learn how to collaborate on database development in SAP HANA Cloud and SAP Bus
 - [Session 2: Create a CAP application and automate project deployment using CI/CD](https://event.on24.com/wcc/r/3342436/140EF0F1D25998E8DA2BA77C77B92F1E)
 - [Session 3: Creating Project Templates for team members in SAP Business Application Studio](https://event.on24.com/wcc/r/3342498/AB8818841B38D16A1C11D9F2BD19FEE2)
 
-[Save your spot!](https://event.on24.com/wcc/r/3342381/E81F3BBAD36BF0C5BE73AFBC18EF81CD/2764517)
 
 ## Contents of this Directory
 In this directory, you can find code snippets for each of the workshop sessions in .txt files as well as sample data files.
