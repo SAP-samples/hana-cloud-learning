@@ -1,0 +1,14 @@
+COLUMN TABLE "Addresses"(
+	"AddressId" NVARCHAR(10) NOT NULL COMMENT 'Address ID',
+	"City" NVARCHAR(40) NOT NULL COMMENT 'City',
+	"PostalCode" NVARCHAR(10) NOT NULL COMMENT 'Postal Code',
+	"Street" NVARCHAR(60) NOT NULL COMMENT 'Street',
+	"Building" NVARCHAR(10) NOT NULL COMMENT 'Building',
+	"Country" NVARCHAR(3) NOT NULL COMMENT 'Country',
+	"AddressType" NVARCHAR(2) NOT NULL COMMENT 'Address Type',
+	"StartDate" DATE NOT NULL COMMENT 'Validity Start Date',
+	"EndDate" DATE NOT NULL COMMENT 'Validity End Date',
+	PRIMARY KEY (
+		"AddressId"
+	)
+)

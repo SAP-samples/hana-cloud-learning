@@ -1,0 +1,22 @@
+{
+    "UPS_QRC1_2022": {
+      "object_owner": {
+       "global_object_privileges" : [
+            {
+              "name" : "TORJZ",
+              "type" : "REMOTE SOURCE",
+              "privileges" : [ "CREATE VIRTUAL TABLE" ]
+            }
+        ]
+      },
+      "application_user": {
+       "global_object_privileges" : [
+            {
+              "name" : "TORJZ",
+              "type" : "REMOTE SOURCE",
+              "privileges" : [ "CREATE VIRTUAL TABLE" ]
+            }
+        ]
+      }
+    }
+  }
