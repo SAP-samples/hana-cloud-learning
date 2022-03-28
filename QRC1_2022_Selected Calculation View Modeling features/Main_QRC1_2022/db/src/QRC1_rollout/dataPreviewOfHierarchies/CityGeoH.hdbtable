@@ -1,0 +1,10 @@
+COLUMN TABLE "CityGeoH"(
+	"Continent" NVARCHAR(30) COMMENT ' ',
+	"Country" NVARCHAR(2) COMMENT ' ',
+	"State_Code" NVARCHAR(2) COMMENT ' ',
+	"State" NVARCHAR(25) COMMENT ' ',
+	"Region" NVARCHAR(30) COMMENT ' ',
+	"Province" NVARCHAR(30) COMMENT ' ',
+	"County" NVARCHAR(60) COMMENT ' ',
+	"City" NVARCHAR(40)
+)

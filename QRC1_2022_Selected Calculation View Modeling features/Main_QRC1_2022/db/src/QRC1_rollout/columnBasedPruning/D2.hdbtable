@@ -1,0 +1,1 @@
+column table "D2" ("a" NVARCHAR(20), "b" NVARCHAR(20))

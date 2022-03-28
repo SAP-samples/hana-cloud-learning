@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="3.0" id="CityGeoHierarchy" applyPrivilegeType="NONE" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" dataCategory="DIMENSION" dimensionType="STANDARD" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Projection" xscCompatibilityMode="true" hierarchyGeneration="SQL">
+<origin/>
+  <descriptions defaultDescription="ATV_DIM_GEO"/>
+  <metadata changedAt="2019-01-15 16:01:23.286" createdAt="2019-01-15 16:01:23.286"/>
+  <localVariables/>
+  <variableMappings/>
+  <dataSources>
+    <DataSource id="Addresses">
+      <resourceUri>Addresses</resourceUri>
+    </DataSource>
+    <DataSource id="CityGeoH">
+      <resourceUri>CityGeoH</resourceUri>
+    </DataSource>
+    <DataSource id="BusinessPartnerContacts">
+      <resourceUri>BusinessPartnerContacts</resourceUri>
+    </DataSource>
+  </dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" dynamic="false" joinType="referential" optimizeJoinColumns="false">
+    <descriptions/>
+    <viewAttributes>
+        <viewAttribute id="City"/>
+        <viewAttribute id="AddressId"/>
+        <viewAttribute id="Continent"/>
+        <viewAttribute id="Country"/>
+        <viewAttribute id="State"/>
+        <viewAttribute id="Region"/>
+        <viewAttribute id="Province"/>
+        <viewAttribute id="County"/>
+      </viewAttributes>
+    <calculatedViewAttributes/>
+      <input node="Addresses">
+        <mapping xsi:type="Calculation:AttributeMapping" target="City" source="City"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="AddressId" source="AddressId"/>
+      </input>
+      <input node="CityGeoH">
+        <mapping xsi:type="Calculation:AttributeMapping" target="Continent" source="Continent"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="State" source="State"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="Province" source="Province"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="County" source="County"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="City" source="City"/>
+      </input>
+    <joinAttribute name="City"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="ContactId"/>
+      <viewAttribute id="City"/>
+      <viewAttribute id="Continent"/>
+      <viewAttribute id="Country"/>
+      <viewAttribute id="State"/>
+      <viewAttribute id="Region"/>
+      <viewAttribute id="Province"/>
+      <viewAttribute id="County"/>
+      <viewAttribute hidden="true" id="JOIN$AddressId$AddressId"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="City" source="City"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Continent" source="Continent"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Country" source="Country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="State" source="State"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Region" source="Region"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="Province" source="Province"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="County" source="County"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AddressId$AddressId" source="AddressId"/>
+    </input>
+    <input node="BusinessPartnerContacts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ContactId" source="ContactId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$AddressId$AddressId" source="AddressId"/>
+    </input>
+    <joinAttribute name="JOIN$AddressId$AddressId"/>
+  </calculationView>
+</calculationViews>
+  <inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="LH_GEO" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="LEVEL_NAME">
+    <descriptions defaultDescription="LH_GEO Country - City - Street"/>
+    <levels>
+      <level levelAttribute="Continent" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="Continent"/>
+      <level levelAttribute="Country" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="Country"/>
+      <level levelAttribute="State" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="State"/>
+      <level levelAttribute="Region" levelType="MDLEVEL_TYPE_REGULAR" order="4" orderAttribute="Region"/>
+      <level levelAttribute="Province" levelType="MDLEVEL_TYPE_REGULAR" order="5" orderAttribute="Province"/>
+      <level levelAttribute="County" levelType="MDLEVEL_TYPE_REGULAR" order="6" orderAttribute="County"/>
+      <level levelAttribute="ContactId" levelType="MDLEVEL_TYPE_REGULAR" order="7" orderAttribute="ContactId"/>
+    </levels>
+  </inlineHierarchy>
+  <logicalModel id="Join_2">
+    <descriptions/>
+    <attributes>
+      <attribute id="ContactId" key="true" order="1" attributeHierarchyActive="true" displayAttribute="false">
+        <descriptions defaultDescription="ContactId"/>
+        <keyMapping columnObjectName="Join_2" columnName="ContactId"/>
+      </attribute>
+      <attribute id="Continent" order="2" attributeHierarchyActive="true" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_2" columnName="Continent"/>
+      </attribute>
+      <attribute id="Country" order="3" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_2" columnName="Country"/>
+      </attribute>
+      <attribute id="State" order="4" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_2" columnName="State"/>
+      </attribute>
+      <attribute id="Region" order="5" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_2" columnName="Region"/>
+      </attribute>
+      <attribute id="Province" order="6" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_2" columnName="Province"/>
+      </attribute>
+      <attribute id="County" order="7" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions/>
+        <keyMapping columnObjectName="Join_2" columnName="County"/>
+      </attribute>
+      <attribute id="City" order="8" attributeHierarchyActive="false" displayAttribute="false">
+        <descriptions defaultDescription="City"/>
+        <keyMapping columnObjectName="Join_2" columnName="City"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures/>
+    <calculatedMeasures/>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+<layout>
+  <shapes>
+      <shape modelObjectName="Output" modelObjectNameSpace="MeasureGroup" expanded="true">
+        <upperLeftCorner x="92" y="112"/>
+        <rectangleSize width="160"/>
+      </shape>
+      <shape modelObjectName="Join_1" modelObjectNameSpace="CalculationView" expanded="true">
+        <upperLeftCorner x="92" y="357"/>
+        <rectangleSize width="160"/>
+      </shape>
+    <shape modelObjectName="Addresses" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="CityGeoH" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="BusinessPartnerContacts" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="302" y="12"/>
+      <rectangleSize width="210"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="columnBasedPruningExample" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="columnBasedPruningExample.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="salesOrders2019">
+    <resourceUri>salesOrders2019</resourceUri>
+  </DataSource>
+  <DataSource id="salesOrders2020">
+    <resourceUri>salesOrders2020</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="JustAUnion" columnBasedPruningFlag="true">
+    <viewAttributes>
+      <viewAttribute id="SALESORDER"/>
+      <viewAttribute id="PRODUCT"/>
+      <viewAttribute id="YEAR"/>
+      <viewAttribute id="SALES" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="salesOrders2019" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDER" source="SALESORDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT" source="PRODUCT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALES" source="SALES"/>
+    </input>
+    <input node="salesOrders2020" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDER" source="SALESORDER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT" source="PRODUCT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YEAR" source="YEAR"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SALES" null="true"/>
+    </input>
+    <columnBasedPruningAttributes>
+      <columnBasedPruningAttribute id="SALES"/>
+    </columnBasedPruningAttributes>
+  </calculationView>
+</calculationViews>
+<logicalModel id="JustAUnion">
+  <attributes>
+    <attribute id="SALESORDER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SALESORDER"/>
+      <keyMapping columnObjectName="JustAUnion" columnName="SALESORDER"/>
+    </attribute>
+    <attribute id="PRODUCT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT"/>
+      <keyMapping columnObjectName="JustAUnion" columnName="PRODUCT"/>
+    </attribute>
+    <attribute id="YEAR" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEAR"/>
+      <keyMapping columnObjectName="JustAUnion" columnName="YEAR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SALES" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALES"/>
+      <measureMapping columnObjectName="JustAUnion" columnName="SALES"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="JustAUnion" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="110" y="218"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
