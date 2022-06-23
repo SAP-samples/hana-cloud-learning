@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="I_cvSnap_Query_1" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="I_cvSnap_Query_1.hdbcalculationview"/>
+<localVariables>
+  <variable id="I_SOURCE" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="8" mandatory="false" defaultValue="SNAPSHOT">
+      <valueDomain type="StaticList">
+        <listEntry id="SNAPSHOT">
+          <descriptions defaultDescription="SNAPSHOT"/>
+        </listEntry>
+        <listEntry id="BASE">
+          <descriptions defaultDescription="BASE"/>
+        </listEntry>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="BaseView">
+    <resourceUri>cvSnap</resourceUri>
+  </DataSource>
+  <DataSource id="SnapShot">
+    <resourceUri>cvSnap/Query_1/SNAP/SNAPSHOT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="country"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="2013_amount" aggregationType="sum"/>
+      <viewAttribute id="2014_amount" aggregationType="sum"/>
+      <viewAttribute id="2015_amount" aggregationType="sum"/>
+      <viewAttribute id="2016_amount" aggregationType="sum"/>
+      <viewAttribute id="2017_amount" aggregationType="sum"/>
+      <viewAttribute id="2018_amount" aggregationType="sum"/>
+      <viewAttribute id="2019_amount" aggregationType="sum"/>
+      <viewAttribute id="2020_amount" aggregationType="sum"/>
+      <viewAttribute id="2021_amount" aggregationType="sum"/>
+      <viewAttribute id="2022_amount" aggregationType="sum"/>
+      <viewAttribute id="rest_amount" aggregationType="sum"/>
+      <viewAttribute datatype="NVARCHAR" length="8" id="SOURCE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="NO_ROW" node="BaseView">
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="BASE"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="2013_amount" source="2013_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2014_amount" source="2014_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2015_amount" source="2015_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2016_amount" source="2016_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2017_amount" source="2017_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2018_amount" source="2018_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2019_amount" source="2019_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2020_amount" source="2020_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2021_amount" source="2021_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="2022_amount" source="2022_amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="rest_amount" source="rest_amount"/>
+    </input>
+    <input node="SnapShot" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="SOURCE" null="false" value="SNAPSHOT"/>
+    </input>
+    <filter>'$$I_SOURCE$$'=&quot;SOURCE&quot;</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="country" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Union_1" columnName="country"/>
+    </attribute>
+    <attribute id="product" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="Union_1" columnName="product"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="Union_1" columnName="amount"/>
+    </measure>
+    <measure id="2013_amount" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2013_amount"/>
+    </measure>
+    <measure id="2014_amount" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2014_amount"/>
+    </measure>
+    <measure id="2015_amount" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2015_amount"/>
+    </measure>
+    <measure id="2016_amount" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2016_amount"/>
+    </measure>
+    <measure id="2017_amount" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2017_amount"/>
+    </measure>
+    <measure id="2018_amount" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2018_amount"/>
+    </measure>
+    <measure id="2019_amount" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2019_amount"/>
+    </measure>
+    <measure id="2020_amount" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2020_amount"/>
+    </measure>
+    <measure id="2021_amount" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2021_amount"/>
+    </measure>
+    <measure id="2022_amount" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="2022_amount"/>
+    </measure>
+    <measure id="rest_amount" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription=""/>
+      <measureMapping columnObjectName="Union_1" columnName="rest_amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="40" y="185"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="unionPruning" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="unionPruning.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_temperature" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="3" mandatory="false" defaultValue="new">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="mSV_new">
+    <resourceUri>mSV_new</resourceUri>
+  </DataSource>
+  <DataSource id="mSV_old">
+    <resourceUri>mSV_old</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="SalesOrderID"/>
+      <viewAttribute id="year" aggregationType="sum"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute datatype="NVARCHAR" length="3" id="temperature"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="mSV_new" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderID" source="SalesOrderID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="year" source="year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="temperature" null="false" value="new"/>
+    </input>
+    <input node="mSV_old" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SalesOrderID" source="SalesOrderID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="year" source="year"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="temperature" null="false" value="old"/>
+    </input>
+    <filter>'$$IP_temperature$$'=&quot;temperature&quot;</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="SalesOrderID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID"/>
+      <keyMapping columnObjectName="Union_1" columnName="SalesOrderID"/>
+    </attribute>
+    <attribute id="temperature" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="temperature"/>
+      <keyMapping columnObjectName="Union_1" columnName="temperature"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="year" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="year"/>
+      <measureMapping columnObjectName="Union_1" columnName="year"/>
+    </measure>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="Union_1" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="206"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
