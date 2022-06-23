@@ -1,0 +1,1 @@
+column table "mSV_old" ("SalesOrderID" NVARCHAR(20), "year" int, "amount" Decimal(10,2))

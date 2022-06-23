@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="medianCV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="medianCV.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="mA">
+    <resourceUri>mA</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="category"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_amount" datatype="DECIMAL" length="10" scale="2" expressionLanguage="SQL">
+        <formula>&quot;amount&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="mA"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="category" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="category"/>
+      <keyMapping columnObjectName="Projection_1" columnName="category"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="2" aggregationType="avg" measureType="simple" engineAggregation="median">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="Projection_1" columnName="amount"/>
+    </measure>
+  
+    <measure id="CC_Median" order="4" aggregationType="median" measureType="simple">
+      <descriptions defaultDescription="CC_Median"/>
+      <measureMapping columnObjectName="Projection_1" columnName="CC_amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="CM_Median" order="3" aggregationType="median" measureType="simple" aggregatable="true" datatype="DECIMAL" length="10" expressionLanguage="SQL" scale="2">
+      <formula>&quot;CC_Median&quot;</formula>
+      
+      
+      </measure></calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="95" y="237"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

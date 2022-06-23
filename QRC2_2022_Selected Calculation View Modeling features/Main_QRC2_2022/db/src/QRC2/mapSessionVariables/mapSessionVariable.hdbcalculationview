@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="mapSessionVariable" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" evaluateSessionVariablesEarly="true">
+<descriptions defaultDescription="mapSessionVariable.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_MinimumID" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="13" mandatory="false" defaultValue="1">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="SV_temperature" type="session"/>
+</localVariables>
+<variableMappings>
+  <mapping xsi:type="Variable:VariableMapping" dataSource="unionPruning">
+    <targetVariable name="IP_temperature" resourceUri="unionPruning"/>
+    <localVariable>SV_temperature</localVariable>
+  </mapping>
+</variableMappings>
+<dataSources>
+  <DataSource id="unionPruning">
+    <resourceUri>unionPruning</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="unionPruning" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="SalesOrderID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID"/>
+      <keyMapping columnObjectName="unionPruning" columnName="SalesOrderID"/>
+    </attribute>
+    <attribute id="temperature" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="temperature"/>
+      <keyMapping columnObjectName="unionPruning" columnName="temperature"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="year" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="year"/>
+      <measureMapping columnObjectName="unionPruning" columnName="year"/>
+    </measure>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="unionPruning" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <filter>&quot;SalesOrderID&quot;&gt;'$$IP_MinimumID$$'</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
