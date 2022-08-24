@@ -5,7 +5,7 @@ This folder contains an SAP Business Application Studio project with examples an
 Examples of different features can be found in separate folders. The examples are described in the info.md file of the respective folders. 
 
 ## Requirements 
-To test the examples, Business Application Studio needs to be connected to an SAP HANA Cloud QRC4 2021 instance.
+To test the examples, Business Application Studio needs to be connected to an SAP HANA Cloud QRC4 2021 or higher instance.
 
 If you need an SAP HANA Cloud instance, you can sign-up for a free trial of SAP HANA Cloud [here](https://www.sap.com/cmp/td/sap-hana-cloud-trial.html)
 
