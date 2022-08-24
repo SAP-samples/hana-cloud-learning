@@ -1,0 +1,1 @@
+column table "w" ("date" date, "product" NVARCHAR(20), "amount" Decimal(10,1))

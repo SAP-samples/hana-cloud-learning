@@ -1,0 +1,1 @@
+column table "cV" (client NVARCHAR(3), f1 NVARCHAR(20), i int)

@@ -1,0 +1,12 @@
+{
+  "role": {
+    "name": "mask",
+    "schema_privileges": [
+      {
+        "privileges": [
+          "SELECT"
+        ]
+      }
+    ]
+  }
+}

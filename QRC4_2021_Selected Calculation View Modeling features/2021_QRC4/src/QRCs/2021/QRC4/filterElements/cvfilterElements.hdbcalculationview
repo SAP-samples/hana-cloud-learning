@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cvfilterElements" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="filterElements">
+    <resourceUri>filterElements</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="filterElements">
+  <attributes>
+    <attribute id="ID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="filterElements" columnName="ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="1" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="filterElements" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="calculateDiscountPartner" order="2" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+      <formula>&quot;amount&quot;*0.6</formula>
+      
+      </measure>
+    <measure id="calculateDiscountCustomer" order="3" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+      <formula>&quot;amount&quot;*0.1</formula>
+      
+      </measure>
+    <measure id="calculateDiscountVIP" order="4" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+      <formula>&quot;amount&quot;*0.3</formula>
+      
+      </measure>
+    <measure id="reminderPartner" order="5" aggregationType="sum" measureType="simple" datatype="INTEGER" expressionLanguage="SQL">
+      <formula>floor(&quot;calculateDiscountPartner&quot;)*1.2</formula>
+      
+      </measure>
+    <measure id="reminderCustomer" order="6" aggregationType="sum" measureType="simple" datatype="INTEGER" length="" expressionLanguage="SQL">
+      <formula>floor(&quot;calculateDiscountCustomer&quot;)</formula>
+      
+      </measure>
+    <measure id="reminderVIP" order="7" aggregationType="sum" measureType="simple" datatype="INTEGER" length="" expressionLanguage="SQL">
+      <formula>floor(&quot;calculateDiscountVIP&quot;)*1.6</formula>
+      
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
