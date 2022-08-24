@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="windowLagX" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" propagateInstantiation="true">
+<descriptions defaultDescription="window.hdbcalculationview"/>
+<localVariables>
+  <variable id="lagIP" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="INTEGER" mandatory="false" defaultValue="1">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="w">
+    <resourceUri>w</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:WindowFunctionView" id="lagX" dynamicPartitionAttributes="false" allowFilterPushdown="true">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="month"/>
+    
+      <viewAttribute id="product_copy"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="month" source="month"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="product_copy" source="product_copy"/>
+    </input>
+    <function name="LAG">
+      <functionArgument>&quot;amount&quot;</functionArgument>
+      <functionArgument>$$lagIP$$</functionArgument>
+    </function>
+    <windowFunctionResultColumn>lagAmount</windowFunctionResultColumn>
+    <orderAttributes>
+      <orderAttribute direction="ASC">date</orderAttribute>
+    </orderAttributes>
+    <partitionAttributes>
+      <partitionAttribute>product</partitionAttribute>
+    </partitionAttributes>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="month" datatype="NVARCHAR" length="2" expressionLanguage="SQL">
+        <formula>month(&quot;date&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="product_copy" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+    
+        <formula>&quot;product&quot;</formula>
+    
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="w"/>
+    <filter>'$$lagIP$$'!=''</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="lagX">
+  <attributes>
+    <attribute id="date" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="date"/>
+      <keyMapping columnObjectName="lagX" columnName="date"/>
+    </attribute>
+    <attribute id="product" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="lagX" columnName="product"/>
+    </attribute>
+    <attribute id="month" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="month"/>
+      <keyMapping columnObjectName="lagX" columnName="month"/>
+    </attribute>
+  
+    <attribute id="product_copy" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product_copy"/>
+  
+      <keyMapping columnObjectName="lagX" columnName="product_copy"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="lagX" columnName="amount"/>
+    </measure>
+  
+    <measure id="lagAmount" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="lagAmount"/>
+      <measureMapping columnObjectName="lagX" columnName="lagAmount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="lagX" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="87" y="184"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="67" y="280"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

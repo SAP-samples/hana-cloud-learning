@@ -1,0 +1,1 @@
+column table "maskedData" ("id" NVARCHAR(10), "account_nb" NVARCHAR(20), "amount" Decimal (10,2))

@@ -1,0 +1,1 @@
+column table "filterElements" ("ID" NVARCHAR(20),  "amount" DECIMAL (10,2))

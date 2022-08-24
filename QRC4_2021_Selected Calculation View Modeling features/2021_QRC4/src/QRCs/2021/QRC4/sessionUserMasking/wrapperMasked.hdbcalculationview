@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="wrapperMasked" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="wrapper.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="maskedCV">
+    <resourceUri>maskedCV</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="maskedCV">
+  <attributes>
+    <attribute id="id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="maskedCV" columnName="id"/>
+    </attribute>
+    <attribute id="account_nb" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="account_nb"/>
+      <keyMapping columnObjectName="maskedCV" columnName="account_nb"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="maskedCV" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

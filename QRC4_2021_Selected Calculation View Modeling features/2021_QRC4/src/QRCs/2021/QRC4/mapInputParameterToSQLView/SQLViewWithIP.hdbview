@@ -1,0 +1,2 @@
+view "SQLViewProvidingIP" (IN "F1" NVARCHAR(20)) 
+AS SELECT "year", "amount" FROM "mapToSQL" where "year"=:F1
