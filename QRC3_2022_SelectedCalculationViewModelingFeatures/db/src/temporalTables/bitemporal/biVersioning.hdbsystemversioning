@@ -1,0 +1,1 @@
+SYSTEM VERSIONING "biVersioning"(st_valid_from, st_valid_to) HISTORY TABLE "biVersioning_history" NOT VALIDATED

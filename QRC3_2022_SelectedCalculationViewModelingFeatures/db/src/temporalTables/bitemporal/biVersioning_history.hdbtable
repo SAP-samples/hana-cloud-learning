@@ -1,0 +1,9 @@
+COLUMN TABLE "biVersioning_history" (
+  account_id INT,
+  account_owner_id NVARCHAR(10),
+  account_balance DOUBLE,
+  ap_valid_from date NOT NULL,
+  ap_valid_to date NOT NULL,
+  st_valid_from timestamp NOT NULL,
+  st_valid_to timestamp NOT NULL
+ ) 

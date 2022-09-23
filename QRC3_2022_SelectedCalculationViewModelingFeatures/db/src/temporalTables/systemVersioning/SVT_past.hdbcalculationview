@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SVT_past" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="SVT_past.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="systemVersioning" temporalSource="true" systemTime1="&apos;2022-08-08 13:17:32.813193900&apos;">
+    <resourceUri>systemVersioning</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="systemVersioning">
+  <attributes>
+    <attribute id="ACCOUNT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCOUNT_ID"/>
+      <keyMapping columnObjectName="systemVersioning" columnName="ACCOUNT_ID"/>
+    </attribute>
+    <attribute id="ACCOUNT_OWNER_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCOUNT_OWNER_ID"/>
+      <keyMapping columnObjectName="systemVersioning" columnName="ACCOUNT_OWNER_ID"/>
+    </attribute>
+    <attribute id="ST_VALID_FROM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ST_VALID_FROM"/>
+      <keyMapping columnObjectName="systemVersioning" columnName="ST_VALID_FROM"/>
+    </attribute>
+    <attribute id="ST_VALID_TO" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ST_VALID_TO"/>
+      <keyMapping columnObjectName="systemVersioning" columnName="ST_VALID_TO"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ACCOUNT_BALANCE" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ACCOUNT_BALANCE"/>
+      <measureMapping columnObjectName="systemVersioning" columnName="ACCOUNT_BALANCE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

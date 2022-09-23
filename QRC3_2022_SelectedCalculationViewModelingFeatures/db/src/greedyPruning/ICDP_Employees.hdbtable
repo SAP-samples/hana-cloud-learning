@@ -1,0 +1,1 @@
+column table "ICDP_Employees" ("id" NVARCHAR(5), "name" NVARCHAR(200), "street" NVARCHAR(200), "city" NVARCHAR(200), "country" NVARCHAR(200))
