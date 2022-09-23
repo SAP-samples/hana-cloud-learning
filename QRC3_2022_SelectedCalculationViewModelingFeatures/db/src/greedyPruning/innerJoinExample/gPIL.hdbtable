@@ -1,0 +1,1 @@
+column table "gPIL" (ID_X NVARCHAR(20), MEASURE_X Decimal(10,2))

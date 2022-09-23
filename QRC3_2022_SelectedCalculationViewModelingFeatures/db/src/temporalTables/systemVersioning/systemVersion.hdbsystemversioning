@@ -1,0 +1,1 @@
+ SYSTEM VERSIONING "systemVersioning"(st_valid_from, st_valid_to) HISTORY TABLE "systemVersioning_history" NOT VALIDATED
