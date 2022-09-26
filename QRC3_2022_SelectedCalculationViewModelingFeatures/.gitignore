@@ -1,3 +1,5 @@
 **/node_modules/
 # auto generated wildcard
 QRC3_2022_SelectedCalculationViewModelingFeatures/db/.env
+
+**/.env*
