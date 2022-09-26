@@ -1,14 +1,14 @@
-# Greedy pruning
+# Greedy Join Pruning
 
 ## Context
 If large scenarios make use of multiple joins, performance improves if some of the joins can be pruned. Pruning in this context means that a join is not executed. Without the new option "Greedy Pruning", join pruning only occurs if pruning the join cannot have an influence on the results. This means that for pruning to occur, certain combinations of cardinality settings and join type have to be specified in the calculation view. For more details, see the respective sections in the  [developer performance guide](https://help.sap.com/docs/HANA_CLOUD_DATABASE/4466fb5b5e3f4388a00b44aad5a4bffa/ebb3cc9f142a4a8691718afa2f42af77.html). In contrast, Greedy Pruning triggers join pruning independent of the join type and cardinality setting. This can significantly speed up performance but also lead to unexpected results if the expected results depend on the execution of the join.
 
 The graphical support of greedy pruning will become available with the release of SAP Business Application Studio around end of October 2022.
 
-## Mechanism of Greedy Pruning
+## Mechanism of Greedy Join Pruning
 If "Greedy Pruning" is selected for an individual join, the cardinality information and join type is ignored when deciding whether a join should be pruned or not. In particular also inner joins are pruned if no columns are required from the to-be-pruned join partner. Irrespective of the Greedy Pruning setting, join pruning can only occur if no columns from the to-be-pruned join partner are required for processing the query. A column is required for processing, if for example, the column is directly requested in the user query, is used in a requested calculated column, or is used as a join column in a later join.
 
-### Greedy Pruning Options
+### Greedy Join Pruning Options
 Greedy Pruning decisions can be requested for only one side of a join (Left/Right) or for both sides (Both). 
 
 ![greedy pruning options](./screenshots/greedyPruningOptions.png)
@@ -199,4 +199,4 @@ The mapping of settings such as "Left", "Right", "Both", or "Off" to the individ
 Currently, the setting of Optimize Join Columns has no effect when greedy join pruning occurs. With 2022 QRC4 it is planned that Optimize Join Columns works in combination with greedy join pruning.
 
 
-**=> use Greedy Pruning to speed up queries whenever the expected results do not depend on the execution of the join.**
+**=> use Greedy Join Pruning to speed up queries whenever the expected results do not depend on the execution of the join.**
