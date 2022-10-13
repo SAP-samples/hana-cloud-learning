@@ -20,11 +20,11 @@
 </dataSources>
 <snapshotProcedures>
   <query id="Query_1" generatedSnapshotView="I_cvSnap_Query_1" createSnapshotAfterDeployment="true" doNotCleanUpBeforeDeployment="false" queryString="SELECT &quot;country&quot; , &quot;product&quot; , SUM(&quot;amount&quot;) AS &quot;amount&quot; , SUM(&quot;2013_amount&quot;) AS &quot;2013_amount&quot; , SUM(&quot;2014_amount&quot;) AS &quot;2014_amount&quot; , SUM(&quot;2015_amount&quot;) AS &quot;2015_amount&quot; , SUM(&quot;2016_amount&quot;) AS &quot;2016_amount&quot; , SUM(&quot;2017_amount&quot;) AS &quot;2017_amount&quot; , SUM(&quot;2018_amount&quot;) AS &quot;2018_amount&quot; , SUM(&quot;2019_amount&quot;) AS &quot;2019_amount&quot; , SUM(&quot;2020_amount&quot;) AS &quot;2020_amount&quot; , SUM(&quot;2021_amount&quot;) AS &quot;2021_amount&quot; , SUM(&quot;2022_amount&quot;) AS &quot;2022_amount&quot; , SUM(&quot;rest_amount&quot;) AS &quot;rest_amount&quot;  
-FROM  &quot;6A91B89A27A343D697B2688AA6850DF5&quot;.&quot;cvSnap&quot;
+FROM &quot;cvSnap&quot;
 (placeholder.&quot;$$IP_Country$$&quot;=&gt;&apos;noInfluence&apos;) 
 GROUP BY &quot;country&quot; , &quot;product&quot; ">
     <queryString>SELECT &quot;country&quot; , &quot;product&quot; , SUM(&quot;amount&quot;) AS &quot;amount&quot; , SUM(&quot;2013_amount&quot;) AS &quot;2013_amount&quot; , SUM(&quot;2014_amount&quot;) AS &quot;2014_amount&quot; , SUM(&quot;2015_amount&quot;) AS &quot;2015_amount&quot; , SUM(&quot;2016_amount&quot;) AS &quot;2016_amount&quot; , SUM(&quot;2017_amount&quot;) AS &quot;2017_amount&quot; , SUM(&quot;2018_amount&quot;) AS &quot;2018_amount&quot; , SUM(&quot;2019_amount&quot;) AS &quot;2019_amount&quot; , SUM(&quot;2020_amount&quot;) AS &quot;2020_amount&quot; , SUM(&quot;2021_amount&quot;) AS &quot;2021_amount&quot; , SUM(&quot;2022_amount&quot;) AS &quot;2022_amount&quot; , SUM(&quot;rest_amount&quot;) AS &quot;rest_amount&quot;  
-FROM  &quot;6A91B89A27A343D697B2688AA6850DF5&quot;.&quot;cvSnap&quot;
+FROM  &quot;cvSnap&quot;
 (placeholder.&quot;$$IP_Country$$&quot;=&gt;'noInfluence') 
 GROUP BY &quot;country&quot; , &quot;product&quot; </queryString>
   </query>
