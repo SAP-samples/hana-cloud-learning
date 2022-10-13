@@ -1,5 +1,5 @@
 {
-	"minimum_feature_version": "1006",
+	"minimum_feature_version": "1000",
 	"file_suffixes": {
 		"hdbafllangprocedure": {
 			"plugin_name": "com.sap.hana.di.afllangprocedure"
