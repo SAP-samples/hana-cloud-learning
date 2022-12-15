@@ -1,0 +1,1 @@
+view "sqlView" as select "year","month","day", avg("amount") "amount" from "rB" group by  "year","month","day"
