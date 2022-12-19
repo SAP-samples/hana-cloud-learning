@@ -1,0 +1,10 @@
+"id","country","product","status","amount"
+1,Germany,Banana,O,10
+2,Germany,Banana,O,11
+1,Germany,Banana,C,10
+2,Germany,Banana,C,11
+4,Germany,Banana,C,10
+10,US,Banana,O,10
+11,US,Banana,C,11
+12,US,Banana,C,9
+13,US,Banana,C,10

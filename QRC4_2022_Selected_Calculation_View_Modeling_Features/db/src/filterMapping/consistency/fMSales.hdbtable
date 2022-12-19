@@ -1,0 +1,1 @@
+column table "fMSales" ("id" NVARCHAR(20), "country" NVARCHAR(200), "product" NVARCHAR(20), "status" NVARCHAR(1), "amount" Decimal(10,2))

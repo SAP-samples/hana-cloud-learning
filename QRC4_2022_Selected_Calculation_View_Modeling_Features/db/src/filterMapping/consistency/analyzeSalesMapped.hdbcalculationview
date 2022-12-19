@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="analyzeSalesMapped" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="analyzeSalesMapped.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_Country" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="13" mandatory="false" defaultValue="Germany">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="cvfMSales">
+    <resourceUri>cvfMSales</resourceUri>
+  </DataSource>
+  <DataSource id="cvDistinctCountClosed">
+    <resourceUri>cvDistinctCountClosed</resourceUri>
+  </DataSource>
+  <DataSource id="cvDistinctCountOpen">
+    <resourceUri>cvDistinctCountOpen</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="country"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="COUNT_DistinctOrdersClosed" aggregationType="sum"/>
+      <viewAttribute id="country_1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="cvfMSales">
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/></input>
+    <input node="cvDistinctCountClosed">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNT_DistinctOrdersClosed" source="COUNT_DistinctOrders"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="country_1" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+    </input>
+    <joinAttribute name="product"/>
+    <semanticAttributeMappings>
+      <semanticAttributeMapping attribute1="country" attribute2="country_1" direction="both"/>
+    </semanticAttributeMappings>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="country"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="COUNT_DistinctOrdersClosed" aggregationType="sum"/>
+      <viewAttribute id="country_countDistinct"/>
+      <viewAttribute id="COUNT_DistinctOrdersOpen" aggregationType="sum"/>
+    
+      <viewAttribute id="country_countDistinctOpen"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNT_DistinctOrdersClosed" source="COUNT_DistinctOrdersClosed"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="country_countDistinct" source="country_1"/>
+    </input>
+    <input node="cvDistinctCountOpen">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNT_DistinctOrdersOpen" source="COUNT_DistinctOrders"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="country_countDistinctOpen" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+    </input>
+    <joinAttribute name="product"/>
+    <semanticAttributeMappings>
+      <semanticAttributeMapping attribute1="country" attribute2="country_countDistinctOpen" direction="both"/>
+    </semanticAttributeMappings>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="country"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="COUNT_DistinctOrdersClosed"/>
+      <viewAttribute id="country_countDistinct"/>
+      <viewAttribute id="COUNT_DistinctOrdersOpen"/>
+      <viewAttribute id="country_countDistinctOpen"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2"/>
+    <filter>&quot;country&quot;='$$IP_Country$$'</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="country" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Projection_1" columnName="country"/>
+    </attribute>
+    <attribute id="product" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="Projection_1" columnName="product"/>
+    </attribute></attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="COUNT_DistinctOrdersClosed" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="COUNT_DistinctOrders"/>
+      <measureMapping columnObjectName="Projection_1" columnName="COUNT_DistinctOrdersClosed"/>
+    </measure>
+  
+    <measure id="COUNT_DistinctOrdersOpen" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="COUNT_DistinctOrders"/>
+      <measureMapping columnObjectName="Projection_1" columnName="COUNT_DistinctOrdersOpen"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="482"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="cvfMSales" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="122"/>
+    </shape>
+    <shape modelObjectName="cvDistinctCountClosed" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="200"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="342"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="cvDistinctCountOpen" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="200"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="237"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

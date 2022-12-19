@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="QRC4cvSnap" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cvSnap.hdbcalculationviewoo"/>
+<localVariables>
+  <variable id="IP_Country" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="200" mandatory="false" scale="NaN" defaultValue="noInfluence">
+      <valueDomain type="AttributeValue">
+        <externalLikeStructureName>QRC4snap</externalLikeStructureName>
+        <externalLikeElementName>country</externalLikeElementName>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable></localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="QRC4snap">
+    <resourceUri>QRC4snap</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures>
+  <query id="Query_1" generatedSnapshotView="I_QRC4cvSnap_Query_1" createSnapshotAfterDeployment="false" doNotCleanUpBeforeDeployment="false" useDefinerMode="true" queryString="SELECT &quot;country&quot; , &quot;product&quot; , SUM(&quot;amount&quot;) AS &quot;amount&quot; , SUM(&quot;2013_amount&quot;) AS &quot;2013_amount&quot; , SUM(&quot;2014_amount&quot;) AS &quot;2014_amount&quot; , SUM(&quot;2015_amount&quot;) AS &quot;2015_amount&quot; , SUM(&quot;2016_amount&quot;) AS &quot;2016_amount&quot; , SUM(&quot;2017_amount&quot;) AS &quot;2017_amount&quot; , SUM(&quot;2018_amount&quot;) AS &quot;2018_amount&quot; , SUM(&quot;2019_amount&quot;) AS &quot;2019_amount&quot; , SUM(&quot;2020_amount&quot;) AS &quot;2020_amount&quot; , SUM(&quot;2021_amount&quot;) AS &quot;2021_amount&quot; , SUM(&quot;2022_amount&quot;) AS &quot;2022_amount&quot; , SUM(&quot;rest_amount&quot;) AS &quot;rest_amount&quot;  
+FROM &quot;QRC4cvSnap&quot;
+(placeholder.&quot;$$IP_Country$$&quot;=&gt;&apos;noInfluence&apos;) 
+GROUP BY &quot;country&quot; , &quot;product&quot; ">
+    <queryString>SELECT &quot;country&quot; , &quot;product&quot; , SUM(&quot;amount&quot;) AS &quot;amount&quot; , SUM(&quot;2013_amount&quot;) AS &quot;2013_amount&quot; , SUM(&quot;2014_amount&quot;) AS &quot;2014_amount&quot; , SUM(&quot;2015_amount&quot;) AS &quot;2015_amount&quot; , SUM(&quot;2016_amount&quot;) AS &quot;2016_amount&quot; , SUM(&quot;2017_amount&quot;) AS &quot;2017_amount&quot; , SUM(&quot;2018_amount&quot;) AS &quot;2018_amount&quot; , SUM(&quot;2019_amount&quot;) AS &quot;2019_amount&quot; , SUM(&quot;2020_amount&quot;) AS &quot;2020_amount&quot; , SUM(&quot;2021_amount&quot;) AS &quot;2021_amount&quot; , SUM(&quot;2022_amount&quot;) AS &quot;2022_amount&quot; , SUM(&quot;rest_amount&quot;) AS &quot;rest_amount&quot;  
+FROM &quot;QRC4cvSnap&quot;
+(placeholder.&quot;$$IP_Country$$&quot;=&gt;'noInfluence') 
+GROUP BY &quot;country&quot; , &quot;product&quot; </queryString>
+  </query>
+</snapshotProcedures>
+<calculationViews/>
+<logicalModel id="QRC4snap" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="year" order="1" displayAttribute="false" attributeHierarchyActive="false" hidden="true">
+      <descriptions defaultDescription="year"/>
+      <keyMapping columnObjectName="QRC4snap" columnName="year"/>
+    </attribute>
+    <attribute id="country" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="QRC4snap" columnName="country"/>
+    </attribute>
+    <attribute id="product" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="QRC4snap" columnName="product"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="QRC4snap" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="2013_amount" order="5" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2013'</restrictionExpression>
+    </measure>
+    <measure id="2014_amount" order="6" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2014'</restrictionExpression>
+    </measure>
+    <measure id="2015_amount" order="7" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2015'</restrictionExpression>
+    </measure>
+    <measure id="2016_amount" order="8" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2016'</restrictionExpression>
+    </measure>
+    <measure id="2017_amount" order="9" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2017'</restrictionExpression>
+    </measure>
+    <measure id="2018_amount" order="10" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2018'</restrictionExpression>
+    </measure>
+    <measure id="2019_amount" order="11" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2019'</restrictionExpression>
+    </measure>
+    <measure id="2020_amount" order="12" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2020'</restrictionExpression>
+    </measure>
+    <measure id="2021_amount" order="13" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2021'</restrictionExpression>
+    </measure>
+    <measure id="2022_amount" order="14" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;='2022'</restrictionExpression>
+    </measure>
+    <measure id="rest_amount" order="15" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;year&quot;&lt;'2012' or &quot;year&quot;&gt;'2022'</restrictionExpression>
+    </measure></restrictedMeasures>
+  <localDimensions/>
+
+  <filter>'$$IP_Country$$'='noInfluence' or &quot;country&quot;='$$IP_Country$$'</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

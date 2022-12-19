@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cvDistinctCountOpen" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cvDistinctCount.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="cvfMSales">
+    <resourceUri>cvfMSales</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="cvfMSales" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="cvfMSales" columnName="id"/>
+    </attribute>
+    <attribute id="country" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="cvfMSales" columnName="country"/>
+    </attribute>
+    <attribute id="product" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="cvfMSales" columnName="product"/>
+    </attribute>
+    <attribute id="status" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="status"/>
+      <keyMapping columnObjectName="cvfMSales" columnName="status"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="5" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="cvfMSales" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="COUNT_DistinctOrders" order="6" aggregationType="sum" measureType="simple" calculatedMeasureType="counter" datatype="BIGINT" length="" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="COUNT_DistinctOrders"/>
+      <exceptionAggregation>
+        <attribute attributeName="id"/>
+      </exceptionAggregation>
+      <formula>1</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <filter>&quot;status&quot;='O'</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
