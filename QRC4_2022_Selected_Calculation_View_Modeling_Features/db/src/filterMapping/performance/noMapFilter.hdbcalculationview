@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="noMapFilter" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="noMapFilter.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="fML">
+    <resourceUri>fML</resourceUri>
+  </DataSource>
+  <DataSource id="fMR">
+    <resourceUri>fMR</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="enrichedSalesOrders" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="id"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="quantity" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="fML">
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <input node="fMR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="quantity" source="quantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+    </input>
+    <joinAttribute name="id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="enrichedSalesOrders">
+  <attributes>
+    <attribute id="id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="enrichedSalesOrders" columnName="id"/>
+    </attribute>
+    <attribute id="product" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="enrichedSalesOrders" columnName="product"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="enrichedSalesOrders" columnName="amount"/>
+    </measure>
+    <measure id="quantity" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="quantity"/>
+      <measureMapping columnObjectName="enrichedSalesOrders" columnName="quantity"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="enrichedSalesOrders" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="110" y="187"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="fML" modelObjectNameSpace="enrichedSalesOrders" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="122"/>
+    </shape>
+    <shape modelObjectName="fMR" modelObjectNameSpace="enrichedSalesOrders" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="156"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,3 +1,4 @@
 {
-    "SAP HANA Project Explorer.bind.confirm automatic undeployment": false
+    "SAP HANA Project Explorer.bind.confirm automatic undeployment": false,
+    "SAP HANA Project Explorer.bind.confirm existing service": false
 }
