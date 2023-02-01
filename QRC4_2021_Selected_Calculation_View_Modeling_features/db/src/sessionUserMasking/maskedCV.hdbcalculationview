@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="maskedCV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="maskedCV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" maskMode="SESSIONUSER">
 <descriptions defaultDescription="maskedCV.hdbcalculationview"/>
 <localVariables/>
 <variableMappings/>
@@ -8,6 +8,7 @@
     <resourceUri>maskedData</resourceUri>
   </DataSource>
 </dataSources>
+<snapshotProcedures/>
 <calculationViews/>
 <logicalModel id="maskedData">
   <attributes>
@@ -23,7 +24,7 @@
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
       <descriptions defaultDescription="amount"/>
       <measureMapping columnObjectName="maskedData" columnName="amount"/>
     </measure>
