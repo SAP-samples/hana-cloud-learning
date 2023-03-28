@@ -1,0 +1,1 @@
+column table "dFM_c" ("product" NVARCHAR(20), "amount" int, "country" NVARCHAR(20),"addressID" NVARCHAR(12))

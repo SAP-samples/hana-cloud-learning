@@ -1,0 +1,11 @@
+FUNCTION "standardizeName" (IP NVARCHAR(20) )
+    RETURNS  PROCESSED_IP NVARCHAR(100)
+    LANGUAGE SQLSCRIPT 
+    SQL SECURITY DEFINER AS 
+BEGIN 
+
+
+
+SELECT TOP 1 "country_name" into PROCESSED_IP DEFAULT '' from "countryMapper" where "abbreviation"=:IP;
+
+END;

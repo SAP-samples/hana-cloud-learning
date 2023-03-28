@@ -1,0 +1,1 @@
+column table "dFM_d" ("addressID" NVARCHAR(12), "street" NVARCHAR(100), "city" NVARCHAR(100), "country" NVARCHAR(100))

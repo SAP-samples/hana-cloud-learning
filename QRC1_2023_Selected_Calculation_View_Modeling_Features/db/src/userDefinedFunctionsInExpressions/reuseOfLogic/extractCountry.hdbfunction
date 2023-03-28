@@ -1,0 +1,7 @@
+FUNCTION "extractCountry"(id NVARCHAR(20))
+ RETURNS country NVARCHAR(20) LANGUAGE SQLSCRIPT SQL SECURITY DEFINER AS
+ l INT;
+
+ BEGIN
+    country = SUBSTR_REGEXPR('(_)([a-zA-Z]{1,5})(_)' IN :id GROUP 2);
+ END;

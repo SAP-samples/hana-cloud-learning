@@ -1,0 +1,1 @@
+column table "countryMapper" ("abbreviation" NVARCHAR(20), "country_name" NVARCHAR(20))

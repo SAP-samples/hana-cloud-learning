@@ -1,0 +1,7 @@
+{
+  "s_standardize": {
+    "target": {
+      "object": "standardizeName"
+    }
+  }
+}
