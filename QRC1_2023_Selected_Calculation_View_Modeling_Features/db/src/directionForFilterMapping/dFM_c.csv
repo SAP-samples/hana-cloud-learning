@@ -1,0 +1,5 @@
+product,amount,country,addressID
+apples,20,Germany,1
+apples,25,Germany,2
+apples,40,US,3
+apples,18,US,4

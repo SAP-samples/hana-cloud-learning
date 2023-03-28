@@ -1,0 +1,7 @@
+FUNCTION "extractYear"(id NVARCHAR(20))
+ RETURNS year NVARCHAR(4) LANGUAGE SQLSCRIPT  SQL SECURITY DEFINER AS
+ l INT;
+
+ BEGIN
+    year = right(:id,4);
+ END;

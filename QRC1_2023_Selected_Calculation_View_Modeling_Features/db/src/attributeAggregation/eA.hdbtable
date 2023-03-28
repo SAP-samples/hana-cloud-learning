@@ -1,0 +1,1 @@
+column table "eA" ("year" int, "month" int, "day" int, "amount" Decimal(10,2))

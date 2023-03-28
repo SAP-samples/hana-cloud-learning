@@ -1,0 +1,5 @@
+**/node_modules/
+# auto generated wildcard
+QRC1_2023_SelectedCalculationViewModelingFeatures/db/.env
+
+**/.env*

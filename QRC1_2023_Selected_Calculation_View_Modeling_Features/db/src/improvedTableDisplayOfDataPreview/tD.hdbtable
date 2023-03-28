@@ -1,0 +1,1 @@
+column table "tD" ("BillingStatus" NVARCHAR(2), "Currency" NVARCHAR(20), "LastName" NVARCHAR(100),"SUM_GrossAmount" Decimal (12,2),"SUM_NetAmount" Decimal(12,2))

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="tableDisplay_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="tableDisplay_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tD">
+    <resourceUri>tD</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="tD">
+  <attributes>
+    <attribute id="BillingStatus" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BillingStatus"/>
+      <keyMapping columnObjectName="tD" columnName="BillingStatus"/>
+    </attribute>
+    <attribute id="Currency" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency"/>
+      <keyMapping columnObjectName="tD" columnName="Currency"/>
+    </attribute>
+    <attribute id="LastName" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LastName"/>
+      <keyMapping columnObjectName="tD" columnName="LastName"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SUM_GrossAmount" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="SUM_GrossAmount"/>
+      <measureMapping columnObjectName="tD" columnName="SUM_GrossAmount"/>
+    </measure>
+    <measure id="SUM_NetAmount" order="5" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="SUM_NetAmount"/>
+      <measureMapping columnObjectName="tD" columnName="SUM_NetAmount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="changeSequenceInMappingPane" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="changeSequenceInMappingPane.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_1" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="13" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_2" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="13" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="cS">
+    <resourceUri>cS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="C1"/>
+      <viewAttribute id="C2"/>
+    
+      <viewAttribute id="C4"/>
+      <viewAttribute id="C3"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="cS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="C4" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C4"/>
+      <keyMapping columnObjectName="Projection_1" columnName="C4"/>
+    </attribute>
+    <attribute id="C1" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C1"/>
+      <keyMapping columnObjectName="Projection_1" columnName="C1"/>
+    </attribute>
+    <attribute id="C3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C3"/>
+      <keyMapping columnObjectName="Projection_1" columnName="C3"/>
+    </attribute>
+    <attribute id="C2" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C2"/>
+      <keyMapping columnObjectName="Projection_1" columnName="C2"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="85" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>
