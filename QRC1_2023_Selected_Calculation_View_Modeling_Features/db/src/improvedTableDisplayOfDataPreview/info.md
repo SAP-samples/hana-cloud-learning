@@ -1,6 +1,6 @@
 # Change default configuration of data preview
 
-Data Preview mode "Table Display" does not require a value on the Value axis anymore:
+Data Preview mode "Table Display" can now be used without specifying values on the Value axis:
 
 ![Table Display without measure](./screenshots/tableDisplay.png)
 
