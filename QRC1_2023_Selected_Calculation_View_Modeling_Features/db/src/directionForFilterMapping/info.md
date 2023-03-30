@@ -14,7 +14,7 @@ When defining the filter mapping, choose between mapping
 
 ## Examples
 
-In the following filters on column "country" are mapped from left to right:
+In calculation view [dFM_ex_cv](./dFM_ex_cv.hdbcalculationview) filters on column "country" are mapped from left to right:
 
 ![map filter left to right](./screenshots/setLeftToRight.png)
 
