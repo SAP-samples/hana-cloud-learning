@@ -1,0 +1,12 @@
+{
+  "role": {
+    "name": "SPS07::mask",
+    "schema_privileges": [
+      {
+        "privileges": [
+          "SELECT"
+        ]
+      }
+    ]
+  }
+}

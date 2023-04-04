@@ -1,0 +1,13 @@
+{
+  "role": {
+    "name": "SPS07::unmask",
+    "schema_privileges": [
+      {
+        "privileges": [
+          "UNMASKED",
+          "SELECT"
+        ]
+      }
+    ]
+  }
+}

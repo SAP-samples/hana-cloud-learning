@@ -1,0 +1,1 @@
+column table "SPS07::justATable" ("SalesOrderID" NVARCHAR(20), "customer_type" NVARCHAR(12), "rate_a" Decimal (10,2), "rate_b" Decimal(10,2), "amount" Decimal (10,2))

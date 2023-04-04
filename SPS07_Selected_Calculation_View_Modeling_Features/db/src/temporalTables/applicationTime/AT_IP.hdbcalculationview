@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SPS07::AT_IP" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="applicationTime.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="DATE" mandatory="false" defaultExpressionLanguage="SQL">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+      <defaultExpression>current_date</defaultExpression>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="applicationTime" temporalSource="true" applicationTime1="$$IP$$">
+    <resourceUri>SPS07::applicationTime</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="applicationTime">
+  <attributes>
+    <attribute id="ACCOUNT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCOUNT_ID"/>
+      <keyMapping columnObjectName="applicationTime" columnName="ACCOUNT_ID"/>
+    </attribute>
+    <attribute id="ACCOUNT_OWNER_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCOUNT_OWNER_ID"/>
+      <keyMapping columnObjectName="applicationTime" columnName="ACCOUNT_OWNER_ID"/>
+    </attribute>
+    <attribute id="AP_VALID_FROM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AP_VALID_FROM"/>
+      <keyMapping columnObjectName="applicationTime" columnName="AP_VALID_FROM"/>
+    </attribute>
+    <attribute id="AP_VALID_TO" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AP_VALID_TO"/>
+      <keyMapping columnObjectName="applicationTime" columnName="AP_VALID_TO"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ACCOUNT_BALANCE" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="ACCOUNT_BALANCE"/>
+      <measureMapping columnObjectName="applicationTime" columnName="ACCOUNT_BALANCE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
