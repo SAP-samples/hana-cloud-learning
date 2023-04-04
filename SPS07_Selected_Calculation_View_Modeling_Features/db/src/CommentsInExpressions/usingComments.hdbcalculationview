@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SPS07::usingComments" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="usingComments.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_CustomerType" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="13" mandatory="false" defaultExpressionLanguage="SQL" defaultValue="PRE">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="justATable">
+    <resourceUri>SPS07::justATable</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="justATable" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="SalesOrderID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID"/>
+      <keyMapping columnObjectName="justATable" columnName="SalesOrderID"/>
+    </attribute>
+  
+    <attribute id="customer_type" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="customer_type"/>
+  
+      <keyMapping columnObjectName="justATable" columnName="customer_type"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="rate_a" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="rate_a"/>
+      <measureMapping columnObjectName="justATable" columnName="rate_a"/>
+    </measure>
+    <measure id="rate_b" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="rate_b"/>
+      <measureMapping columnObjectName="justATable" columnName="rate_b"/>
+    </measure>
+    <measure id="amount" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="justATable" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="effective_price" order="5" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="10" scale="1" expressionLanguage="SQL">
+      <formula>case &quot;customer_type&quot;
+when 
+'PRE' then 
+&quot;amount&quot;*&quot;rate_a&quot; /* rate_a is the rate for premium customers */ 
+else 
+&quot;amount&quot;*&quot;rate_b&quot;  -- rate_b is the standard rate
+end</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures>
+    <measure id="RES_1" order="7" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;customer_type&quot;='PRE' -- only premium customers</restrictionExpression>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+
+  <filter>'$$IP_CustomerType$$'=&quot;customer_type&quot; -- customer_type has values PRE and STD</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

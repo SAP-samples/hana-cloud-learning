@@ -1,0 +1,7 @@
+COLUMN TABLE "SPS07::systemVersioning_history" (
+  account_id INT,
+  account_owner_id NVARCHAR(10),
+  account_balance DOUBLE,
+  st_valid_from timestamp NOT NULL,
+  st_valid_to timestamp NOT NULL
+ ) 

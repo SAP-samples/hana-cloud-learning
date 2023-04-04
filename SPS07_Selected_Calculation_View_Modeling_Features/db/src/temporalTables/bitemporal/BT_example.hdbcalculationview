@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SPS07::BT_example" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="BT_example.hdbcalculationview"/>
+<localVariables>
+  <variable id="IPSTART" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="TIMESTAMP" mandatory="false" defaultValue="2021-01-24 13:12:21.909083800">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IPSTOP" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="TIMESTAMP" mandatory="false">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+      <defaultExpression>now()</defaultExpression>
+    </variableProperties>
+  </variable>
+  <variable id="IPAT" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="DATE" mandatory="false" defaultValue="2021/01/01">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="biVersioning" temporalSource="true" systemTime1="$$IPSTART$$" systemTime2="$$IPSTOP$$" systemTimeOperator="BETWEEN" applicationTime1="$$IPAT$$">
+    <resourceUri>SPS07::biVersioning</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="biVersioning" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="ACCOUNT_ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCOUNT_ID"/>
+      <keyMapping columnObjectName="biVersioning" columnName="ACCOUNT_ID"/>
+    </attribute>
+    <attribute id="ACCOUNT_OWNER_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCOUNT_OWNER_ID"/>
+      <keyMapping columnObjectName="biVersioning" columnName="ACCOUNT_OWNER_ID"/>
+    </attribute>
+    <attribute id="AP_VALID_FROM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AP_VALID_FROM"/>
+      <keyMapping columnObjectName="biVersioning" columnName="AP_VALID_FROM"/>
+    </attribute>
+    <attribute id="AP_VALID_TO" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AP_VALID_TO"/>
+      <keyMapping columnObjectName="biVersioning" columnName="AP_VALID_TO"/>
+    </attribute>
+    <attribute id="ST_VALID_FROM" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ST_VALID_FROM"/>
+      <keyMapping columnObjectName="biVersioning" columnName="ST_VALID_FROM"/>
+    </attribute>
+    <attribute id="ST_VALID_TO" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ST_VALID_TO"/>
+      <keyMapping columnObjectName="biVersioning" columnName="ST_VALID_TO"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ACCOUNT_BALANCE" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ACCOUNT_BALANCE"/>
+      <measureMapping columnObjectName="biVersioning" columnName="ACCOUNT_BALANCE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <filter>'$$IPSTART$$'!='$$IPSTOP$$' 
+and '$$IPAT$$'='$$IPAT$$' -- needed workaround</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
