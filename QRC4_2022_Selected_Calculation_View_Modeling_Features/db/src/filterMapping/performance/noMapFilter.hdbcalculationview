@@ -3,30 +3,58 @@
 <descriptions defaultDescription="noMapFilter.hdbcalculationview"/>
 <localVariables/>
 <variableMappings/>
+
 <dataSources>
+
   <DataSource id="fML">
+
     <resourceUri>fML</resourceUri>
+
   </DataSource>
+
   <DataSource id="fMR">
+
     <resourceUri>fMR</resourceUri>
+
   </DataSource>
+
 </dataSources>
 <snapshotProcedures/>
 <calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="id"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="fML"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="id"/>
+    
+      <viewAttribute id="product_name"/>
+      <viewAttribute id="quantity"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="fMR"/>
+  </calculationView>
   <calculationView xsi:type="Calculation:JoinView" id="enrichedSalesOrders" cardinality="C1_1" joinType="inner">
     <viewAttributes>
       <viewAttribute id="id"/>
       <viewAttribute id="product"/>
       <viewAttribute id="amount" aggregationType="sum"/>
       <viewAttribute id="quantity" aggregationType="sum"/>
+      <viewAttribute id="product_name"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="fML">
+    <input node="Projection_1">
       <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
     </input>
-    <input node="fMR">
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="product_name" source="product_name"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="quantity" source="quantity"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
     </input>
@@ -43,16 +71,24 @@
       <descriptions defaultDescription="product"/>
       <keyMapping columnObjectName="enrichedSalesOrders" columnName="product"/>
     </attribute>
+    <attribute id="product_name" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product_name"/>
+      <keyMapping columnObjectName="enrichedSalesOrders" columnName="product_name"/>
+    </attribute>
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
       <descriptions defaultDescription="amount"/>
       <measureMapping columnObjectName="enrichedSalesOrders" columnName="amount"/>
+    
+      <exceptionAggregationMetadata/>
     </measure>
-    <measure id="quantity" order="4" aggregationType="sum" measureType="simple">
+    <measure id="quantity" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
       <descriptions defaultDescription="quantity"/>
       <measureMapping columnObjectName="enrichedSalesOrders" columnName="quantity"/>
+    
+      <exceptionAggregationMetadata/>
     </measure>
   </baseMeasures>
   <calculatedMeasures/>
@@ -65,18 +101,27 @@
       <upperLeftCorner x="40" y="85"/>
     </shape>
   
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="25" y="325"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="233" y="325"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+  
     <shape expanded="true" modelObjectName="enrichedSalesOrders" modelObjectNameSpace="CalculationView">
       <upperLeftCorner x="110" y="187"/>
       <rectangleSize height="30" width="160"/>
     </shape>
-    <shape modelObjectName="fML" modelObjectNameSpace="enrichedSalesOrders" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="enrichedSalesOrders" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="20" y="30"/>
       <rectangleSize width="122"/>
     </shape>
-    <shape modelObjectName="fMR" modelObjectNameSpace="enrichedSalesOrders" modelObjectType="JoinNodeInput">
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="enrichedSalesOrders" modelObjectType="JoinNodeInput">
       <upperLeftCorner x="320" y="30"/>
       <rectangleSize width="156"/>
-    </shape>
-  </shapes>
+    </shape></shapes>
 </layout>
 </Calculation:scenario>
