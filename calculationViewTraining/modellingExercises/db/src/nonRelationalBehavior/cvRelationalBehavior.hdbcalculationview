@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="nonRelationalBehavior::cvRelationalBehavior" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cvNonRelationalBehavior.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<executionHints name="" value=""/>
+<dataSources>
+  <DataSource id="rB">
+    <resourceUri>nonRelationalBehavior::rB</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute keepFlag="true" id="year"/>
+      <viewAttribute keepFlag="true" id="month"/>
+      <viewAttribute keepFlag="true" id="day"/>
+      <viewAttribute id="amount" aggregationType="avg"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="rB"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="year" keepFlag="true" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="year"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="year"/>
+    </attribute>
+    <attribute id="month" keepFlag="true" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="month"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="month"/>
+    </attribute>
+    <attribute id="day" keepFlag="true" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="day"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="day"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="188"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

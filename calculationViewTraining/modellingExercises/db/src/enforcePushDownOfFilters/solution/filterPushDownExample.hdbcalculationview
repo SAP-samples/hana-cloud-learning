@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="enforcePushDownOfFilters.solution::filterPushDownExample" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" propagateInstantiation="true">
+<descriptions defaultDescription="filterPushDownExample.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="enforcePushDownOfFilters::fPD">
+    <resourceUri>enforcePushDownOfFilters::fPD</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:WindowFunctionView" id="WindowFunction_1" allowFilterPushdown="true">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="enforcePushDownOfFilters::fPD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <function name="LAG">
+      <functionArgument>&quot;amount&quot;</functionArgument>
+    </function>
+    <windowFunctionResultColumn datatype="DOUBLE">amountLag1</windowFunctionResultColumn>
+    <orderAttributes>
+      <orderAttribute direction="ASC">date</orderAttribute>
+    </orderAttributes>
+    <partitionAttributes>
+      <partitionAttribute>product</partitionAttribute>
+    </partitionAttributes>
+  </calculationView>
+</calculationViews>
+<logicalModel id="WindowFunction_1">
+  <attributes>
+    <attribute id="date" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="date"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="date"/>
+    </attribute>
+    <attribute id="product" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="product"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="WindowFunction_1" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="amountLag1" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amountLag1"/>
+      <measureMapping columnObjectName="WindowFunction_1" columnName="amountLag1"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="WindowFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="93" y="204"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,1 @@
+column table "nonRelationalBehavior::rB" ("year" NVARCHAR(20),"month" NVARCHAR(20),"day" NVARCHAR(20),"amount" Decimal(10,2))

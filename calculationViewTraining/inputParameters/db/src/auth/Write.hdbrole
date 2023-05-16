@@ -1,0 +1,10 @@
+{
+    "role": {
+        "name": "dl.df.epm_demo.auth::Write",
+        "schema_privileges":[  
+         {  
+            "privileges":[ "INSERT" , "UPDATE", "DELETE", "CREATE ANY"]
+         }    
+        ]
+    }
+}

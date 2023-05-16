@@ -1,0 +1,1 @@
+column table "snapshots::snap" ("year" NVARCHAR(4), "country" NVARCHAR(200), "product" NVARCHAR(200), "amount" Decimal(10,2))

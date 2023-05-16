@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="snapshots.solution::snapshotExample" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="snapshotExample.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_Country" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="13" mandatory="false" defaultValue="Germany">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="snapshots::snap">
+    <resourceUri>snapshots::snap</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures>
+  <query id="timestampQuery" generatedSnapshotView="I_snapshotExample_timestampQuery" createSnapshotAfterDeployment="true" doNotCleanUpBeforeDeployment="false" useDefinerMode="false" queryString="SELECT now() as TIMESTAMP, &quot;year&quot; , &quot;country&quot; , &quot;product&quot; , SUM(&quot;amount&quot;) AS &quot;amount&quot;   FROM &quot;snapshots::snapshotExample&quot; (placeholder.&quot;$$IP_Country$$&quot;=&gt;&apos;Germany&apos;)  GROUP BY &quot;year&quot; , &quot;country&quot; , &quot;product&quot; ">
+    <queryString>SELECT now() as TIMESTAMP, &quot;year&quot; , &quot;country&quot; , &quot;product&quot; , SUM(&quot;amount&quot;) AS &quot;amount&quot;  
+FROM &quot;snapshots.solution::snapshotExample&quot;
+(placeholder.&quot;$$IP_Country$$&quot;=&gt;'Germany') 
+GROUP BY &quot;year&quot; , &quot;country&quot; , &quot;product&quot; </queryString>
+  </query>
+</snapshotProcedures>
+<calculationViews/>
+<logicalModel id="snapshots::snap" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="year" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="year"/>
+      <keyMapping columnObjectName="snap" columnName="year"/>
+    </attribute>
+    <attribute id="country" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="snap" columnName="country"/>
+    </attribute>
+    <attribute id="product" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="snap" columnName="product"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="snap" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <filter>'$$IP_Country$$'=&quot;country&quot;</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

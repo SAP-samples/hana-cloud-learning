@@ -1,0 +1,10 @@
+{
+    "role": {
+        "name": "dl.df.epm_demo.auth::Read#",
+        "schema_privileges":[  
+         {  
+            "privileges_with_grant_option":[ "SELECT" , "SELECT METADATA"]
+         }    
+        ]
+    }
+}

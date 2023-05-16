@@ -1,0 +1,1 @@
+column table "unionPruning::current_sales"(SALESORDER	NVARCHAR(20), PRODUCT NVARCHAR(20), YEAR NVARCHAR(4), SALES Decimal(10,2))

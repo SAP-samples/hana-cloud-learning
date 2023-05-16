@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="enforcePushDownOfFilters.solution::multipleConsumerScenario" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="multipleConsumerScenario.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="enforcePushDownOfFilters::iMO">
+    <resourceUri>enforcePushDownOfFilters::iMO</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="salesOrders" ignoreMultipleOutputsForFilter="true">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="enforcePushDownOfFilters::iMO"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="noSocks" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="origin" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'I am from noSocks'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="salesOrders"/>
+    <filter>&quot;article&quot;!='socks'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="all">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="origin" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>'I am from all'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="salesOrders"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="combineArticles" ignoreMultipleOutputsForFilter="false">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="origin"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="all" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="article" source="article"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="color" source="color"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="origin" source="origin"/>
+    </input>
+    <input node="noSocks" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="article" source="article"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="color" source="color"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="origin" source="origin"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="combineArticles">
+  <attributes>
+    <attribute id="article" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="article"/>
+      <keyMapping columnObjectName="combineArticles" columnName="article"/>
+    </attribute>
+    <attribute id="color" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="color"/>
+      <keyMapping columnObjectName="combineArticles" columnName="color"/>
+    </attribute>
+    <attribute id="origin" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="origin"/>
+      <keyMapping columnObjectName="combineArticles" columnName="origin"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="combineArticles" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="216" y="112"/>
+
+      <rectangleSize width="160"/>
+    </shape>
+
+    <shape expanded="true" modelObjectName="salesOrders" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="198" y="482"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="noSocks" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="66" y="358"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="all" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="296" y="358"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="combineArticles" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="216" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

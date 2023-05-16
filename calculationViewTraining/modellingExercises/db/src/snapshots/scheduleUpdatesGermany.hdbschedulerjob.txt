@@ -1,0 +1,2 @@
+SCHEDULER JOB "snapshots::scheduleUpdatesGermany" CRON '* * * * * * 45' 
+    ENABLE PROCEDURE "snapshots::snapshotExample/timestampQuery/SNAP/SNAPSHOT/INSERT" PARAMETERS IP_Country='Germany'

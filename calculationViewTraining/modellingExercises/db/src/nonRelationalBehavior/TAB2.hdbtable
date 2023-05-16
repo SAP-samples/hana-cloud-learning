@@ -1,0 +1,1 @@
+column table "nonRelationalBehavior::TAB2" (column1 NVARCHAR(1), column2 NVARCHAR(1), measure INT)

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="dl.df.epm_demo.modelling.base.solution::CV_PRODUCT_HEADER" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_PRODUCT_HEADER.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="dl.df.epm_demo.data::PO.Header">
+    <resourceUri>dl.df.epm_demo.data::PO.Header</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="PURCHASEORDERID"/>
+      <viewAttribute id="HISTORY_CREATEDBY_EMPLOYEEID"/>
+      <viewAttribute id="HISTORY_CREATEDAT"/>
+      <viewAttribute id="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+      <viewAttribute id="HISTORY_CHANGEDAT"/>
+      <viewAttribute id="NOTEID"/>
+      <viewAttribute id="PARTNER_PARTNERID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="GROSSAMOUNT"/>
+      <viewAttribute id="NETAMOUNT"/>
+      <viewAttribute id="TAXAMOUNT"/>
+      <viewAttribute id="LIFECYCLESTATUS"/>
+      <viewAttribute id="APPROVALSTATUS"/>
+      <viewAttribute id="CONFIRMSTATUS"/>
+      <viewAttribute id="ORDERINGSTATUS"/>
+      <viewAttribute id="INVOICINGSTATUS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="dl.df.epm_demo.data::PO.Header">
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDBY_EMPLOYEEID" source="HISTORY.CREATEDBY.EMPLOYEEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDAT" source="HISTORY.CREATEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CHANGEDBY_EMPLOYEEID" source="HISTORY.CHANGEDBY.EMPLOYEEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CHANGEDAT" source="HISTORY.CHANGEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_PARTNERID" source="PARTNER.PARTNERID"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="PURCHASEORDERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PURCHASEORDERID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PURCHASEORDERID"/>
+    </attribute>
+    <attribute id="HISTORY_CREATEDBY_EMPLOYEEID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CREATEDBY_EMPLOYEEID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="HISTORY_CREATEDBY_EMPLOYEEID"/>
+    </attribute>
+    <attribute id="HISTORY_CREATEDAT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CREATEDAT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="HISTORY_CREATEDAT"/>
+    </attribute>
+    <attribute id="HISTORY_CHANGEDBY_EMPLOYEEID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+    </attribute>
+    <attribute id="HISTORY_CHANGEDAT" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CHANGEDAT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="HISTORY_CHANGEDAT"/>
+    </attribute>
+    <attribute id="NOTEID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NOTEID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="NOTEID"/>
+    </attribute>
+    <attribute id="PARTNER_PARTNERID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_PARTNERID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PARTNER_PARTNERID"/>
+    </attribute>
+    <attribute id="CURRENCY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="GROSSAMOUNT" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="GROSSAMOUNT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="GROSSAMOUNT"/>
+    </attribute>
+    <attribute id="NETAMOUNT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NETAMOUNT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="NETAMOUNT"/>
+    </attribute>
+    <attribute id="TAXAMOUNT" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAXAMOUNT"/>
+      <keyMapping columnObjectName="Projection_1" columnName="TAXAMOUNT"/>
+    </attribute>
+    <attribute id="LIFECYCLESTATUS" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LIFECYCLESTATUS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="LIFECYCLESTATUS"/>
+    </attribute>
+    <attribute id="APPROVALSTATUS" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="APPROVALSTATUS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="APPROVALSTATUS"/>
+    </attribute>
+    <attribute id="CONFIRMSTATUS" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONFIRMSTATUS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CONFIRMSTATUS"/>
+    </attribute>
+    <attribute id="ORDERINGSTATUS" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDERINGSTATUS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ORDERINGSTATUS"/>
+    </attribute>
+    <attribute id="INVOICINGSTATUS" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="INVOICINGSTATUS"/>
+      <keyMapping columnObjectName="Projection_1" columnName="INVOICINGSTATUS"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="190"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

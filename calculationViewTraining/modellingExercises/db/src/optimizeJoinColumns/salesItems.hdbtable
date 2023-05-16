@@ -1,0 +1,9 @@
+COLUMN TABLE "optimizeJoinColumns::salesItems"(
+
+        "item"      NVARCHAR(30) ,
+
+        "employee" NVARCHAR(30) ,
+
+        "amount" DECIMAL(10,2)
+
+);

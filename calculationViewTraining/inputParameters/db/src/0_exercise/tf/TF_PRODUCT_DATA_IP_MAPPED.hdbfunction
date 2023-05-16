@@ -1,0 +1,23 @@
+FUNCTION "dl.df.epm_demo.tf.exercise::TF_PRODUCT_DATA_IP_MAPPED"(
+	-- #2 set default value)	
+	ip_purchaseorderid nvarchar(10) )
+    RETURNS TABLE (
+		<columnName> <type>(<length>)
+		) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+
+    RETURN SELECT
+		"PURCHASEORDERID",
+		"PARTNER_PARTNERID" as "PARTNER.PARTNERID",
+		"CURRENCY",
+		SUM("GROSSAMOUNT") as GROSSAMOUNT ,	SUM("NETAMOUNT") as NETAMOUNT, SUM("TAXAMOUNT") as TAXAMOUNT
+		FROM "dl.df.epm_demo.modelling.solution::CV_PRODUCT_DATA_EMPTY_IP"
+		-- #1 placeholder syntax
+		GROUP BY 
+		"PURCHASEORDERID", "PARTNER_PARTNERID","CURRENCY";
+END;

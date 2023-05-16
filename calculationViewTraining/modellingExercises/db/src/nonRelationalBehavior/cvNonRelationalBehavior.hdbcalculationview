@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="nonRelationalBehavior::cvNonRelationalBehavior" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cvNonRelationalBehavior.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="rB">
+    <resourceUri>nonRelationalBehavior::rB</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews/>
+<logicalModel id="rB">
+  <attributes>
+    <attribute id="year" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="year"/>
+      <keyMapping columnObjectName="rB" columnName="year"/>
+    </attribute>
+    <attribute id="month" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="month"/>
+      <keyMapping columnObjectName="rB" columnName="month"/>
+    </attribute>
+    <attribute id="day" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="day"/>
+      <keyMapping columnObjectName="rB" columnName="day"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="rB" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

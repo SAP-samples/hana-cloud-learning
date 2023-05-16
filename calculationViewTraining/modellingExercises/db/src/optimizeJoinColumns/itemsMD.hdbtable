@@ -1,0 +1,7 @@
+COLUMN TABLE "optimizeJoinColumns::itemsMD"(
+
+        "item"      NVARCHAR(30) ,
+
+        "description" NVARCHAR(30)
+
+);

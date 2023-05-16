@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="joinPruning.solution::joinPruningExample" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="joinPruningExample.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="joinPruning::salesOrder">
+    <resourceUri>joinPruning::salesOrder</resourceUri>
+  </DataSource>
+  <DataSource id="joinPruning::employees">
+    <resourceUri>joinPruning::employees</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="JoinWithCardinalitySetting" cardinality="C1_1" joinType="referential">
+    <viewAttributes>
+      <viewAttribute id="salesOrder"/>
+      <viewAttribute id="employee"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="manager"/>
+      <viewAttribute id="employee_1"/>
+    
+      <viewAttribute hidden="true" id="JOIN$employee$manager"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="joinPruning::salesOrder">
+      <mapping xsi:type="Calculation:AttributeMapping" target="salesOrder" source="salesOrder"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="employee" source="employee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$employee$manager" source="employee"/>
+    </input>
+  
+    <input node="joinPruning::employees">
+      <mapping xsi:type="Calculation:AttributeMapping" target="manager" source="manager"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="employee_1" source="employee"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$employee$manager" source="manager"/>
+  
+    </input>
+    <joinAttribute name="JOIN$employee$manager"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="JoinWithCardinalitySetting">
+  <attributes>
+    <attribute id="salesOrder" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="salesOrder"/>
+      <keyMapping columnObjectName="JoinWithCardinalitySetting" columnName="salesOrder"/>
+    </attribute>
+    <attribute id="employee" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="employee"/>
+      <keyMapping columnObjectName="JoinWithCardinalitySetting" columnName="employee"/>
+    </attribute>
+    <attribute id="manager" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="manager"/>
+      <keyMapping columnObjectName="JoinWithCardinalitySetting" columnName="manager"/>
+    </attribute>
+    <attribute id="employee_1" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="employee_1"/>
+      <keyMapping columnObjectName="JoinWithCardinalitySetting" columnName="employee_1"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="JoinWithCardinalitySetting" columnName="amount"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="JoinWithCardinalitySetting" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="191"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="joinPruning::salesOrder" modelObjectNameSpace="JoinWithCardinalitySetting" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="201"/>
+    </shape>
+  
+    <shape modelObjectName="joinPruning::employees" modelObjectNameSpace="JoinWithCardinalitySetting" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="596" y="33"/>
+      <rectangleSize width="200"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,10 @@
+{
+    "role": {
+        "name": "dl.df.epm_demo.auth::Read",
+        "schema_privileges":[  
+         {  
+            "privileges":[ "SELECT" , "SELECT METADATA", "EXECUTE"]
+         }    
+        ]
+    }
+}

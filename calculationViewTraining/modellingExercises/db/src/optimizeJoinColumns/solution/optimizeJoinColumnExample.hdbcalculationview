@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="optimizeJoinColumns.solution::optimizeJoinColumnExample" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="optimizeJoinColumnExample.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="optimizeJoinColumns::salesItems">
+    <resourceUri>optimizeJoinColumns::salesItems</resourceUri>
+  </DataSource>
+  <DataSource id="optimizeJoinColumns::itemsMD">
+    <resourceUri>optimizeJoinColumns::itemsMD</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="item"/>
+      <viewAttribute id="employee"/>
+      <viewAttribute id="amount" aggregationType="max"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="optimizeJoinColumns::salesItems"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="optimizeJoinColumns" cardinality="CN_1" joinType="leftOuter" optimizeJoinColumns="true">
+    <viewAttributes>
+      <viewAttribute id="item"/>
+      <viewAttribute id="employee"/>
+      <viewAttribute id="amount" aggregationType="max"/>
+      <viewAttribute id="item_1"/>
+      <viewAttribute id="description"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Aggregation_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="item" source="item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="employee" source="employee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <input node="optimizeJoinColumns::itemsMD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="item_1" source="item"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="item" source="item"/>
+    </input>
+    <joinAttribute name="item"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="optimizeJoinColumns">
+  <attributes>
+    <attribute id="item" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="item"/>
+      <keyMapping columnObjectName="optimizeJoinColumns" columnName="item"/>
+    </attribute>
+    <attribute id="employee" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="employee"/>
+      <keyMapping columnObjectName="optimizeJoinColumns" columnName="employee"/>
+    </attribute>
+    <attribute id="item_1" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="item_1"/>
+      <keyMapping columnObjectName="optimizeJoinColumns" columnName="item_1"/>
+    </attribute>
+    <attribute id="description" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="description"/>
+      <keyMapping columnObjectName="optimizeJoinColumns" columnName="description"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="max" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="optimizeJoinColumns" columnName="amount"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="47" y="343"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="optimizeJoinColumns" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="106" y="215"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Aggregation_1" modelObjectNameSpace="optimizeJoinColumns" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="148"/>
+    </shape>
+    <shape modelObjectName="optimizeJoinColumns::itemsMD" modelObjectNameSpace="optimizeJoinColumns" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="246" y="33"/>
+      <rectangleSize width="246"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

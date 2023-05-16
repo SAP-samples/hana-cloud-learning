@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="dl.df.epm_demo.modelling.exercise::CV_PRODUCT_DATA" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CV_PRODUCT_DATA.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="dl.df.epm_demo.modelling.base::CV_PRODUCT_HEADER">
+    <resourceUri>dl.df.epm_demo.modelling.base::CV_PRODUCT_HEADER</resourceUri>
+  </DataSource>
+  <DataSource id="dl.df.epm_demo.modelling.base::CV_PRODUCT_ITEM">
+    <resourceUri>dl.df.epm_demo.modelling.base::CV_PRODUCT_ITEM</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="PO_Header">
+    <viewAttributes>
+      <viewAttribute id="PURCHASEORDERID"/>
+      <viewAttribute id="HISTORY_CREATEDBY_EMPLOYEEID"/>
+      <viewAttribute id="HISTORY_CREATEDAT"/>
+      <viewAttribute id="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+      <viewAttribute id="HISTORY_CHANGEDAT"/>
+      <viewAttribute id="NOTEID"/>
+      <viewAttribute id="PARTNER_PARTNERID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="GROSSAMOUNT"/>
+      <viewAttribute id="NETAMOUNT"/>
+      <viewAttribute id="TAXAMOUNT"/>
+      <viewAttribute id="LIFECYCLESTATUS"/>
+      <viewAttribute id="APPROVALSTATUS"/>
+      <viewAttribute id="CONFIRMSTATUS"/>
+      <viewAttribute id="ORDERINGSTATUS"/>
+      <viewAttribute id="INVOICINGSTATUS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="dl.df.epm_demo.modelling.base::CV_PRODUCT_HEADER"/></calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="PO_Item">
+    <viewAttributes>
+      <viewAttribute id="PURCHASEORDERID"/>
+      <viewAttribute id="PURCHASEORDERITEM"/>
+      <viewAttribute id="PRODUCT_PRODUCTID"/>
+      <viewAttribute id="NOTEID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="GROSSAMOUNT"/>
+      <viewAttribute id="NETAMOUNT"/>
+      <viewAttribute id="TAXAMOUNT"/>
+      <viewAttribute id="QUANTITY"/>
+      <viewAttribute id="QUANTITYUNIT"/>
+      <viewAttribute id="DELIVERYDATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="dl.df.epm_demo.modelling.base::CV_PRODUCT_ITEM"/></calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="PO_Header_Item" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PURCHASEORDERID"/>
+      <viewAttribute id="HISTORY_CREATEDBY_EMPLOYEEID"/>
+      <viewAttribute id="HISTORY_CREATEDAT"/>
+      <viewAttribute id="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+      <viewAttribute id="HISTORY_CHANGEDAT"/>
+      <viewAttribute id="NOTEID"/>
+      <viewAttribute id="PARTNER_PARTNERID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="GROSSAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="NETAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="TAXAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="LIFECYCLESTATUS"/>
+      <viewAttribute id="APPROVALSTATUS"/>
+      <viewAttribute id="CONFIRMSTATUS"/>
+      <viewAttribute id="ORDERINGSTATUS"/>
+      <viewAttribute id="INVOICINGSTATUS"/>
+    
+      <viewAttribute hidden="true" id="JOIN$PURCHASEORDERID$PURCHASEORDERID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PO_Header">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PURCHASEORDERID" source="PURCHASEORDERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDBY_EMPLOYEEID" source="HISTORY_CREATEDBY_EMPLOYEEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDAT" source="HISTORY_CREATEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CHANGEDBY_EMPLOYEEID" source="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CHANGEDAT" source="HISTORY_CHANGEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NOTEID" source="NOTEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_PARTNERID" source="PARTNER_PARTNERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="GROSSAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETAMOUNT" source="NETAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAXAMOUNT" source="TAXAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LIFECYCLESTATUS" source="LIFECYCLESTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="APPROVALSTATUS" source="APPROVALSTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONFIRMSTATUS" source="CONFIRMSTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDERINGSTATUS" source="ORDERINGSTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INVOICINGSTATUS" source="INVOICINGSTATUS"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PURCHASEORDERID$PURCHASEORDERID" source="PURCHASEORDERID"/>
+    </input>
+    <input node="PO_Item">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PURCHASEORDERID$PURCHASEORDERID" source="PURCHASEORDERID"/>
+    </input>
+    <joinAttribute name="JOIN$PURCHASEORDERID$PURCHASEORDERID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="APPLY_FILTER" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="PURCHASEORDERID"/>
+      <viewAttribute id="HISTORY_CREATEDBY_EMPLOYEEID"/>
+      <viewAttribute id="HISTORY_CREATEDAT"/>
+      <viewAttribute id="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+      <viewAttribute id="HISTORY_CHANGEDAT"/>
+      <viewAttribute id="NOTEID"/>
+      <viewAttribute id="PARTNER_PARTNERID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="GROSSAMOUNT"/>
+      <viewAttribute id="NETAMOUNT"/>
+      <viewAttribute id="TAXAMOUNT"/>
+      <viewAttribute id="LIFECYCLESTATUS"/>
+      <viewAttribute id="APPROVALSTATUS"/>
+      <viewAttribute id="CONFIRMSTATUS"/>
+      <viewAttribute id="ORDERINGSTATUS"/>
+      <viewAttribute id="INVOICINGSTATUS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PO_Header_Item"/></calculationView>
+</calculationViews>
+<logicalModel id="APPLY_FILTER">
+  <attributes>
+    <attribute id="PURCHASEORDERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PURCHASEORDERID"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="PURCHASEORDERID"/>
+    </attribute>
+    <attribute id="HISTORY_CREATEDBY_EMPLOYEEID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CREATEDBY_EMPLOYEEID"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="HISTORY_CREATEDBY_EMPLOYEEID"/>
+    </attribute>
+    <attribute id="HISTORY_CREATEDAT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CREATEDAT"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="HISTORY_CREATEDAT"/>
+    </attribute>
+    <attribute id="HISTORY_CHANGEDBY_EMPLOYEEID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+    </attribute>
+    <attribute id="HISTORY_CHANGEDAT" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CHANGEDAT"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="HISTORY_CHANGEDAT"/>
+    </attribute>
+    <attribute id="NOTEID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NOTEID"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="NOTEID"/>
+    </attribute>
+    <attribute id="PARTNER_PARTNERID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER_PARTNERID"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="PARTNER_PARTNERID"/>
+    </attribute>
+    <attribute id="CURRENCY" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="LIFECYCLESTATUS" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LIFECYCLESTATUS"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="LIFECYCLESTATUS"/>
+    </attribute>
+    <attribute id="APPROVALSTATUS" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="APPROVALSTATUS"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="APPROVALSTATUS"/>
+    </attribute>
+    <attribute id="CONFIRMSTATUS" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CONFIRMSTATUS"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="CONFIRMSTATUS"/>
+    </attribute>
+    <attribute id="ORDERINGSTATUS" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDERINGSTATUS"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="ORDERINGSTATUS"/>
+    </attribute>
+    <attribute id="INVOICINGSTATUS" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="INVOICINGSTATUS"/>
+      <keyMapping columnObjectName="APPLY_FILTER" columnName="INVOICINGSTATUS"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GROSSAMOUNT" order="9" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="GROSSAMOUNT"/>
+      <measureMapping columnObjectName="APPLY_FILTER" columnName="GROSSAMOUNT"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NETAMOUNT" order="10" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="NETAMOUNT"/>
+      <measureMapping columnObjectName="APPLY_FILTER" columnName="NETAMOUNT"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TAXAMOUNT" order="11" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TAXAMOUNT"/>
+      <measureMapping columnObjectName="APPLY_FILTER" columnName="TAXAMOUNT"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="537" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="PO_Header" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="501"/>
+      <rectangleSize height="30" width="375"/>
+    </shape>
+    <shape expanded="true" modelObjectName="PO_Item" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="516" y="501"/>
+      <rectangleSize height="30" width="359"/>
+    </shape>
+    <shape expanded="true" modelObjectName="PO_Header_Item" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="484" y="341"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="PO_Header" modelObjectNameSpace="PO_Header_Item" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="PO_Item" modelObjectNameSpace="PO_Header_Item" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="APPLY_FILTER" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="484" y="236"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

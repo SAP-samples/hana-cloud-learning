@@ -1,0 +1,14 @@
+{
+    "EDEN-remote-source-ups": {
+        "object_owner": {
+            "roles": [
+                "SHANGRILA_REMOTE_SOURCE_GRANTABLE"
+            ]
+        },
+        "application_user": {
+            "roles": [
+                "SHANGRILA_REMOTE_SOURCE"
+            ]
+        }
+    }
+}

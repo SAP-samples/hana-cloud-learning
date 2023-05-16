@@ -1,0 +1,32 @@
+FUNCTION "dl.df.epm_demo.tf.exercise::TF_PRODUCT_DATA_MVIP_STT"(
+	-- make clear this input parameter (ip_purchaseorderid) is for multi-values
+	-- also increase the length so that we can fit in a longer string of values
+	ip_purchaseorderid nvarchar(10) DEFAULT '')
+    RETURNS TABLE (
+		PURCHASEORDERID NVARCHAR(10), 
+		"PARTNER.PARTNERID" NVARCHAR(10),
+		"CURRENCY" NVARCHAR(5),
+		"GROSSAMOUNT" DECIMAL(15,2),
+		"NETAMOUNT" DECIMAL(15,2),
+		"TAXAMOUNT"  DECIMAL(15,2)) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+	
+	-- here please call your table function "dl.df.epm_demo.tf.exercise::TF_SPLIT_STRING" and assign it to a local table variable
+	-- lt_poids =
+
+    RETURN SELECT
+		"PURCHASEORDERID",
+		"PARTNER_PARTNERID" as "PARTNER.PARTNERID",
+		"CURRENCY",
+		SUM("GROSSAMOUNT") as GROSSAMOUNT ,	SUM("NETAMOUNT") as NETAMOUNT, SUM("TAXAMOUNT") as TAXAMOUNT
+		FROM "dl.df.epm_demo.modelling.solution::CV_PRODUCT_DATA" 
+		-- adjust where clause to use IN-predicate filter and subselect on local table variable lt_poids
+
+		GROUP BY 
+		"PURCHASEORDERID", "PARTNER_PARTNERID","CURRENCY";
+END;
