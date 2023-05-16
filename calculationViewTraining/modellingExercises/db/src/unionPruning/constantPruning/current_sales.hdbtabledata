@@ -1,0 +1,21 @@
+{ "format_version":1,
+  "imports":
+  [
+	{
+	  "target_table":"unionPruning::current_sales",
+	  "source_data": {
+		"data_type": "CSV",
+		  "file_name": "unionPruning::current_sales.csv",
+		  "has_header": true,
+		  "dialect": "HANA",
+		  "type_config": {
+			"delimiter": ","
+		  }
+		},
+	  "import_settings": {
+		"import_columns": [
+		]
+	  }
+	}
+  ]
+}

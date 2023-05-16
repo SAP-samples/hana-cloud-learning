@@ -1,0 +1,1 @@
+view "nonRelationalBehavior::sqlView" as select "year","month","day", avg("amount") "amount" from "nonRelationalBehavior::rB" group by  "year","month","day"

@@ -1,0 +1,1 @@
+column table "filterMapping::fML" ("id" NVARCHAR(10),"product" NVARCHAR(200), "amount" Decimal (10,2))

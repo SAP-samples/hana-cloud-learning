@@ -1,0 +1,1 @@
+column table "joinPruning::employees" ("manager" NVARCHAR(20), "employee" NVARCHAR(20))

@@ -1,0 +1,1 @@
+column table "columnBasedPruning::D1"("a" NVARCHAR(10),"b" NVARCHAR(10), "c" NVARCHAR(10))

@@ -1,0 +1,35 @@
+{ "format_version":1,
+  "imports":
+  [
+	{
+	  "target_table":"unionPruning.solution::pruningConfigTable",
+	  "source_data": {
+		"data_type": "CSV",
+		  "file_name": "unionPruning.solution::pruningConfigTable.csv",
+		  "has_header": false,
+		  "dialect": "HANA",
+		  "type_config": {
+			"delimiter": ","
+		  }
+		},
+	  "import_settings": {
+		"import_columns": [
+		  "CALC_SCENARIO",
+		  "INPUT",
+		  "COLUMN",
+		  "OPTION",
+		  "LOW_VALUE",
+		  "HIGH_VALUE"
+		]
+	  },
+	  "column_mappings": {
+		"CALC_SCENARIO": 1,
+		"INPUT": 2,
+		"COLUMN": 3,
+		"OPTION": 4,
+		"LOW_VALUE": 5,
+		"HIGH_VALUE": 6
+	  }
+	}
+  ]
+}

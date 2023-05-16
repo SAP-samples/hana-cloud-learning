@@ -1,0 +1,2 @@
+unionPruning.solution::unionPruningConfigurationExample,unionPruning::old_sales,YEAR,<=,2019,
+unionPruning.solution::unionPruningConfigurationExample,unionPruning::current_sales,YEAR,>=,2020,

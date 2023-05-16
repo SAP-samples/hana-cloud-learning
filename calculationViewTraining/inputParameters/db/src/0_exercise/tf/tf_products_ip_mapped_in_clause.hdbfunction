@@ -1,0 +1,28 @@
+FUNCTION "dl.df.epm_demo.tf.exercise::tf_products_ip_mapped_in_clause"(
+	ip_purchaseorderid nvarchar(10), 
+	ip_partnerid nvarchar(10) )
+    RETURNS TABLE (
+		PURCHASEORDERID NVARCHAR(10), 
+		"PARTNER.PARTNERID" NVARCHAR(10),
+		"CURRENCY" NVARCHAR(5),
+		"GROSSAMOUNT" DECIMAL(15,2),
+		"NETAMOUNT" DECIMAL(15,2),
+		"TAXAMOUNT"  DECIMAL(15,2)) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+	-- the filter could also be passed down as a where constraint, but then you loose control over the application of the filter 
+	-- and let the sql optimizer do the work
+    -- EXERCISE: Write a where constraint applying the input parameter ip_purchaseorderid to the correct column
+	RETURN SELECT
+		"PURCHASEORDERID",
+		"PARTNER_PARTNERID" as "PARTNER.PARTNERID",
+		"CURRENCY",
+		SUM("GROSSAMOUNT") as GROSSAMOUNT ,	SUM("NETAMOUNT") as NETAMOUNT, SUM("TAXAMOUNT") as TAXAMOUNT
+		FROM "dl.df.epm_demo.modelling::CV_PRODUCT_DATA"
+		GROUP BY 
+		"PURCHASEORDERID", "PARTNER_PARTNERID","CURRENCY";
+END;

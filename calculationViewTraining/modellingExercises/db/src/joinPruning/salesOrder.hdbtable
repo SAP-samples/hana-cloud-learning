@@ -1,0 +1,1 @@
+column table "joinPruning::salesOrder" ("salesOrder" NVARCHAR(20), "employee" NVARCHAR(20),  "amount" int)

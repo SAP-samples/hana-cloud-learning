@@ -1,0 +1,41 @@
+FUNCTION "dl.df.epm_demo.tf.exercise::tf_products_mvip_apply_filter"(
+	mvip_purchaseorderid nvarchar(5000))
+    RETURNS TABLE (
+		PURCHASEORDERID NVARCHAR(10), 
+		"PARTNER.PARTNERID" NVARCHAR(10),
+		CURRENCY NVARCHAR(5),
+		GROSSAMOUNT DECIMAL(15,2),
+		NETAMOUNT DECIMAL(15,2),
+		TAXAMOUNT  DECIMAL(15,2)
+		) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+	DECLARE l_mvip_purchaseorderid NVARCHAR(5000);
+
+	-- check if input parameter mvip_purchaseorderid is empty or not
+		-- case filled -> generate the where constraint including the input parameter list
+	IF :mvip_purchaseorderid != ''
+		THEN -- purchaseorderid is filled
+			l_mvip_purchaseorderid = '<columnToCompare> IN('||''||') ';	
+		ELSE
+			l_mvip_purchaseorderid = '';
+	  END IF;
+
+	-- next: select from CV_PRODUCT_DATA in a temporary table variable
+	lt_result = SELECT
+	"PURCHASEORDERID",
+	"PARTNER_PARTNERID" as "PARTNER.PARTNERID",
+	"CURRENCY",
+	SUM("GROSSAMOUNT") as GROSSAMOUNT ,	SUM("NETAMOUNT") as NETAMOUNT, SUM("TAXAMOUNT") as TAXAMOUNT
+	FROM "dl.df.epm_demo.modelling::CV_PRODUCT_DATA"
+	GROUP BY 
+	"PURCHASEORDERID", "PARTNER_PARTNERID","CURRENCY";
+
+	--lt_result = call the APPLY_FILTER(temp_table_variable, where_constraint) function		
+
+    RETURN select * from :lt_result;
+END;

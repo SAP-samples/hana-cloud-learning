@@ -1,0 +1,24 @@
+_schema-version: "2.1"
+
+ID: epm_demo
+version: 0.0.1
+modules:
+- name: epm_demo-data-db
+  type: hdb
+  path: db
+  requires:
+  - name: epm_demo-data-hdi
+    properties:
+      TARGET_CONTAINER: ~{hdi-container-name}
+
+resources:
+- name: epm_demo-data-hdi
+  type: com.sap.xs.hdi-container
+  parameters:
+    config:
+      schema: EPM_DEMO_DATA_FOUNDATION
+      #makeUniqueName: false
+  properties:
+    hdi-container-name: ${service-name}
+
+

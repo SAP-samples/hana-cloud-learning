@@ -1,0 +1,1 @@
+column table "enforcePushDownOfFilters::iMO" ("article" NVARCHAR(10), "color" NVARCHAR(10), "amount" Decimal(10,2))

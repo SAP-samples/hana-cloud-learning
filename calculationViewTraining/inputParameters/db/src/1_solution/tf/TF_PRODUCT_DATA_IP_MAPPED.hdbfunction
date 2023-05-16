@@ -1,0 +1,26 @@
+FUNCTION "dl.df.epm_demo.tf.solution::TF_PRODUCT_DATA_IP_MAPPED"(
+	ip_purchaseorderid nvarchar(10) DEFAULT '')
+    RETURNS TABLE (
+		PURCHASEORDERID NVARCHAR(10), 
+		"PARTNER.PARTNERID" NVARCHAR(10),
+		"CURRENCY" NVARCHAR(5),
+		"GROSSAMOUNT" DECIMAL(15,2),
+		"NETAMOUNT" DECIMAL(15,2),
+		"TAXAMOUNT"  DECIMAL(15,2)) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+
+    RETURN SELECT
+		"PURCHASEORDERID",
+		"PARTNER_PARTNERID" as "PARTNER.PARTNERID",
+		"CURRENCY",
+		SUM("GROSSAMOUNT") as GROSSAMOUNT ,	SUM("NETAMOUNT") as NETAMOUNT, SUM("TAXAMOUNT") as TAXAMOUNT
+		FROM "dl.df.epm_demo.modelling.solution::CV_PRODUCT_DATA_EMPTY_IP"
+		(placeholder."$$IP_PURCHASEORDERID$$"=>:ip_purchaseorderid)
+		GROUP BY 
+		"PURCHASEORDERID", "PARTNER_PARTNERID","CURRENCY";
+END;

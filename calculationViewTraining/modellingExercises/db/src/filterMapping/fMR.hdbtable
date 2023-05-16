@@ -1,0 +1,1 @@
+column table "filterMapping::fMR" ("id" NVARCHAR(10),"product_name" NVARCHAR(200), "quantity" INTEGER)

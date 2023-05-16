@@ -1,0 +1,12 @@
+FUNCTION "dl.df.epm_demo.tf.exercise::TF_SPLIT_STRING"(in sentence varchar(5000)) returns table (result nvarchar(200))
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+    using sqlscript_string as lib;
+    /*****************************
+        Write your function logic
+    ****************************/
+    -- variable declaration
+    -- tv = call library to split value string;
+    -- RETURN;
+END;

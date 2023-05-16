@@ -1,0 +1,38 @@
+FUNCTION "dl.df.epm_demo.tf::tf_products_mvip_apply_filter"(
+	ip_purchaseorderid nvarchar(5000))
+    RETURNS TABLE (
+		PURCHASEORDERID NVARCHAR(10), 
+		"PARTNER.PARTNERID" NVARCHAR(10),
+		CURRENCY NVARCHAR(5),
+		GROSSAMOUNT DECIMAL(15,2),
+		NETAMOUNT DECIMAL(15,2),
+		TAXAMOUNT  DECIMAL(15,2)
+		) 
+    LANGUAGE SQLSCRIPT
+    SQL SECURITY INVOKER AS
+BEGIN
+    /*****************************
+        Write your function logic
+    ****************************/
+	DECLARE L_IP_PURCHASEORDERID NVARCHAR(5000);
+
+	IF :ip_purchaseorderid != ''
+		THEN -- sourcedoc is filled
+			L_IP_PURCHASEORDERID = 'PURCHASEORDERID IN(' || :ip_purchaseorderid || ') ';	
+		ELSE
+			L_IP_PURCHASEORDERID = '';
+	  END IF;
+
+	lt_temp = SELECT
+	"PURCHASEORDERID",
+	"PARTNER_PARTNERID" as "PARTNER.PARTNERID",
+	"CURRENCY",
+	SUM("GROSSAMOUNT") as GROSSAMOUNT ,	SUM("NETAMOUNT") as NETAMOUNT, SUM("TAXAMOUNT") as TAXAMOUNT
+	FROM "dl.df.epm_demo.modelling::CV_PRODUCT_DATA"
+	GROUP BY 
+	"PURCHASEORDERID", "PARTNER_PARTNERID","CURRENCY";
+
+	lv_test_1 = APPLY_FILTER(:lt_temp, :L_IP_PURCHASEORDERID);
+
+    RETURN select * from :lv_test_1;
+END;

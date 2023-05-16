@@ -1,0 +1,4 @@
+1. Export catalog object from EPM DATA model from on-prem shine scenario (has no csv-header)
+2. Export header information
+3. [CSV DATA] replace "," by ";"
+4. [CSV DATA] replace " with empty
