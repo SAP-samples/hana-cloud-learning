@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="applicationTimeRange_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="applicationTimeRange_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="applicationTimeRange" temporalSource="true" applicationTime1="&apos;2019/12/12&apos;" applicationTime2="&apos;2019/12/22&apos;" applicationTimeOperator="FROM">
+    <resourceUri>applicationTimeRange</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="applicationTimeRange">
+  <attributes>
+    <attribute id="ACCOUNT_OWNER_ID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ACCOUNT_OWNER_ID"/>
+      <keyMapping columnObjectName="applicationTimeRange" columnName="ACCOUNT_OWNER_ID"/>
+    </attribute>
+    <attribute id="AP_VALID_FROM" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AP_VALID_FROM"/>
+      <keyMapping columnObjectName="applicationTimeRange" columnName="AP_VALID_FROM"/>
+    </attribute>
+    <attribute id="AP_VALID_TO" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AP_VALID_TO"/>
+      <keyMapping columnObjectName="applicationTimeRange" columnName="AP_VALID_TO"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ACCOUNT_ID" order="1" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="ACCOUNT_ID"/>
+      <measureMapping columnObjectName="applicationTimeRange" columnName="ACCOUNT_ID"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="ACCOUNT_BALANCE" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="ACCOUNT_BALANCE"/>
+      <measureMapping columnObjectName="applicationTimeRange" columnName="ACCOUNT_BALANCE"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

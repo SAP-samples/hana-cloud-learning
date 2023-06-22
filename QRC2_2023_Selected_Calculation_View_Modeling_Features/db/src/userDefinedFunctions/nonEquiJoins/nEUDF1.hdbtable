@@ -1,0 +1,1 @@
+column table "nEUDF1" ("id" NVARCHAR(20), "amount" Decimal(10,2))

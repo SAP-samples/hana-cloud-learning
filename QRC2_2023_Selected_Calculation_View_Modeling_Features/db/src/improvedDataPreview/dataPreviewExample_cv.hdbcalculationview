@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="dataPreviewExample_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="example for data preview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="dP">
+    <resourceUri>dP</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="dP">
+  <attributes>
+    <attribute id="BillingStatus" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BillingStatus"/>
+      <keyMapping columnObjectName="dP" columnName="BillingStatus"/>
+    </attribute>
+    <attribute id="Currency" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency"/>
+      <keyMapping columnObjectName="dP" columnName="Currency"/>
+    </attribute>
+    <attribute id="LastName" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="LastName"/>
+      <keyMapping columnObjectName="dP" columnName="LastName"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SUM_GrossAmount" order="4" aggregationType="avg" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="SUM_GrossAmount"/>
+      <measureMapping columnObjectName="dP" columnName="SUM_GrossAmount"/>
+    
+      <exceptionAggregationMetadata>
+    
+        <attribute attributeName="BillingStatus"/>
+    
+      </exceptionAggregationMetadata>
+    </measure>
+    <measure id="SUM_NetAmount" order="5" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="SUM_NetAmount"/>
+      <measureMapping columnObjectName="dP" columnName="SUM_NetAmount"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

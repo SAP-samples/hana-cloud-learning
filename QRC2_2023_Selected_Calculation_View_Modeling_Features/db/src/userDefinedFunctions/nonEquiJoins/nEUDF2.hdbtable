@@ -1,0 +1,1 @@
+column table "nEUDF2" ("id" NVARCHAR(20), "description" NVARCHAR(20))
