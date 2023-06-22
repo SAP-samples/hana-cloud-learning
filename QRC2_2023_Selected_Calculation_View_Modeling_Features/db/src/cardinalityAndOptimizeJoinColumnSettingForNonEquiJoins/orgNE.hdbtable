@@ -1,0 +1,1 @@
+column table "orgNE" ("employee" NVARCHAR(30), "manager" NVARCHAR(30),"fromDate" date, "toDate" date)

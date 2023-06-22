@@ -1,0 +1,1 @@
+column table "c" (f_c_a NVARCHAR(20), f_c_b NVARCHAR(20), f_c_X NVARCHAR(20), i int)

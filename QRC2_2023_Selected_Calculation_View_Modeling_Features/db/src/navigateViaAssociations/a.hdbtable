@@ -1,0 +1,4 @@
+column table "a" ("f_a_b" NVARCHAR(20), f_a_b NVARCHAR(20), f_a_c NVARCHAR(20), f_a_X NVARCHAR(20), i int) with associations 
+(ONE TO MANY JOIN "b" as "a2b" ON f_a_b = "a2b".f_b_a WITH DEFAULT FILTER "a2b".f_b_a='f', 
+ONE TO ONE JOIN "c" as "a2c" ON f_a_c = "a2c".f_c_a WITH DEFAULT FILTER f_a_c!='f'
+)
