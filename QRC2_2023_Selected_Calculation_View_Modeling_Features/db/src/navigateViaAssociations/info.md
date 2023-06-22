@@ -12,7 +12,7 @@ Associated objects can also be added using the context menu of a datasource, if 
 
 For join nodes the respective join information of the associations are reused if possible. 
 
-If multiple objects are selected the join order is determined by the order in which the objects have been selected.
+If multiple objects are selected the join order is determined by the order in which the objects have been selected and stacked join nodes are generated.
 
 Using association information simplifies selection of relevant data sources and increases modeling efficiency.
 
