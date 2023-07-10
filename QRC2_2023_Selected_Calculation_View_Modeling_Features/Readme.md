@@ -1,4 +1,4 @@
-# QRC1 2023: Test Examples for "Selected Calculation View Modeling features"
+# QRC2 2023: Test Examples for "Selected Calculation View Modeling features"
 
 ## Description
 This folder contains an SAP Business Application Studio project with examples and descriptions of new features that were introduced with SAP HANA Cloud QRC2.2023 in the area of calculation view modeling. 
