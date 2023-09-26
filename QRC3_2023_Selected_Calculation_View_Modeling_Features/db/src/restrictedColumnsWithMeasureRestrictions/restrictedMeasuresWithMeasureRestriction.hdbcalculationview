@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="restrictedMeasuresWithMeasureRestriction" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="restrictedMeasuresWithMeasureRestriction.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="rMMR">
+    <resourceUri>rMMR</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="filterOutliers">
+    <viewAttributes>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount" aggregationType="avg"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes>
+      <restrictedViewAttribute id="AverageOrangesOutliersRemoved" baseViewAttribute="amount" restrictionExpressionLanguage="SQL">
+        <descriptions defaultDescription=""/>
+        <restrictionExpression>&quot;product&quot;='oranges' and &quot;amount&quot;&gt;5 and &quot;amount&quot;&lt;50</restrictionExpression>
+      </restrictedViewAttribute>
+    </restrictedViewAttributes>
+    <input node="rMMR"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="filterOutliers">
+  <attributes>
+    <attribute id="product" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="filterOutliers" columnName="product"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="AverageOrangesOutliersRemoved" order="1" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="AverageOranges Outliers Removed"/>
+      <measureMapping columnObjectName="filterOutliers" columnName="AverageOrangesOutliersRemoved"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="amount" order="3" aggregationType="avg" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="filterOutliers" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="filterOutliers" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="76" y="194"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
