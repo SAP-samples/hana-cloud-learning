@@ -1,0 +1,1 @@
+column table "pC2" ("o1_2" NVARCHAR(20), "o2_2" NVARCHAR(30), "o3_2" NVARCHAR(20),"m_2" Decimal(10,2))

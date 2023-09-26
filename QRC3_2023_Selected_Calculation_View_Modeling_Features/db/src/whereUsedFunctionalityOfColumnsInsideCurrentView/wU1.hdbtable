@@ -1,0 +1,1 @@
+column table "wU1" (c1_1 NVARCHAR(20), c1_2 NVARCHAR(20), m1 Decimal(10,2))

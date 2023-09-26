@@ -1,0 +1,19 @@
+COLUMN TABLE "MDSC_SalesOrder"(
+	"SalesOrderId" NVARCHAR(10) NOT NULL COMMENT 'Sales Order ID',
+	"CreatedBy" NVARCHAR(10) NOT NULL COMMENT 'Created By',
+	"CreatedAt" DATE NOT NULL COMMENT 'Created At - Date and Time',
+	"ChangedBy" NVARCHAR(10) COMMENT 'Last Changed By',
+	"ChangedAt" DATE COMMENT 'Last Changed At - Date and Time',
+	"NoteId" NVARCHAR(10) COMMENT 'SO Note Text ID',
+	"PartnerId" NVARCHAR(10) COMMENT 'Partner ID',
+	"Currency" NVARCHAR(5) NOT NULL COMMENT 'Currency Code',
+	"GrossAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Total Gross Amount',
+	"NetAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Total Net Amount',
+	"TaxAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Total Tax Amount',
+	"LifecycleStatus" NVARCHAR(1) COMMENT 'SO Lifecycle Status',
+	"BillingStatus" NVARCHAR(1) COMMENT 'Billing Status',
+	"DeliveryStatus" NVARCHAR(1) COMMENT 'Delivery Status',
+	PRIMARY KEY(
+		"SalesOrderId"
+	)
+)

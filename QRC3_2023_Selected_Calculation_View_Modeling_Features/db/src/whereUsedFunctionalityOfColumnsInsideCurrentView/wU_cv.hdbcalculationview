@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="wU_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="wU_cv.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_1" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false" scale="NaN">
+      <valueDomain type="AttributeValue">
+        <attribute name="C1_renamed"/>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="VAR_1">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" scale="NaN" defaultValue="">
+      <valueDomain type="AttributeValue">
+        <attribute name="C1_renamed"/>
+      </valueDomain>
+      <selection type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="wU">
+    <resourceUri>wU</resourceUri>
+  </DataSource>
+  <DataSource id="wU1">
+    <resourceUri>wU1</resourceUri>
+  </DataSource>
+  <DataSource id="wU2">
+    <resourceUri>wU2</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="C1"/>
+      <viewAttribute id="C2"/>
+      <viewAttribute id="M" aggregationType="sum"/>
+      <viewAttribute id="C1_1"/>
+      <viewAttribute id="C1_2"/>
+      <viewAttribute id="M1" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$C1$C1_1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="wU">
+      <mapping xsi:type="Calculation:AttributeMapping" target="C1" source="C1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="C2" source="C2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="M" source="M"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$C1$C1_1" source="C1"/>
+    </input>
+    <input node="wU1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="C1_1" source="C1_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="C1_2" source="C1_2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="M1" source="M1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$C1$C1_1" source="C1_1"/>
+    </input>
+    <joinAttribute name="JOIN$C1$C1_1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="C1"/>
+      <viewAttribute id="C2"/>
+      <viewAttribute id="M" aggregationType="sum"/>
+    
+      <viewAttribute id="C1_2"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="C1" source="C1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="C2" source="C2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="M" source="M"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="C1_2" source="C1_2"/>
+    </input>
+    <input node="wU2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="C1" source="C2_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="C2" source="C2_2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="M" source="M2"/>
+    
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="C1_2" null="true" value=""/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="C1_renamed" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C1"/>
+      <keyMapping columnObjectName="Union_1" columnName="C1"/>
+    </attribute>
+    <attribute id="C2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C2"/>
+      <localVariable>VAR_1</localVariable>
+      <keyMapping columnObjectName="Union_1" columnName="C2"/>
+    </attribute>
+  
+    <attribute id="C1_2" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="C1_2"/>
+  
+      <keyMapping columnObjectName="Union_1" columnName="C1_2"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="CC_1" order="4" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="13">
+        <formula>&quot;C1_renamed&quot;||&quot;C2&quot;||&quot;C1_2&quot;</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="M" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="M"/>
+      <measureMapping columnObjectName="Union_1" columnName="M"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="RES_1" order="5" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="M" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="C1_renamed">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="Important"/>
+        </filter>
+        <attributeName>C1_renamed</attributeName>
+      </restriction>
+      
+      
+      <exceptionAggregationMetadata>
+      
+      
+        <attribute attributeName="C1_renamed"/>
+      
+      
+      </exceptionAggregationMetadata>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-291" y="280"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="wU" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape modelObjectName="wU1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="112"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-50" y="204"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

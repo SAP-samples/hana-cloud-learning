@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="MDS_Cube_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" generateMdsMetadata="true">
+<descriptions defaultDescription="MDS_Cube_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MDSC_SalesOrder">
+    <resourceUri>MDSC_SalesOrder</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<mdsCubes>
+  <mdsCube id="SalesDataHourly">
+    <mdsCubeDimensions>
+      <mdsCubeDimension id="CreatedBy"/>
+      <mdsCubeDimension id="DeliveryStatus"/>
+      <mdsCubeDimension id="BillingStatus"/>
+    </mdsCubeDimensions>
+    <mdsCubeMeasures>
+      <mdsCubeMeasure id="GrossAmount"/>
+      <mdsCubeMeasure id="NetAmount"/>
+      <mdsCubeMeasure id="TaxAmount"/>
+    </mdsCubeMeasures>
+    <mdsCubeExecutionHints/>
+  </mdsCube>
+</mdsCubes>
+<calculationViews/>
+<logicalModel id="MDSC_SalesOrder">
+  <attributes>
+    <attribute id="SalesOrderId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sales Order ID"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="SalesOrderId"/>
+    </attribute>
+    <attribute id="CreatedBy" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created By"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="CreatedBy"/>
+    </attribute>
+    <attribute id="CreatedAt" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created At - Date and Time"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="CreatedAt"/>
+    </attribute>
+    <attribute id="ChangedBy" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last Changed By"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="ChangedBy"/>
+    </attribute>
+    <attribute id="ChangedAt" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last Changed At - Date and Time"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="ChangedAt"/>
+    </attribute>
+    <attribute id="NoteId" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SO Note Text ID"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="NoteId"/>
+    </attribute>
+    <attribute id="PartnerId" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Partner ID"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="PartnerId"/>
+    </attribute>
+    <attribute id="Currency" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency Code"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="Currency"/>
+    </attribute>
+    <attribute id="LifecycleStatus" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SO Lifecycle Status"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="LifecycleStatus"/>
+    </attribute>
+    <attribute id="BillingStatus" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Billing Status"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="BillingStatus"/>
+    </attribute>
+    <attribute id="DeliveryStatus" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Delivery Status"/>
+      <keyMapping columnObjectName="MDSC_SalesOrder" columnName="DeliveryStatus"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GrossAmount" order="9" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="Total Gross Amount"/>
+      <measureMapping columnObjectName="MDSC_SalesOrder" columnName="GrossAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NetAmount" order="10" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="Total Net Amount"/>
+      <measureMapping columnObjectName="MDSC_SalesOrder" columnName="NetAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TaxAmount" order="11" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="Total Tax Amount"/>
+      <measureMapping columnObjectName="MDSC_SalesOrder" columnName="TaxAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

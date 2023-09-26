@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="lowerCV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="lowerCV.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="pC1">
+    <resourceUri>pC1</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="pC1">
+  <attributes>
+    <attribute id="o1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o1"/>
+      <keyMapping columnObjectName="pC1" columnName="o1"/>
+    </attribute>
+    <attribute id="o2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o2"/>
+      <keyMapping columnObjectName="pC1" columnName="o2"/>
+    </attribute>
+    <attribute id="o3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o3"/>
+      <keyMapping columnObjectName="pC1" columnName="o3"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="pC1" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

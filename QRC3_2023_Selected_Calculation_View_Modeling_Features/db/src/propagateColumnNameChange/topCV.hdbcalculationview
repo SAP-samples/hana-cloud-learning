@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="topCV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="topCV.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="middleCV">
+    <resourceUri>middleCV</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="middleCV">
+  <attributes>
+    <attribute id="o1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o1"/>
+      <keyMapping columnObjectName="middleCV" columnName="o1"/>
+    </attribute>
+    <attribute id="o2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o2"/>
+      <keyMapping columnObjectName="middleCV" columnName="o2"/>
+    </attribute>
+    <attribute id="o3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o3"/>
+      <keyMapping columnObjectName="middleCV" columnName="o3"/>
+    </attribute>
+    <attribute id="o1_2" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o1_2"/>
+      <keyMapping columnObjectName="middleCV" columnName="o1_2"/>
+    </attribute>
+    <attribute id="o2_2" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o2_2"/>
+      <keyMapping columnObjectName="middleCV" columnName="o2_2"/>
+    </attribute>
+    <attribute id="o3_2" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o3_2"/>
+      <keyMapping columnObjectName="middleCV" columnName="o3_2"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="middleCV" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="m_2" order="8" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="m_2"/>
+      <measureMapping columnObjectName="middleCV" columnName="m_2"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

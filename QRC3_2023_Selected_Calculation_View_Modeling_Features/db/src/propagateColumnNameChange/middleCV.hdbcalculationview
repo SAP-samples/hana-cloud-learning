@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="middleCV" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="middleCV.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="pC1">
+    <resourceUri>pC1</resourceUri>
+  </DataSource>
+  <DataSource id="lowerCV">
+    <resourceUri>lowerCV</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="o1"/>
+      <viewAttribute id="o2"/>
+      <viewAttribute id="o3"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute id="o1_2"/>
+      <viewAttribute id="o2_2"/>
+      <viewAttribute id="o3_2"/>
+      <viewAttribute id="m_2" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$o1$o1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="pC1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="o1" source="o1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="o2" source="o2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="o3" source="o3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$o1$o1" source="o1"/>
+    </input>
+    <input node="lowerCV">
+      <mapping xsi:type="Calculation:AttributeMapping" target="o1_2" source="o1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="o2_2" source="o2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="o3_2" source="o3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m_2" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$o1$o1" source="o1"/>
+    </input>
+    <joinAttribute name="JOIN$o1$o1"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="o1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o1"/>
+      <keyMapping columnObjectName="Join_1" columnName="o1"/>
+    </attribute>
+    <attribute id="o2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o2"/>
+      <keyMapping columnObjectName="Join_1" columnName="o2"/>
+    </attribute>
+    <attribute id="o3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o3"/>
+      <keyMapping columnObjectName="Join_1" columnName="o3"/>
+    </attribute>
+    <attribute id="o1_2" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o1_2"/>
+      <keyMapping columnObjectName="Join_1" columnName="o1_2"/>
+    </attribute>
+    <attribute id="o2_2" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o2_2"/>
+      <keyMapping columnObjectName="Join_1" columnName="o2_2"/>
+    </attribute>
+    <attribute id="o3_2" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="o3_2"/>
+      <keyMapping columnObjectName="Join_1" columnName="o3_2"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="Join_1" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="m_2" order="8" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="m_2"/>
+      <measureMapping columnObjectName="Join_1" columnName="m_2"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="200"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="pC1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape modelObjectName="lowerCV" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="112.01171875"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
