@@ -1,0 +1,13 @@
+column table "gCL" (   "SalesOrderId"  NVARCHAR(10)  NOT NULL   comment 'Sales Order ID',
+"SalesOrderItem"  NVARCHAR(10)  NOT NULL   comment 'Sales Order Item',
+"ProductId"  NVARCHAR(10)  NOT NULL   comment 'Product ID',
+"NoteId"  NVARCHAR(10)     comment 'PO Note Text ID',
+"Currency"  NVARCHAR(5)  NOT NULL   comment 'Currency Code',
+"GrossAmount"  DECIMAL(15,2)  NOT NULL   comment 'Gross Amount',
+"NetAmount"  DECIMAL(15,2)  NOT NULL   comment 'Net Amount',
+"TaxAmount"  DECIMAL(15,2)  NOT NULL   comment 'Tax Amount',
+"ItemATPStatus"  NVARCHAR(1)     comment 'Item ATP Status',
+"OPItemPos"  NVARCHAR(10)     comment 'Sales Order Item',
+"Quantity"  DECIMAL(13,3)  NOT NULL   comment 'Quantity',
+"QuantityUnit"  NVARCHAR(3)  NOT NULL   comment 'Quantity Unit',
+"DeliveryDate"  DATE     comment 'Scheduled Delivery Date')

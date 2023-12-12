@@ -1,0 +1,1 @@
+column table "itemsNEFM" ("employee" NVARCHAR(30), "orderDate" Date, "orderVolume" Decimal(10,2),"country" NVARCHAR(30))

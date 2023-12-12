@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="noFilterMapping_NE_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="filterMapping_NE_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="itemsNEFM">
+    <resourceUri>itemsNEFM</resourceUri>
+  </DataSource>
+  <DataSource id="orgNEFM">
+    <resourceUri>orgNEFM</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="employee"/>
+      <viewAttribute id="orderDate"/>
+      <viewAttribute id="orderVolume" aggregationType="sum"/>
+      <viewAttribute id="manager"/>
+    
+      <viewAttribute id="country"/>
+    
+      <viewAttribute id="fromDate"/>
+    
+      <viewAttribute id="country_1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="itemsNEFM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="employee" source="employee"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="orderDate" source="orderDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="orderVolume" source="orderVolume"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+    </input>
+    <input node="orgNEFM">
+      <mapping xsi:type="Calculation:AttributeMapping" target="manager" source="manager"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="fromDate" source="fromDate"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="country_1" source="country"/>
+    </input>
+    <joinExpression>&quot;itemsNEFM&quot;.&quot;employee&quot;=&quot;orgNEFM&quot;.&quot;employee&quot; and &quot;itemsNEFM&quot;.&quot;orderDate&quot;&lt;=&quot;orgNEFM&quot;.&quot;toDate&quot; and &quot;itemsNEFM&quot;.&quot;orderDate&quot;&gt;=&quot;orgNEFM&quot;.&quot;fromDate&quot;</joinExpression>
+  </calculationView>
+</calculationViews>
+<logicalModel id="NonEquiJoin_1">
+  <attributes>
+    <attribute id="employee" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="employee"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="employee"/>
+    </attribute>
+    <attribute id="orderDate" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orderDate"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="orderDate"/>
+    </attribute>
+    <attribute id="manager" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="manager"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="manager"/>
+    </attribute>
+  
+    <attribute id="country" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+  
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="country"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="orderVolume" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="orderVolume"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="orderVolume"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="NonEquiJoin_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="193"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="itemsNEFM" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="148"/>
+    </shape>
+    <shape modelObjectName="orgNEFM" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="133"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

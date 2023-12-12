@@ -1,0 +1,3 @@
+column table "pAD" ("c1" NVARCHAR(20),"c2" NVARCHAR(20),"c3" NVARCHAR(20),
+--"newColumn" NVARCHAR(20),
+ "m" Decimal(10,2))
