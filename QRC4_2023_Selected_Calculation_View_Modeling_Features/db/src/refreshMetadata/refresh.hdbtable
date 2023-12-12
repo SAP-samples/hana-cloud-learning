@@ -1,0 +1,3 @@
+column table "refresh" ("oldColumn1" NVARCHAR(20), "oldColumn2" NVARCHAR(20), 
+--"newColumn" NVARCHAR(20),  
+"m" Decimal (10,2))

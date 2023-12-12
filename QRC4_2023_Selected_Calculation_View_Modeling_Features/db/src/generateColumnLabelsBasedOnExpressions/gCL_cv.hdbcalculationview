@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="gCL_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="gCL">
+    <resourceUri>gCL</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="gCL" descriptionGeneratorExpression="concat(upper(&quot;Name&quot;),&apos;_KPI&apos;)">
+  <attributes>
+    <attribute id="SalesOrderId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sales Order ID"/>
+      <keyMapping columnObjectName="gCL" columnName="SalesOrderId"/>
+    </attribute>
+    <attribute id="SalesOrderItem" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sales Order Item"/>
+      <keyMapping columnObjectName="gCL" columnName="SalesOrderItem"/>
+    </attribute>
+    <attribute id="ProductId" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Product ID"/>
+      <keyMapping columnObjectName="gCL" columnName="ProductId"/>
+    </attribute>
+    <attribute id="NoteId" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO Note Text ID"/>
+      <keyMapping columnObjectName="gCL" columnName="NoteId"/>
+    </attribute>
+    <attribute id="Currency" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency Code"/>
+      <keyMapping columnObjectName="gCL" columnName="Currency"/>
+    </attribute>
+    <attribute id="ItemATPStatus" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Item ATP Status"/>
+      <keyMapping columnObjectName="gCL" columnName="ItemATPStatus"/>
+    </attribute>
+    <attribute id="OPItemPos" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sales Order Item"/>
+      <keyMapping columnObjectName="gCL" columnName="OPItemPos"/>
+    </attribute>
+    <attribute id="QuantityUnit" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Quantity Unit"/>
+      <keyMapping columnObjectName="gCL" columnName="QuantityUnit"/>
+    </attribute>
+    <attribute id="DeliveryDate" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Scheduled Delivery Date"/>
+      <keyMapping columnObjectName="gCL" columnName="DeliveryDate"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GrossAmount" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Gross Amount"/>
+      <measureMapping columnObjectName="gCL" columnName="GrossAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NetAmount" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Net Amount"/>
+      <measureMapping columnObjectName="gCL" columnName="NetAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="TaxAmount" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Tax Amount"/>
+      <measureMapping columnObjectName="gCL" columnName="TaxAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="Quantity" order="13" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Quantity"/>
+      <measureMapping columnObjectName="gCL" columnName="Quantity"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
