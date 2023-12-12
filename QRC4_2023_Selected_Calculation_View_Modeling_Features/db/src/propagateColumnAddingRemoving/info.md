@@ -1,4 +1,4 @@
-# [Propagate Added or Deleted Columns to Consuming Calculation Views](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/propagate-addition-or-deletion-of-columns)
+# [Propagate Adding or Deleting Columns to Consuming Calculation Views](https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-modeling-guide-for-sap-business-application-studio/propagate-addition-or-deletion-of-columns)
 
 You can now propagate a column to all consuming calculation views within the same HDI container recursively. For example, an added column to table "pAD" can be propagated from view "pADBottom" to the consuming views "pADMiddle" and "pADTop":
 
