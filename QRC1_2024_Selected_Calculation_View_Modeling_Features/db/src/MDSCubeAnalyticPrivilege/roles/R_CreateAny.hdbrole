@@ -1,0 +1,12 @@
+{
+  "role": {
+    "name": "R_CreateAny",
+    "schema_privileges": [
+      {
+        "privileges": [
+          "CREATE ANY"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+COLUMN TABLE "rs" ( 
+   "ID" NVARCHAR(256), 
+   "ENTITY" NVARCHAR(256),
+   "TYPE" NVARCHAR(256), 
+   "SALARY" DECIMAL(13,2)
+    )

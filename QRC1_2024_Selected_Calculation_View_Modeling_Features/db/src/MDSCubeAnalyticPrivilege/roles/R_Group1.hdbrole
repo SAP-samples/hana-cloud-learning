@@ -1,0 +1,21 @@
+{
+  "role": {
+    "name": "R_Group1",
+    "object_privileges": [
+      {
+        "name": "CV_SALES_DATA",
+        "type": "VIEW",
+        "privileges": [
+          "SELECT"
+        ]
+      }
+    ],
+    "schema_analytic_privileges": [
+      {
+        "privileges": [
+          "Group1"
+        ]
+      }
+    ]
+  }
+}
