@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="optionsToMakeColumnsUnique" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="optionsToMakeColumnsUnique.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="fOU1">
+    <resourceUri>fOU1</resourceUri>
+  </DataSource>
+  <DataSource id="fOU2">
+    <resourceUri>fOU2</resourceUri>
+  </DataSource>
+  <DataSource id="MapTableFOU1$$$$fOU1$$">
+    <resourceUri>fOU1</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="MapTablefOU2" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="c4"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$c1$c1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="fOU1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c3" source="c3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c4" source="c4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+  
+    <input node="fOU2">
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+  
+    </input>
+    <joinAttribute name="JOIN$c1$c1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="MapTableFOU1">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="c4"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MapTablefOU2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c1" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c2" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c3" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c4" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="m" null="true" value=""/>
+    </input>
+  
+    <input node="MapTableFOU1$$$$fOU1$$" emptyUnionBehavior="NO_ROW">
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="c3" source="c3"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="c4" source="c4"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+  
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="MapTableFOU1">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="MapTableFOU1" columnName="c1"/>
+    </attribute>
+    <attribute id="c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c2"/>
+      <keyMapping columnObjectName="MapTableFOU1" columnName="c2"/>
+    </attribute>
+    <attribute id="c3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c3"/>
+      <keyMapping columnObjectName="MapTableFOU1" columnName="c3"/>
+    </attribute>
+    <attribute id="c4" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c4"/>
+      <keyMapping columnObjectName="MapTableFOU1" columnName="c4"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="MapTableFOU1" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <sharedDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="158.38646663870168" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="MapTablefOU2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="356.9999988079071"/>
+      <rectangleSize height="30" width="260"/>
+    </shape>
+    <shape modelObjectName="fOU1" modelObjectNameSpace="MapTablefOU2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape modelObjectName="fOU2" modelObjectNameSpace="MapTablefOU2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape expanded="true" modelObjectName="MapTableFOU1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="142" y="236.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape modelObjectName="MapTableFOU1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

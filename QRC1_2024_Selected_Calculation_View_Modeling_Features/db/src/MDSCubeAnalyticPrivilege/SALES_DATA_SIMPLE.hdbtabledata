@@ -1,0 +1,20 @@
+{
+  "format_version": 1,
+  "imports": 
+   [
+    {
+     "source_data": { 
+       "data_type": "CSV", 
+       "file_name": "pennybridge_sales_data_simple.csv", 
+       "has_header": true,
+       "no_data_import": false,
+       "delete_existing_foreign_data": false,
+       "dialect": "HANA",  
+       "type_config": { 
+          "delimiter": ";" 
+        } 
+      }, 
+     "target_table" : "db01.tables::SALES_DATA_SIMPLE"  
+    }
+   ] 
+}

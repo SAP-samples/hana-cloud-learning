@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="pADIP_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="pADIP_cv.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_Filter" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false" defaultValue="2024">
+      <valueDomain type="AttributeValue">
+        <attribute name="filterMe"/>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="pADIP">
+    <resourceUri>pADIP</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="pADIP" filterExpressionLanguage="SQL">
+  <attributes>
+    <attribute id="filterMe" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="filterMe"/>
+      <keyMapping columnObjectName="pADIP" columnName="filterMe"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="pADIP" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <filter>&quot;filterMe&quot;='$$IP_Filter$$'</filter>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

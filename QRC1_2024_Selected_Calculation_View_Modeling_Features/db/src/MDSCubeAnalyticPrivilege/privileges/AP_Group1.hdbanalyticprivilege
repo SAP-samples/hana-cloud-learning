@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege:analyticPrivilege xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="Group1" privilegeType="SQL_ANALYTIC_PRIVILEGE" schemaVersion="1.1">
+<descriptions defaultDescription="Group1"/>
+<securedModels>
+  <modelUri>CV_SALES_DATA</modelUri>
+</securedModels>
+<whereSql>itemid in ('ITM0000001','ITM0000002','ITM0000003','ITM0000004','ITM0000005')</whereSql>
+</Privilege:analyticPrivilege>

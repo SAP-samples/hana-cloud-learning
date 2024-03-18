@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="runningSum" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cv_TwoWindowFunctions.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="rs">
+    <resourceUri>rs</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:WindowFunctionView" id="runningSum">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="ENTITY"/>
+      <viewAttribute id="TYPE"/>
+      <viewAttribute id="SALARY" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="rs">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ENTITY" source="ENTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TYPE" source="TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALARY" source="SALARY"/>
+    </input>
+    <function name="SUM">
+      <functionArgument>&quot;SALARY&quot;</functionArgument>
+    </function>
+    <windowFunctionResultColumn>runningSum</windowFunctionResultColumn>
+    <orderAttributes>
+      <orderAttribute direction="DESC">SALARY</orderAttribute>
+    </orderAttributes>
+    <partitionAttributes>
+      <partitionAttribute>ID</partitionAttribute>
+      <partitionAttribute>ENTITY</partitionAttribute>
+    </partitionAttributes>
+  </calculationView>
+  <calculationView xsi:type="Calculation:WindowFunctionView" id="total">
+    <viewAttributes>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="ENTITY"/>
+      <viewAttribute id="TYPE"/>
+      <viewAttribute id="SALARY" aggregationType="sum"/>
+      <viewAttribute id="runningSum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="runningSum">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ENTITY" source="ENTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TYPE" source="TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALARY" source="SALARY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="runningSum" source="runningSum"/>
+    </input>
+    <function name="SUM">
+      <functionArgument>&quot;SALARY&quot;</functionArgument>
+    </function>
+    <windowFunctionResultColumn>total</windowFunctionResultColumn>
+    <orderAttributes/>
+    <partitionAttributes>
+      <partitionAttribute>ENTITY</partitionAttribute>
+      <partitionAttribute>ID</partitionAttribute>
+    </partitionAttributes>
+  </calculationView>
+</calculationViews>
+<logicalModel id="total">
+  <attributes>
+    <attribute id="ID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="total" columnName="ID"/>
+    </attribute>
+    <attribute id="ENTITY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ENTITY"/>
+      <keyMapping columnObjectName="total" columnName="ENTITY"/>
+    </attribute>
+    <attribute id="TYPE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TYPE"/>
+      <keyMapping columnObjectName="total" columnName="TYPE"/>
+    </attribute>
+    <attribute id="runningSum" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="runningSum"/>
+      <keyMapping columnObjectName="total" columnName="runningSum"/>
+    </attribute>
+    <attribute id="total" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="total"/>
+      <keyMapping columnObjectName="total" columnName="total"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SALARY" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="SALARY"/>
+      <measureMapping columnObjectName="total" columnName="SALARY"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="perc" order="7" aggregationType="sum" measureType="simple" datatype="DOUBLE" expressionLanguage="SQL" restrictionExpressionLanguage="SQL">
+      <formula>&quot;runningSum&quot;/&quot;total&quot;</formula>
+      </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="runningSum" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="total" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

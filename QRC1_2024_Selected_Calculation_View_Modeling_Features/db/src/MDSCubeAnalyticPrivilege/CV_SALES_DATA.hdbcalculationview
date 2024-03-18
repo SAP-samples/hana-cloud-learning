@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CV_SALES_DATA" applyPrivilegeType="SQL_ANALYTIC_PRIVILEGE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" generateMdsMetadata="true">
+<descriptions defaultDescription="CV_SALES_DATA"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="db01.tables::SALES_DATA_SIMPLE">
+    <resourceUri>db01.tables::SALES_DATA_SIMPLE</resourceUri>
+  </DataSource>
+</dataSources>
+<mdsCubes>
+  <mdsCube id="MDSCube_CV_SALES_DATA">
+    <mdsCubeDimensions>
+      <mdsCubeDimension id="DOCID"/>
+      <mdsCubeDimension id="DOCPOS"/>
+      <mdsCubeDimension id="DOCTIME"/>
+      <mdsCubeDimension id="ITEMID"/>
+      <mdsCubeDimension id="CURRENCY"/>
+      <mdsCubeDimension id="UNIT"/>
+    </mdsCubeDimensions>
+    <mdsCubeMeasures>
+      <mdsCubeMeasure id="SALES_VALUE"/>
+      <mdsCubeMeasure id="SALES_QUANTITY"/>
+      <mdsCubeMeasure id="PURCHASE_VALUE"/>
+      <mdsCubeMeasure id="PURCHASE_QUANTITY"/>
+    </mdsCubeMeasures>
+    <mdsCubeExecutionHints/>
+  </mdsCube>
+</mdsCubes>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="TENNIS">
+    <viewAttributes>
+      <viewAttribute id="DOCID"/>
+      <viewAttribute id="DOCPOS"/>
+      <viewAttribute id="DOCTIME"/>
+      <viewAttribute id="ITEMID"/>
+      <viewAttribute id="SALES_VALUE"/>
+      <viewAttribute id="SALES_QUANTITY"/>
+      <viewAttribute id="PURCHASE_VALUE"/>
+      <viewAttribute id="PURCHASE_QUANTITY"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="UNIT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="db01.tables::SALES_DATA_SIMPLE"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="TENNIS">
+  <attributes>
+    <attribute id="DOCID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOCID"/>
+      <keyMapping columnObjectName="TENNIS" columnName="DOCID"/>
+    </attribute>
+    <attribute id="DOCPOS" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOCPOS"/>
+      <keyMapping columnObjectName="TENNIS" columnName="DOCPOS"/>
+    </attribute>
+    <attribute id="DOCTIME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DOCTIME"/>
+      <keyMapping columnObjectName="TENNIS" columnName="DOCTIME"/>
+    </attribute>
+    <attribute id="ITEMID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ITEMID"/>
+      <keyMapping columnObjectName="TENNIS" columnName="ITEMID"/>
+    </attribute>
+    <attribute id="CURRENCY" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="TENNIS" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="UNIT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNIT"/>
+      <keyMapping columnObjectName="TENNIS" columnName="UNIT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="SALES_VALUE" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALES_VALUE"/>
+      <measureMapping columnObjectName="TENNIS" columnName="SALES_VALUE"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="SALES_QUANTITY" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="SALES_QUANTITY"/>
+      <measureMapping columnObjectName="TENNIS" columnName="SALES_QUANTITY"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PURCHASE_VALUE" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PURCHASE_VALUE"/>
+      <measureMapping columnObjectName="TENNIS" columnName="PURCHASE_VALUE"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PURCHASE_QUANTITY" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PURCHASE_QUANTITY"/>
+      <measureMapping columnObjectName="TENNIS" columnName="PURCHASE_QUANTITY"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="TENNIS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="254"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,21 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "rs",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "rs.csv",
+                "has_header": true
+            },
+            "import_settings": {
+                "import_columns": [
+                    "ID",
+                    "ENTITY",
+                    "TYPE",
+                    "SALARY"
+                ]
+            }
+        }
+    ]
+}

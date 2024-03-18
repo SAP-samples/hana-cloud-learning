@@ -1,0 +1,13 @@
+column table "db01.tables::SALES_DATA_SIMPLE" (
+	docid				nvarchar(10),
+	docpos				nvarchar(4),
+	doctime				timestamp,
+	itemid				nvarchar(10),
+	sales_value			decimal(17,2),
+	sales_quantity		decimal(17,3),
+	purchase_value		decimal(17,2),
+	purchase_quantity	decimal(17,3),
+	currency			nvarchar(3),
+	unit				nvarchar(3),
+	primary key (docid, docpos)
+)
