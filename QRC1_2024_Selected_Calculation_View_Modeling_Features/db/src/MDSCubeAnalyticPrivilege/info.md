@@ -20,7 +20,7 @@ Users who have been assigned both analytic privileges will see all *itemid* valu
 These analytic privileges have been included in roles [R_Group1](./roles/R_Group1.hdbrole) and [R_Group2](./roles/R_Group2.hdbrole) respectively. For simplicity both roles also include the SELECT privilege for [CV_SALES_DATA](./CV_SALES_DATA.hdbcalculationview).
 
 ### Create database user for reporting on MDS Cube
-The following statements assign the SELECT and analytic privilege which are included in role *AP_Group1* to a database user when executed with a user that is *USERGROUP OPERATOR* and has system privilege *ROLE ADMIN* (e.g., user *DBADMIN*). Make sure to replace <schema_name> with the schema_name of your HDI container:
+The following statements assign the SELECT and analytic privilege which are included in role *AP_Group1* to database user *G1* when executed with a user that is *USERGROUP OPERATOR* and has system privilege *ROLE ADMIN* (e.g., user *DBADMIN*). Make sure to replace <schema_name> with the schema_name of your HDI container:
 
 ```language SQL
 create user G1 password "DnATBG!1" NO FORCE_FIRST_PASSWORD_CHANGE;
@@ -30,7 +30,7 @@ grant <schema_name>."R_Group1" to G1;
 This database user can be used when connecting with e.g. SAP Analytics Cloud.
 
 ## Loading of MDS Cube
-Database users can only report on MDS Cube data that are loaded into the MDS Cube. Therefore, the database user who is used to load the MDS Cube needs the superset of all analytic privileges of the users that report on the MDS Cube. Below is an example how to create such an user and grant the required privileges:
+Database users can only report on MDS Cube data that are loaded into the MDS Cube. Therefore, the database user who is used to load the MDS Cube needs the superset of all analytic privileges of the users that report on the MDS Cube. Below is an example how to create such an user and grant the required privileges (use a user such as DBADMIN that is *USERGROUP OPERATOR* and has e.g., system privilege *ROLE ADMIN* ):
 
 ```language SQL
 create user MDS_CUBE_LOADER password "DnATBG!1" NO FORCE_FIRST_PASSWORD_CHANGE;
