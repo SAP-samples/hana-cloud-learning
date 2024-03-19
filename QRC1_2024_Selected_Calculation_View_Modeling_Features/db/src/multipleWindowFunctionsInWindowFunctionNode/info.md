@@ -5,7 +5,7 @@ Define multiple window functions in one window function node if the window funct
 
 ## Example
 
-In example [runningSum](./runningSum.hdbcalculationview) the window function lag is calculated with several parameters in the same window function node:
+In example [multiple window function](./multipleWindowFunctions_cv.hdbcalculationview) the window function lag is calculated with several parameters in the same window function node:
 
 ![window function example](./screenshots/windowFunction.png)
 
