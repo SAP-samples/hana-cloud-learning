@@ -1,0 +1,14 @@
+{
+  "role": {
+    "name": "altersF_cv",
+    "object_privileges": [
+      {
+        "name": "sF_cv",
+        "type": "VIEW",
+        "privileges": [
+          "ALTER"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sJD_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="sJD_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="sJD">
+    <resourceUri>sJD</resourceUri>
+  </DataSource>
+  <DataSource id="sJD_1">
+    <resourceUri>sJD</resourceUri>
+  </DataSource>
+  <DataSource id="Join_2$$$$sJD$$">
+    <resourceUri>sJD</resourceUri>
+  </DataSource>
+  <DataSource id="Join_3$$$$sJD$$">
+    <resourceUri>sJD</resourceUri>
+  </DataSource>
+  <DataSource id="NonEquiJoin_1$$$$sJD$$">
+    <resourceUri>sJD</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$c1$c1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="sJD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c3" source="c3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <input node="sJD_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <joinAttribute name="JOIN$c1$c1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$c1$c1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c3" source="c3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <input node="Join_2$$$$sJD$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <joinAttribute name="JOIN$c1$c1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_3" cardinality="C1_N" joinType="rightOuter">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$c1$c1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c3" source="c3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <input node="Join_3$$$$sJD$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <joinAttribute name="JOIN$c1$c1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c3" source="c3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+    </input>
+    <input node="NonEquiJoin_1$$$$sJD$$"/>
+    <joinExpression>&quot;Join_3&quot;.&quot;c1&quot;!=&quot;NonEquiJoin_1$$$$sJD$$&quot;.&quot;c1&quot;</joinExpression>
+  </calculationView>
+</calculationViews>
+<logicalModel id="NonEquiJoin_1">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="c1"/>
+    </attribute>
+    <attribute id="c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c2"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="c2"/>
+    </attribute>
+    <attribute id="c3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c3"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="c3"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="637"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="sJD" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="sJD" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="129"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="497"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="sJD" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_3" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="357"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_2" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="sJD" modelObjectNameSpace="Join_3" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape expanded="true" modelObjectName="NonEquiJoin_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_3" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="sJD" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

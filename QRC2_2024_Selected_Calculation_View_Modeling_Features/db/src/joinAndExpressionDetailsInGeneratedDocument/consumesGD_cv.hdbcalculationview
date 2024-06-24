@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="consumesGD_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="consumeseGD_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="eGD_cv">
+    <resourceUri>eGD_cv</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="eGD_cv">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="eGD_cv" columnName="c1"/>
+    </attribute>
+    <attribute id="c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c2"/>
+      <keyMapping columnObjectName="eGD_cv" columnName="c2"/>
+    </attribute>
+    <attribute id="c1_1" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1_1"/>
+      <keyMapping columnObjectName="eGD_cv" columnName="c1_1"/>
+    </attribute>
+    <attribute id="CC_Union" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Union"/>
+      <keyMapping columnObjectName="eGD_cv" columnName="CC_Union"/>
+    </attribute>
+    <attribute id="CC_Join_1" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Join_1"/>
+      <keyMapping columnObjectName="eGD_cv" columnName="CC_Join_1"/>
+    </attribute>
+    <attribute id="CC_Join2" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Join2"/>
+      <keyMapping columnObjectName="eGD_cv" columnName="CC_Join2"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="eGD_cv" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="m_1" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m_1"/>
+      <measureMapping columnObjectName="eGD_cv" columnName="m_1"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

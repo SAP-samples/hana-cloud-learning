@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="multipleWindowFunctionsC_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="multipleWindowFunctions_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="wMWF">
+    <resourceUri>wMWFC</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:WindowFunctionView" id="WindowFunction_1">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="wMWF">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <functions>
+      <function name="LAG">
+        <arguments>
+          <argument>&quot;amount&quot;</argument>
+          <argument>1</argument>
+        </arguments>
+        <resultColumn datatype="DECIMAL" length="10" scale="2">Lag_1</resultColumn>
+      </function>
+      <function name="LAG">
+        <arguments>
+          <argument>&quot;amount&quot;</argument>
+          <argument>2</argument>
+        </arguments>
+        <resultColumn datatype="DECIMAL" length="10" scale="2">Lag_2</resultColumn>
+      </function>
+      <function name="LAG">
+        <arguments>
+          <argument>&quot;amount&quot;</argument>
+          <argument>3</argument>
+        </arguments>
+        <resultColumn datatype="DECIMAL" length="10" scale="2">Lag_3</resultColumn>
+      </function>
+    </functions>
+    <orderAttributes>
+      <orderAttribute direction="ASC">date</orderAttribute>
+    </orderAttributes>
+    <partitionAttributes>
+      <partitionAttribute>product</partitionAttribute>
+    </partitionAttributes>
+  </calculationView>
+</calculationViews>
+<logicalModel id="WindowFunction_1">
+  <attributes>
+    <attribute id="date" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="date"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="date"/>
+    </attribute>
+    <attribute id="product" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="product"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="WindowFunction_1" columnName="amount"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="Lag_1" order="4" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="Lag_1"/>
+      <measureMapping columnObjectName="WindowFunction_1" columnName="Lag_1"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  
+    <measure id="Lag_2" order="8" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Lag_2"/>
+      <measureMapping columnObjectName="WindowFunction_1" columnName="Lag_2"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="Lag_3" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Lag_3"/>
+      <measureMapping columnObjectName="WindowFunction_1" columnName="Lag_3"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures>
+    <measure id="D_Lag1" order="5" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="10" scale="2" expressionLanguage="SQL" restrictionExpressionLanguage="SQL">
+      <formula>&quot;amount&quot;-&quot;Lag_1&quot;</formula>
+      
+      
+      <exceptionAggregationMetadata/>
+    </measure>
+  
+    <measure id="D_Lag2" order="6" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="10" scale="2" expressionLanguage="SQL">
+      <formula>&quot;amount&quot;-&quot;Lag_2&quot;</formula>
+      
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="D_Lag3" order="7" aggregationType="sum" measureType="simple" datatype="DECIMAL" length="10" scale="2" expressionLanguage="SQL">
+      <formula>&quot;amount&quot;-&quot;Lag_3&quot;</formula>
+      
+      <exceptionAggregationMetadata/>
+    </measure>
+  </calculatedMeasures>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="WindowFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="195"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
