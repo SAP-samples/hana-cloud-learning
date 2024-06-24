@@ -1,0 +1,1 @@
+column table "sF" ("filterColumn" NVARCHAR(20), "column1" NVARCHAR(20), "m" Decimal(10,2))

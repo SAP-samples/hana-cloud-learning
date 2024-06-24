@@ -1,0 +1,1 @@
+column table "rAR" ("name" NVARCHAR(200), "preference" Decimal(10,9),"product" NVARCHAR(20))

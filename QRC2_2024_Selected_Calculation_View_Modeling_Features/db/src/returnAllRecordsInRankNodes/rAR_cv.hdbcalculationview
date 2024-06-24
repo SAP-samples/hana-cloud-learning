@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="rAR_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="rAR_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<executionHints name="instantiate_rank_node_as_window_function" value="1"/>
+<dataSources>
+  <DataSource id="rAR">
+    <resourceUri>rAR</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="name"/>
+      <viewAttribute id="preference" aggregationType="sum"/>
+    
+      <viewAttribute id="product"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="rAR"/>
+    <rankingFilter type="RANK" offset="10" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <partitionViewAttributeName id="product"/>
+      <order byViewAttributeName="preference" direction="DESC"/>
+      <rankThreshold allValues="true"/>
+      <rankViewAttributeName>Rank_Column</rankViewAttributeName>
+    </rankingFilter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="Rank_Column" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Rank_Column"/>
+      <keyMapping columnObjectName="Rank_1" columnName="Rank_Column"/>
+    </attribute>
+    <attribute id="name" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="name"/>
+      <keyMapping columnObjectName="Rank_1" columnName="name"/>
+    </attribute>
+  
+    <attribute id="product" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+  
+      <keyMapping columnObjectName="Rank_1" columnName="product"/>
+  
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="preference" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="preference"/>
+      <measureMapping columnObjectName="Rank_1" columnName="preference"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="208"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

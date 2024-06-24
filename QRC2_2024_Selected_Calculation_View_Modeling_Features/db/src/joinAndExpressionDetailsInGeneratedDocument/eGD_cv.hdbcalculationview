@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="eGD_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="eGD_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="eGD">
+    <resourceUri>eGD</resourceUri>
+  </DataSource>
+  <DataSource id="eGD_1">
+    <resourceUri>eGD</resourceUri>
+  </DataSource>
+  <DataSource id="Join_2$$$$eGD$$">
+    <resourceUri>eGD</resourceUri>
+  </DataSource>
+  <DataSource id="Union_1$$$$eGD$$">
+    <resourceUri>eGD</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures>
+  <query id="SnapShot1" generatedSnapshotView="I_eGD_cv_SnapShot1" createSnapshotAfterDeployment="true" doNotCleanUpBeforeDeployment="false" useDefinerMode="false">
+    <queryString>SELECT &quot;c1&quot; , &quot;c2&quot; , SUM(&quot;m&quot;) AS &quot;m&quot; , &quot;c1_1&quot; , SUM(&quot;m_1&quot;) AS &quot;m_1&quot; , &quot;CC_Union&quot; , &quot;CC_Join_1&quot; , &quot;CC_Join2&quot;  
+FROM  &quot;eGD_cv&quot; 
+GROUP BY &quot;c1&quot; , &quot;c2&quot; , &quot;c1_1&quot; , &quot;CC_Union&quot; , &quot;CC_Join_1&quot; , &quot;CC_Join2&quot; </queryString>
+  </query>
+</snapshotProcedures>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute id="c1_1"/>
+      <viewAttribute hidden="true" id="JOIN$c1$c1"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Join_1" datatype="NVARCHAR" length="100" expressionLanguage="SQL">
+        <formula>'I am calculated column CC_Join_1'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="eGD">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <input node="eGD_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1_1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <filter>&quot;c1&quot;!='exclude' -- expression Join_1</filter>
+    <joinAttribute name="JOIN$c1$c1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="rightOuter" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute id="c1_1"/>
+      <viewAttribute id="m_1" aggregationType="sum"/>
+      <viewAttribute id="CC_Join_1"/>
+      <viewAttribute hidden="true" id="JOIN$c1_1$c1"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Join2" datatype="NVARCHAR" length="100" expressionLanguage="SQL">
+        <formula>'I am calculated column CC_Join2'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1_1" source="c1_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Join_1" source="CC_Join_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1_1$c1" source="c1_1"/>
+    </input>
+    <input node="Join_2$$$$eGD$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="m_1" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1_1$c1" source="c1"/>
+    </input>
+    <filter>&quot;c2&quot;='banana' -- filter expression Join_2</filter>
+    <joinAttribute name="JOIN$c1_1$c1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute id="c1_1"/>
+      <viewAttribute id="m_1" aggregationType="sum"/>
+      <viewAttribute id="CC_Join2"/>
+      <viewAttribute id="CC_Join_1"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_Union" datatype="NVARCHAR" length="100" expressionLanguage="SQL">
+        <formula>'I am calculated column CC_Union'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="Join_2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1_1" source="c1_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m_1" source="m_1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Join2" source="CC_Join2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CC_Join_1" source="CC_Join_1"/>
+    </input>
+    <input node="Union_1$$$$eGD$$" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c1_1" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="m_1" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_Join2" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="CC_Join_1" null="true"/>
+    </input>
+    <filter>&quot;c1&quot;!=&quot;c1_1&quot; -- filter expression Union_1</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="Union_1" columnName="c1"/>
+    </attribute>
+    <attribute id="c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c2"/>
+      <keyMapping columnObjectName="Union_1" columnName="c2"/>
+    </attribute>
+    <attribute id="c1_1" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1_1"/>
+      <keyMapping columnObjectName="Union_1" columnName="c1_1"/>
+    </attribute>
+    <attribute id="CC_Union" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Union"/>
+      <keyMapping columnObjectName="Union_1" columnName="CC_Union"/>
+    </attribute>
+    <attribute id="CC_Join_1" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Join_1"/>
+      <keyMapping columnObjectName="Union_1" columnName="CC_Join_1"/>
+    </attribute>
+    <attribute id="CC_Join2" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_Join2"/>
+      <keyMapping columnObjectName="Union_1" columnName="CC_Join2"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="Union_1" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="m_1" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m_1"/>
+      <measureMapping columnObjectName="Union_1" columnName="m_1"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="497"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="eGD" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="eGD" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="134"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="357"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Join_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="eGD" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="100"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
