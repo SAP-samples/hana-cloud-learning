@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="aPT_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="countDistinctExample.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="aPT">
+    <resourceUri>aPT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="DoACalculation">
+    <viewAttributes>
+      <viewAttribute id="ORD_NUM"/>
+      <viewAttribute id="ORD_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="ADVANCE_AMOUNT" aggregationType="sum"/>
+      <viewAttribute id="ORD_DATE"/>
+      <viewAttribute id="CUST_CODE"/>
+      <viewAttribute id="AGENT_CODE"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="PercentagePaid" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+        <formula>&quot;ADVANCE_AMOUNT&quot;/&quot;ORD_AMOUNT&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="aPT"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="DoACalculation">
+  <attributes>
+    <attribute id="ORD_NUM" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORD_NUM"/>
+      <keyMapping columnObjectName="DoACalculation" columnName="ORD_NUM"/>
+    </attribute>
+    <attribute id="ORD_DATE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORD_DATE"/>
+      <keyMapping columnObjectName="DoACalculation" columnName="ORD_DATE"/>
+    </attribute>
+    <attribute id="CUST_CODE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUST_CODE"/>
+      <keyMapping columnObjectName="DoACalculation" columnName="CUST_CODE"/>
+    </attribute>
+    <attribute id="AGENT_CODE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="AGENT_CODE"/>
+      <keyMapping columnObjectName="DoACalculation" columnName="AGENT_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ORD_AMOUNT" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORD_AMOUNT"/>
+      <measureMapping columnObjectName="DoACalculation" columnName="ORD_AMOUNT"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="ADVANCE_AMOUNT" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ADVANCE_AMOUNT"/>
+      <measureMapping columnObjectName="DoACalculation" columnName="ADVANCE_AMOUNT"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  
+    <measure id="PercentagePaid" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PercentagePaid"/>
+      <measureMapping columnObjectName="DoACalculation" columnName="PercentagePaid"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="DoACalculation" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="95" y="196"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

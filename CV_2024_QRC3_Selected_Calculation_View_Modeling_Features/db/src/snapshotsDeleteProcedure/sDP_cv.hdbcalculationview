@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sDP_cv" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="sDP_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="sDP">
+    <resourceUri>sDP</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures>
+  <query id="Query_1" generatedSnapshotView="I_sDP_cv_Query_1" createSnapshotAfterDeployment="true" doNotCleanUpBeforeDeployment="false" useDefinerMode="true">
+    <queryString>SELECT current_date &quot;snapshot date&quot;,&quot;HOST&quot; , &quot;PORT&quot; , &quot;UNLOAD_TIME&quot; , &quot;SCHEMA_NAME&quot; , &quot;TABLE_NAME&quot; , &quot;COLUMN_NAME&quot; , &quot;PART_ID&quot; , &quot;TABLE_OID&quot; , &quot;REASON&quot; , &quot;PERSISTENT_MEMORY&quot;  
+FROM  &quot;sDP_cv&quot;</queryString>
+  </query>
+</snapshotProcedures>
+<calculationViews/>
+<logicalModel id="sDP">
+  <attributes>
+    <attribute id="HOST" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HOST"/>
+      <keyMapping columnObjectName="sDP" columnName="HOST"/>
+    </attribute>
+    <attribute id="PORT" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PORT"/>
+      <keyMapping columnObjectName="sDP" columnName="PORT"/>
+    </attribute>
+    <attribute id="UNLOAD_TIME" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNLOAD_TIME"/>
+      <keyMapping columnObjectName="sDP" columnName="UNLOAD_TIME"/>
+    </attribute>
+    <attribute id="SCHEMA_NAME" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SCHEMA_NAME"/>
+      <keyMapping columnObjectName="sDP" columnName="SCHEMA_NAME"/>
+    </attribute>
+    <attribute id="TABLE_NAME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TABLE_NAME"/>
+      <keyMapping columnObjectName="sDP" columnName="TABLE_NAME"/>
+    </attribute>
+    <attribute id="COLUMN_NAME" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COLUMN_NAME"/>
+      <keyMapping columnObjectName="sDP" columnName="COLUMN_NAME"/>
+    </attribute>
+    <attribute id="PART_ID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PART_ID"/>
+      <keyMapping columnObjectName="sDP" columnName="PART_ID"/>
+    </attribute>
+    <attribute id="TABLE_OID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TABLE_OID"/>
+      <keyMapping columnObjectName="sDP" columnName="TABLE_OID"/>
+    </attribute>
+    <attribute id="REASON" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REASON"/>
+      <keyMapping columnObjectName="sDP" columnName="REASON"/>
+    </attribute>
+    <attribute id="PERSISTENT_MEMORY" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PERSISTENT_MEMORY"/>
+      <keyMapping columnObjectName="sDP" columnName="PERSISTENT_MEMORY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

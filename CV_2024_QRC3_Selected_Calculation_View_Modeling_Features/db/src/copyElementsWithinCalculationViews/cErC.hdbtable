@@ -1,0 +1,1 @@
+column table "cErC" ("country" NVARCHAR(20), "district" NVARCHAR(20),"amount" Decimal(10,2))
