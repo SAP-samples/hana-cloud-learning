@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="windowFunctionWithFrame_PrecedingFollowing1" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="windowFunctionWithFrame_PrecedingFollowing1"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="wFF">
+    <resourceUri>wFF</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:WindowFunctionView" id="WindowFunction_1">
+    <viewAttributes>
+      <viewAttribute id="date"/>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="wFF">
+      <mapping xsi:type="Calculation:AttributeMapping" target="date" source="date"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <functions>
+      <function name="SUM">
+        <arguments>
+          <argument>&quot;amount&quot;</argument>
+        </arguments>
+        <frame type="ROWS">
+          <start type="PRECEDING">1</start>
+          <end type="FOLLOWING">1</end>
+        </frame>
+        <resultColumn datatype="DOUBLE">c_sum</resultColumn>
+      </function>
+    </functions>
+    <orderAttributes>
+      <orderAttribute direction="ASC">date</orderAttribute>
+    </orderAttributes>
+    <partitionAttributes>
+      <partitionAttribute>product</partitionAttribute>
+    </partitionAttributes>
+  </calculationView>
+</calculationViews>
+<logicalModel id="WindowFunction_1">
+  <attributes>
+    <attribute id="date" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="date"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="date"/>
+    </attribute>
+    <attribute id="product" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="product"/>
+    </attribute>
+  
+    <attribute id="amount" order="3" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="amount"/>
+  
+      <keyMapping columnObjectName="WindowFunction_1" columnName="amount"/>
+  
+    </attribute>
+    <attribute id="c_sum" order="4" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c_sum"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="c_sum"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="WindowFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="94" y="175"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

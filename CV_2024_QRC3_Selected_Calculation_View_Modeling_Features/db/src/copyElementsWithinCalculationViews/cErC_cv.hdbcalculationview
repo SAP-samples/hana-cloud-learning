@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cErC_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="cErC_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<executionHints name="instantiate_rank_node_as_window_function" value="1"/>
+<dataSources>
+  <DataSource id="cErC">
+    <resourceUri>cErC</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="lowestAggregation">
+    <viewAttributes>
+      <viewAttribute id="country"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="district"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes>
+      <restrictedViewAttribute id="AmountLargerThan100" baseViewAttribute="amount" restrictionExpressionLanguage="SQL">
+        <restrictionExpression>&quot;amount&quot;&gt;100</restrictionExpression>
+      </restrictedViewAttribute>
+    </restrictedViewAttributes>
+    <input node="cErC"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Rank_1">
+    <viewAttributes>
+      <viewAttribute id="country"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="district"/>
+      <viewAttribute id="AmountLargerThan100" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="lowestAggregation"/>
+    <rankingFilter type="RANK" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <partitionViewAttributeName id="country"/>
+      <order byViewAttributeName="amount" direction="DESC"/>
+      <rankThreshold>
+        <value>1</value>
+      </rankThreshold>
+    </rankingFilter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Rank_1">
+  <attributes>
+    <attribute id="country" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Rank_1" columnName="country"/>
+    </attribute>
+    <attribute id="district" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="district"/>
+      <keyMapping columnObjectName="Rank_1" columnName="district"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="Rank_1" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="AmountLargerThan100" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AmountLargerThan100"/>
+      <measureMapping columnObjectName="Rank_1" columnName="AmountLargerThan100"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="lowestAggregation" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="427"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Rank_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

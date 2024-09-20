@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="rNWBF_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="rNWBF_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="rNWBF">
+    <resourceUri>rNWBF</resourceUri>
+  </DataSource>
+  <DataSource id="Projection_2$$$$rNWBF$$">
+    <resourceUri>rNWBF</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="m"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="rNWBF"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="m"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_2$$$$rNWBF$$"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="m" aggregationType="sum"/>
+      <viewAttribute id="c1_1"/>
+      <viewAttribute id="c2_1"/>
+      <viewAttribute id="m_1" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$c1$c1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1_1" source="c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2_1" source="c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="m_1" source="m"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$c1$c1" source="c1"/>
+    </input>
+    <joinAttribute name="JOIN$c1$c1"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="Join_1" columnName="c1"/>
+    </attribute>
+    <attribute id="c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c2"/>
+      <keyMapping columnObjectName="Join_1" columnName="c2"/>
+    </attribute>
+    <attribute id="c1_1" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1_1"/>
+      <keyMapping columnObjectName="Join_1" columnName="c1_1"/>
+    </attribute>
+    <attribute id="c2_1" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c2_1"/>
+      <keyMapping columnObjectName="Join_1" columnName="c2_1"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="Join_1" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="m_1" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m_1"/>
+      <measureMapping columnObjectName="Join_1" columnName="m_1"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-122" y="383"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="184" y="383"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="88" y="240"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="136"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="136"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

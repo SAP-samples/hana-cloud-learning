@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="optionsToMakeColumnsUniqueDuringPropagation" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" generateMdsMetadata="false">
+<descriptions defaultDescription="optionsToMakeColumnsUnique.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="fOU1">
+    <resourceUri>fOU1</resourceUri>
+  </DataSource>
+  <DataSource id="columnAlreadyMapped$$$$fOU1$$">
+    <resourceUri>fOU1</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="MapTablefOU1">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="c4"/>
+      <viewAttribute id="m"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="fOU1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="columnAlreadyMapped">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="c4"/>
+      <viewAttribute id="m" aggregationType="sum"/></viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MapTablefOU1" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c1" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c2" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c3" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c4" null="true"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="m" null="true"/></input>
+  
+    <input node="columnAlreadyMapped$$$$fOU1$$" emptyUnionBehavior="NO_ROW">
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="c1" source="c1"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="c2" source="c2"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="c3" source="c3"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="c4" source="c4"/>
+  
+      <mapping xsi:type="Calculation:AttributeMapping" target="m" source="m"/></input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="columnAlreadyMapped">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="columnAlreadyMapped" columnName="c1"/>
+    </attribute>
+    <attribute id="c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c2"/>
+      <keyMapping columnObjectName="columnAlreadyMapped" columnName="c2"/>
+    </attribute>
+    <attribute id="c3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c3"/>
+      <keyMapping columnObjectName="columnAlreadyMapped" columnName="c3"/>
+    </attribute>
+    <attribute id="c4" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c4"/>
+      <keyMapping columnObjectName="columnAlreadyMapped" columnName="c4"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="columnAlreadyMapped" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <sharedDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="158" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="columnAlreadyMapped" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="142" y="236"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="MapTablefOU1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="62" y="384"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape modelObjectName="columnAlreadyMapped" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

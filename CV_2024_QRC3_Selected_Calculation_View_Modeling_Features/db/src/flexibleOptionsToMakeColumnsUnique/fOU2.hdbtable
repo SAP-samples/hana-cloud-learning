@@ -1,0 +1,1 @@
+column table "fOU2" ("c1" NVARCHAR(20),"c2" NVARCHAR(20),"c3" NVARCHAR(20),"c4" NVARCHAR(20),"m" Decimal(10,2))
