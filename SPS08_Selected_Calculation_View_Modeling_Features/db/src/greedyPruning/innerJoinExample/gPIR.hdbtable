@@ -1,0 +1,1 @@
+column table "SPS08::gPIR" (ID_Y NVARCHAR(20), MEASURE_Y Decimal(10,2))

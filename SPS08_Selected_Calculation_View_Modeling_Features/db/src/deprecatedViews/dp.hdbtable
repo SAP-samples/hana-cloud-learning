@@ -1,0 +1,1 @@
+column table "SPS08::dp" ("year" int, "month" int, "day" int, "amount" Decimal(10,2))

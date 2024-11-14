@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SPS08::gS_cv" applyPrivilegeType="NONE" dataCategory="DIMENSION" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="gS_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="gS">
+    <resourceUri>SPS08::gS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="gS">
+  <attributes>
+    <attribute id="Name" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Name"/>
+      <keyMapping columnObjectName="gS" columnName="Name"/>
+    </attribute>
+  
+    <attribute id="Location1" hidden="true" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Location1"/>
+  
+      <keyMapping columnObjectName="gS" columnName="Location1"/>
+  
+    </attribute>
+    <attribute id="Location2" hidden="true" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Location2"/>
+      <keyMapping columnObjectName="gS" columnName="Location2"/>
+    </attribute>
+    <attribute id="Location3" hidden="true" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Location3"/>
+      <keyMapping columnObjectName="gS" columnName="Location3"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="Location" order="2" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="20">
+        <formula>&quot;SPS08::returnLocationAndStatus&quot;(&quot;Location1&quot;,&quot;Location2&quot;,&quot;Location3&quot;).LOCATION</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/></logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SPS08::cv_gP_inner" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="cv_gP_inner.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="gPIL">
+    <resourceUri>SPS08::gPIL</resourceUri>
+  </DataSource>
+  <DataSource id="gPIR">
+    <resourceUri>SPS08::gPIR</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ID_X"/>
+      <viewAttribute id="MEASURE_X" aggregationType="sum"/>
+      <viewAttribute id="ID_Y"/>
+      <viewAttribute id="MEASURE_Y" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="gPIL">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_X" source="ID_X"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEASURE_X" source="MEASURE_X"/>
+    </input>
+    <input node="gPIR">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_Y" source="ID_Y"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MEASURE_Y" source="MEASURE_Y"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID_X" source="ID_Y"/>
+    </input>
+    <joinAttribute name="ID_X"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="ID_X" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID_X"/>
+      <keyMapping columnObjectName="Join_1" columnName="ID_X"/>
+    </attribute>
+    <attribute id="ID_Y" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID_Y"/>
+      <keyMapping columnObjectName="Join_1" columnName="ID_Y"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="MEASURE_X" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MEASURE_X"/>
+      <measureMapping columnObjectName="Join_1" columnName="MEASURE_X"/>
+    </measure>
+    <measure id="MEASURE_Y" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="MEASURE_Y"/>
+      <measureMapping columnObjectName="Join_1" columnName="MEASURE_Y"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="63" y="193"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="gPIL" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="153"/>
+    </shape>
+    <shape modelObjectName="gPIR" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="153"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

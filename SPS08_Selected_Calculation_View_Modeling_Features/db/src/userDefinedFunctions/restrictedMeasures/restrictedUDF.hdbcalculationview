@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SPS08::restrictedUDF" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="restrictedUDF.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="rUDF">
+    <resourceUri>SPS08::rUDF</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="rUDF">
+  <attributes>
+    <attribute id="id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="rUDF" columnName="id"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="2" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="rUDF" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="AmountUS" order="3" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;SPS08::extractCountryUDF&quot;(&quot;id&quot;)='US'</restrictionExpression><restrictionExpression>&quot;SPS08::extractCountryUDF&quot;(&quot;id&quot;)='US'</restrictionExpression>
+      
+      <exceptionAggregationMetadata>
+      
+        <attribute attributeName="id"/>
+      
+      </exceptionAggregationMetadata>
+    </measure>
+    <measure id="AmountChina" order="4" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;SPS08::extractCountryUDF&quot;(&quot;id&quot;)='China'</restrictionExpression><restrictionExpression>&quot;SPS08::extractCountryUDF&quot;(&quot;id&quot;)='China'</restrictionExpression>
+      
+      <exceptionAggregationMetadata>
+      
+        <attribute attributeName="id"/>
+      
+      </exceptionAggregationMetadata>
+    </measure>
+    <measure id="AmountGermany" order="5" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="amount" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;SPS08::extractCountryUDF&quot;(&quot;id&quot;)='G'</restrictionExpression><restrictionExpression>&quot;SPS08::extractCountryUDF&quot;(&quot;id&quot;)='G'</restrictionExpression>
+      
+      <exceptionAggregationMetadata>
+      
+        <attribute attributeName="id"/>
+      
+      </exceptionAggregationMetadata>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

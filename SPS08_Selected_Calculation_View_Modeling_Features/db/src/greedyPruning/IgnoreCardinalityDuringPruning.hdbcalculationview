@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SPS08::IgnoreCardinalityDuringPruning" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="IgnoreCardinalityDuringPruning.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="ICDP_SalesOrders">
+    <resourceUri>SPS08::ICDP_SalesOrders</resourceUri>
+  </DataSource>
+  <DataSource id="ICDP_Employees">
+    <resourceUri>SPS08::ICDP_Employees</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="leftOuter" optimizeJoinColumns="false" greedyJoinPruning="both">
+    <viewAttributes>
+      <viewAttribute id="product"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+      <viewAttribute id="name"/>
+      <viewAttribute id="street"/>
+      <viewAttribute id="city"/>
+      <viewAttribute id="country"/>
+      <viewAttribute hidden="true" id="JOIN$id$id"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="ICDP_SalesOrders">
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$id$id" source="id"/>
+    </input>
+    <input node="ICDP_Employees">
+      <mapping xsi:type="Calculation:AttributeMapping" target="name" source="name"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="street" source="street"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="city" source="city"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$id$id" source="id"/>
+    </input>
+    <joinAttribute name="JOIN$id$id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="product" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="Join_1" columnName="product"/>
+    </attribute>
+    <attribute id="name" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="name"/>
+      <keyMapping columnObjectName="Join_1" columnName="name"/>
+    </attribute>
+    <attribute id="street" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="street"/>
+      <keyMapping columnObjectName="Join_1" columnName="street"/>
+    </attribute>
+    <attribute id="city" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="city"/>
+      <keyMapping columnObjectName="Join_1" columnName="city"/>
+    </attribute>
+    <attribute id="country" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Join_1" columnName="country"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="amount"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="109" y="195"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="ICDP_SalesOrders" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="162"/>
+    </shape>
+    <shape modelObjectName="ICDP_Employees" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="170"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
