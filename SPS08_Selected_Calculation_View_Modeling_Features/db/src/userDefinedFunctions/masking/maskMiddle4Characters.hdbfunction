@@ -1,0 +1,8 @@
+FUNCTION "SPS08::maskMiddle4Characters"(toBeMasked NVARCHAR(20))
+ RETURNS MASKED NVARCHAR(20) LANGUAGE SQLSCRIPT SQL SECURITY DEFINER AS
+ l INT;
+
+ BEGIN
+    l=length(:toBeMasked);
+    masked = left(:toBeMasked,:l/2-2) || 'XXXX' || right(:toBeMasked,:l-floor(l/2-2)-4);
+ END;

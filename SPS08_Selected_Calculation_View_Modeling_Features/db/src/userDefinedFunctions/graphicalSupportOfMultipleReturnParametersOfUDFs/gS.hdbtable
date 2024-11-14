@@ -1,0 +1,1 @@
+column table "SPS08::gS" ("Location1" NVARCHAR(20), "Location2" NVARCHAR(20), "Location3" NVARCHAR(20), "Name" NVARCHAR(20))

@@ -1,0 +1,5 @@
+**/node_modules/
+# auto generated wildcard
+SPS07_SelectedCalculationViewModelingFeatures/db/.env
+
+**/.env*

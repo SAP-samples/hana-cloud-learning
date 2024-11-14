@@ -1,0 +1,23 @@
+FUNCTION "SPS08::returnLocationAndStatus" ("Location1" NVARCHAR(20), "Location2" NVARCHAR(20), "Location3" NVARCHAR(20)) 
+RETURNS LOCATION NVARCHAR(20), STATUS NVARCHAR(1)
+LANGUAGE SQLSCRIPT 
+SQL SECURITY DEFINER
+AS 
+BEGIN 
+  IF :"Location1" is not NULL
+    THEN 
+      LOCATION =:"Location1";
+      STATUS   = 1;
+  ELSEIF :"Location2" is not NULL
+    THEN
+    LOCATION =:"Location2";
+    STATUS   = 2;
+  ELSEIF :"Location3" is not NULL
+    THEN
+    LOCATION =:"Location3";
+    STATUS   = 3;
+  ELSE
+    LOCATION = 'Empty';
+    STATUS = -1;
+  END IF;
+END;

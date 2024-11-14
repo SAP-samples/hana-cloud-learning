@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SPS08::noColumnBasedPruning" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="noColumnBasedPruning.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="D1" partitionedExecution="false">
+    <resourceUri>SPS08::D1</resourceUri>
+  </DataSource>
+  <DataSource id="D2" partitionedExecution="false">
+    <resourceUri>SPS08::D2</resourceUri>
+  </DataSource>
+  <DataSource id="D3">
+    <resourceUri>SPS08::D3</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1" partitionedExecution="false" ignoreMultipleOutputsForFilter="false">
+    <viewAttributes>
+      <viewAttribute id="a"/>
+      <viewAttribute id="b"/>
+      <viewAttribute id="c"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input emptyUnionBehavior="" node="D1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="a" source="a"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="b" source="b"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="c" source="c"/>
+    </input>
+    <input node="D2" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="a" source="a"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="b" source="b"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c" null="true" value=""/>
+    </input>
+    <input node="D3" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="a" source="a"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="b" null="true" value=""/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="c" null="true" value=""/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="a" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="a"/>
+      <keyMapping columnObjectName="Union_1" columnName="a"/>
+    </attribute>
+    <attribute id="b" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="b"/>
+      <keyMapping columnObjectName="Union_1" columnName="b"/>
+    </attribute>
+    <attribute id="c" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c"/>
+      <keyMapping columnObjectName="Union_1" columnName="c"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="188"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
