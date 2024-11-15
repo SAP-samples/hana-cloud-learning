@@ -4,30 +4,30 @@
 <localVariables/>
 <variableMappings/>
 <dataSources>
-  <DataSource id="nEUDF1">
+  <DataSource id="SPS08::nEUDF1">
     <resourceUri>SPS08::nEUDF1</resourceUri>
   </DataSource>
-  <DataSource id="nEUDF2">
+  <DataSource id="SPS08::nEUDF2">
     <resourceUri>SPS08::nEUDF2</resourceUri>
   </DataSource>
 </dataSources>
 <snapshotProcedures/>
 <calculationViews>
-  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" cardinality="C1_1">
+  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1">
     <viewAttributes>
       <viewAttribute id="id"/>
       <viewAttribute id="amount" aggregationType="sum"/>
       <viewAttribute id="description"/>
     </viewAttributes>
     <calculatedViewAttributes/>
-    <input node="nEUDF1">
+    <input node="SPS08::nEUDF1">
       <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
       <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
     </input>
-    <input node="nEUDF2">
+    <input node="SPS08::nEUDF2">
       <mapping xsi:type="Calculation:AttributeMapping" target="description" source="description"/>
     </input>
-    <joinExpression> &quot;nEUDF1&quot;.&quot;id&quot;=&quot;SPS08::convertU2D&quot;(&quot;nEUDF2&quot;.&quot;id&quot;)</joinExpression>
+    <joinExpression>&quot;SPS08::nEUDF1&quot;.&quot;id&quot;=&quot;SPS08::convertU2D&quot;(&quot;SPS08::nEUDF2&quot;.&quot;id&quot;)</joinExpression>
   </calculationView>
 </calculationViews>
 <logicalModel id="NonEquiJoin_1">
@@ -43,11 +43,9 @@
   </attributes>
   <calculatedAttributes/>
   <baseMeasures>
-    <measure id="amount" order="2" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+    <measure id="amount" order="2" aggregationType="sum" measureType="simple">
       <descriptions defaultDescription="amount"/>
       <measureMapping columnObjectName="NonEquiJoin_1" columnName="amount"/>
-    
-      <exceptionAggregationMetadata/>
     </measure>
   </baseMeasures>
   <calculatedMeasures/>
@@ -64,14 +62,14 @@
       <upperLeftCorner x="109" y="192"/>
       <rectangleSize height="30" width="160"/>
     </shape>
-    <shape modelObjectName="nEUDF1" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="20" y="30"/>
-      <rectangleSize width="122"/>
+    <shape modelObjectName="SPS08::nEUDF1" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="156"/>
     </shape>
-    <shape modelObjectName="nEUDF2" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="320" y="30"/>
-      <rectangleSize width="139"/>
+    <shape modelObjectName="SPS08::nEUDF2" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="920" y="30"/>
+      <rectangleSize width="156"/>
     </shape>
   </shapes>
 </layout>
-</Calculation:scenario>
+</Calculation:scenario> 
