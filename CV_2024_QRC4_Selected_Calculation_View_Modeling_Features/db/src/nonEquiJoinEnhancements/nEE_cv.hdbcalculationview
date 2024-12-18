@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="nEE_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="nEE_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="nEE_price">
+    <resourceUri>nEE_price</resourceUri>
+  </DataSource>
+  <DataSource id="nEE_ord">
+    <resourceUri>nEE_ord</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="product"/>
+      <viewAttribute id="location"/>
+      <viewAttribute id="price" aggregationType="sum"/>
+      <viewAttribute id="meanOrderedPrice" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="nEE_price">
+      <mapping xsi:type="Calculation:AttributeMapping" target="product" source="product"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="location" source="location"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="price" source="price"/>
+    </input>
+    <input node="nEE_ord">
+      <mapping xsi:type="Calculation:AttributeMapping" target="meanOrderedPrice" source="meanOrderedPrice"/>
+    </input>
+    <joinExpression>&quot;nEE_price&quot;.&quot;location&quot;=&quot;nEE_ord&quot;.&quot;country&quot; and &quot;nEE_price&quot;.&quot;price&quot;&gt;&quot;nEE_ord&quot;.&quot;meanOrderedPrice&quot;</joinExpression>
+  </calculationView>
+</calculationViews>
+<logicalModel id="NonEquiJoin_1">
+  <attributes>
+    <attribute id="product" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="product"/>
+    </attribute>
+    <attribute id="location" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="location"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="location"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="price" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="price"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="price"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="meanOrderedPrice" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="meanOrderedPrice"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="meanOrderedPrice"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="NonEquiJoin_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="201"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="nEE_price" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="123"/>
+    </shape>
+    <shape modelObjectName="nEE_ord" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="620" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

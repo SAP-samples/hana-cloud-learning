@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sFVec_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="sFVec_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="sFVec">
+    <resourceUri>sFVec</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="v1"/>
+      <viewAttribute id="v2"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_1" datatype="NVARCHAR" length="13" expressionLanguage="SQL">
+        <formula>to_nvarchar(&quot;v1&quot;) || ',' || to_nvarchar(&quot;v2&quot;)</formula>
+      </calculatedViewAttribute>
+    
+      <calculatedViewAttribute id="L2Distance_Between_Columns" datatype="DOUBLE" expressionLanguage="SQL">
+    
+        <formula>L2DISTANCE(&quot;v1&quot;,&quot;v2&quot;)</formula>
+    
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CosSimilarity_Between_Columns" datatype="DOUBLE" expressionLanguage="SQL">
+        <formula>COSINE_SIMILARITY(&quot;v1&quot;,&quot;v2&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="sFVec"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="v1"/>
+      <viewAttribute id="v2"/>
+      <viewAttribute id="CC_1"/>
+      <viewAttribute id="L2Distance_Between_Columns" aggregationType="sum"/>
+      <viewAttribute id="CosSimilarity_Between_Columns" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="Projection_1"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="CC_1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_1"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CC_1"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="L2Distance_Between_Columns" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="L2Distance_Between_Columns"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="L2Distance_Between_Columns"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="CosSimilarity_Between_Columns" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="CosSimilarity_Between_Columns"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="CosSimilarity_Between_Columns"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="322"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
