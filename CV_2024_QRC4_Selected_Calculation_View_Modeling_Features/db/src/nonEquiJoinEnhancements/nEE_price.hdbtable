@@ -1,0 +1,1 @@
+column table "nEE_price" ("product" NVARCHAR(20), "location" NVARCHAR(2), "price" Decimal(10,2))

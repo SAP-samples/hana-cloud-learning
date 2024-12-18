@@ -1,0 +1,1 @@
+column table "nEE_ord" ("country" NVARCHAR(2),"meanOrderedPrice" Decimal(10,2))

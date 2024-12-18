@@ -1,0 +1,1 @@
+column table "sFVec" ("v1" REAL_VECTOR(3), "v2" REAL_VECTOR(3))
