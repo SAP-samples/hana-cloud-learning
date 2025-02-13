@@ -14,3 +14,6 @@ resources:
   type: com.sap.xs.hdi-container
   properties:
     hdi-container-name: ${service-name}
+  parameters:
+    config:
+      schema: CV_2024_QRC4
