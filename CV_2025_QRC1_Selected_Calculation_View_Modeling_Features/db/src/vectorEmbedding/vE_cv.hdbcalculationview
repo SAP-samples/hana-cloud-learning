@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="vE_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="vE_cv.hdbcalculationview"/>
+<localVariables>
+  <variable id="YourQuestion" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="5000" mandatory="false" defaultValue="Who presents the new calculation view features">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+
+  <variable id="escapedQuestion" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties mandatory="false" defaultValue="">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+      <derivationRule>
+        <resourceUri>escapeQuestion</resourceUri>
+        <variableMapping xsi:type="Variable:VariableMapping">
+          <targetVariable name="YourQuestion"/>
+          <localVariable>YourQuestion</localVariable>
+        </variableMapping>
+      </derivationRule>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="vE">
+    <resourceUri>vE</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="PARAGRAPH"/>
+      <viewAttribute id="EMBEDDING"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="Query1" datatype="DOUBLE" expressionLanguage="SQL">
+        <formula>COSINE_SIMILARITY(VECTOR_EMBEDDING('$$escapedQuestion$$', 'QUERY', 'SAP_NEB.20240715'),&quot;EMBEDDING&quot;)</formula>
+      </calculatedViewAttribute></calculatedViewAttributes>
+    <input node="vE"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="PARAGRAPH" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARAGRAPH"/>
+      <keyMapping columnObjectName="Projection_1" columnName="PARAGRAPH"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="Query1" order="2" aggregationType="max" measureType="simple">
+      <descriptions defaultDescription="Query1"/>
+      <measureMapping columnObjectName="Projection_1" columnName="Query1"/>
+      <exceptionAggregationMetadata/>
+    </measure></baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <sortAttributes>
+    <sortAttribute id="Query1" direction="DESC"/>
+  </sortAttributes>
+
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="211"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

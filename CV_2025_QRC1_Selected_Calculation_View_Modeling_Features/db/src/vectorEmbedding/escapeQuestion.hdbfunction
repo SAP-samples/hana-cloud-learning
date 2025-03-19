@@ -1,0 +1,7 @@
+function "escapeQuestion" (in "YourQuestion" NVARCHAR(5000))
+RETURNS  "escapedQuestion" NVARCHAR(5000)
+LANGUAGE SQLSCRIPT
+SQL SECURITY INVOKER AS
+BEGIN
+    "escapedQuestion" = ESCAPE_SINGLE_QUOTES("YourQuestion");
+END;

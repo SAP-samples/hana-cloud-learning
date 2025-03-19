@@ -1,0 +1,1 @@
+column table "filterTableNV" ("filterValues" NVARCHAR(20), "noPurpose" NVARCHAR(20))
