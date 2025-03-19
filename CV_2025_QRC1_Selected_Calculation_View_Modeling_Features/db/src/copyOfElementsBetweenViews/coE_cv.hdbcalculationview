@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:AccessControl="http://www.sap.com/ndb/SQLCoreModelAccessControl.ecore" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:DataFoundation="http://www.sap.com/ndb/BiModelDataFoundation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="coE_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="coE_cv.hdbcalculationview"/>
+<localVariables>
+  <variable id="IP_1" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false">
+      <valueDomain type="AttributeValue">
+        <attribute name="c2"/>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="coE">
+    <resourceUri>coE</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="c4"/>
+      <viewAttribute id="c5"/>
+      <viewAttribute id="m1"/>
+      <viewAttribute id="m2"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="CC_on_C1_C2" datatype="NVARCHAR" length="42" expressionLanguage="SQL">
+        <formula>&quot;c1&quot; || '_' || &quot;c2&quot;</formula>
+      </calculatedViewAttribute>
+      <calculatedViewAttribute id="CC_On_CC_1" datatype="NVARCHAR" length="50" expressionLanguage="SQL">
+        <formula>&quot;CC_on_C1_C2&quot; || 'Extended'</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <input node="coE"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="Projection_1" columnName="c1"/>
+    </attribute>
+    <attribute id="c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c2"/>
+      <keyMapping columnObjectName="Projection_1" columnName="c2"/>
+    </attribute>
+    <attribute id="c3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c3"/>
+      <keyMapping columnObjectName="Projection_1" columnName="c3"/>
+    </attribute>
+    <attribute id="c4" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c4"/>
+      <keyMapping columnObjectName="Projection_1" columnName="c4"/>
+    </attribute>
+    <attribute id="c5" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c5"/>
+      <keyMapping columnObjectName="Projection_1" columnName="c5"/>
+    </attribute>
+    <attribute id="CC_on_C1_C2" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_on_C1_C2"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CC_on_C1_C2"/>
+    </attribute>
+    <attribute id="CC_On_CC_1" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CC_On_CC_1"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CC_On_CC_1"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="CC_CombineBothCCs" order="10" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="NVARCHAR" expressionLanguage="SQL" length="100">
+        <formula>&quot;CC_on_C1_C2&quot; || '_' || &quot;CC_On_CC_1&quot; || '_' || &quot;c5&quot;</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures>
+    <measure id="m1" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m1"/>
+      <measureMapping columnObjectName="Projection_1" columnName="m1"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="m2" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m2"/>
+      <measureMapping columnObjectName="Projection_1" columnName="m2"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures>
+    <measure id="RES_graphically" hidden="true" order="11" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="m1" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restriction logicalOperator="AND">
+        <filter xsi:type="Privilege:AttributeFilter" attributeName="c1" datatype="NVARCHAR">
+          <valueFilter xsi:type="AccessControl:SingleValueFilter" including="true" value="A"/>
+        </filter>
+        <attributeName>c1</attributeName>
+      </restriction>
+      
+      <exceptionAggregationMetadata>
+      
+        <attribute attributeName="c1"/>
+      
+        <attribute attributeName="c2"/>
+      
+      </exceptionAggregationMetadata>
+    </measure>
+    <measure id="RES_expression" hidden="true" order="12" aggregationType="sum" datatype="DECIMAL" length="10" scale="2" baseMeasure="m2" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription=""/>
+      <restrictionExpression>&quot;c3&quot;!=&quot;c4&quot;</restrictionExpression>
+      
+      <exceptionAggregationMetadata/>
+    </measure>
+  </restrictedMeasures>
+  <localDimensions>
+    <localDimension id="LEVEL_1">
+      <attributeRef xsi:type="DataFoundation:Attribute">c1</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">c3</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:LeveledHierarchy" id="LEVEL_1" aggregateAllNodes="true" orphanedNodesHandling="IGNORE" rootNodeVisibility="ADD_ROOT_NODE" withRootNode="true" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+          <descriptions defaultDescription=""/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <levels>
+            <level levelAttribute="c1" levelType="MDLEVEL_TYPE_TIME_WEEKS" order="1" orderAttribute="c2" sortDirection="ASC"/>
+            <level levelAttribute="c3" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="c3" sortDirection="ASC"/>
+          </levels>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+    <localDimension id="PARENT_1">
+      <attributeRef xsi:type="DataFoundation:Attribute">c4</attributeRef>
+      <attributeRef xsi:type="DataFoundation:Attribute">c5</attributeRef>
+      <hierarchies>
+        <hierarchy xsi:type="Dimension:ParentChildHierarchy" id="PARENT_1" aggregateAllNodes="true" multipleParents="true" orphanedNodesHandling="IGNORE" rootNodeVisibility="ADD_ROOT_NODE_IF_DEFINED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="false">
+          <descriptions defaultDescription=""/>
+          <unassignedMemberProperties mode="FALSE"/>
+          <attributeParentPair attribute="c4" parentAttribute="c5"/>
+          <timeProperties>
+            <validFromElement xsi:type="DataFoundation:Attribute">c3</validFromElement>
+            <validToElement xsi:type="DataFoundation:Attribute">c4</validToElement>
+            <pointInTimeVariable>IP_1</pointInTimeVariable>
+          </timeProperties>
+        </hierarchy>
+      </hierarchies>
+    </localDimension>
+  </localDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="183"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

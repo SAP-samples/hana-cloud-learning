@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="coE_cvTarget" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="coE_cvTarget"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="coE">
+    <resourceUri>coE</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="allAvailable">
+    <viewAttributes>
+      <viewAttribute id="c1"/>
+      <viewAttribute id="c2"/>
+      <viewAttribute id="c3"/>
+      <viewAttribute id="c4"/>
+      <viewAttribute id="c5"/>
+      <viewAttribute id="m1"/>
+      <viewAttribute id="m2"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="coE"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="allAvailable">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="allAvailable" columnName="c1"/>
+    </attribute>
+    <attribute id="c3" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c3"/>
+      <keyMapping columnObjectName="allAvailable" columnName="c3"/>
+    </attribute>
+    <attribute id="c4" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c4"/>
+      <keyMapping columnObjectName="allAvailable" columnName="c4"/>
+    </attribute>
+    <attribute id="c5" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c5"/>
+      <keyMapping columnObjectName="allAvailable" columnName="c5"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m1" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m1"/>
+      <measureMapping columnObjectName="allAvailable" columnName="m1"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="m2" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m2"/>
+      <measureMapping columnObjectName="allAvailable" columnName="m2"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="allAvailable" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
