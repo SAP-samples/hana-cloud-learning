@@ -37,6 +37,14 @@ FROM "filterBasedOnTable_cv"
         )
 GROUP BY "city"
 ```
+In calculation view [filterBasedOnTableFunction](./filterBasedOnTableFunction.hdbcalculationview) the derived variable is based on a table function. In addition input parameter IP_selectionType is mapped into the table function:
+
+![mapping of input parameter into table function](./screenshots/mappingInputParameter.png)
+
+
+With this mapping the value of the input parameter that is entered via a prompt can be used to influence the filter value selection in the table function:
+
+RETURN SELECT "filterValues" FROM "filterTableNV" where "selectionType"= **:SELECTIONTYPE;**
 
 > Use this functionality if you want to filter based on column values of a tabular structure
 

@@ -1,8 +1,8 @@
-FUNCTION "filterFunctionThatReturnsTable" () 
+FUNCTION "filterFunctionThatReturnsTable" (IN SELECTIONTYPE NVARCHAR(1)) 
 RETURNS TABLE("filterValues" NVARCHAR(20))
 LANGUAGE SQLSCRIPT 
 SQL SECURITY DEFINER
 AS 
 BEGIN 
-    RETURN SELECT "filterValues" FROM "filterTableNV";
+    RETURN SELECT "filterValues" FROM "filterTableNV" where "selectionType"= :SELECTIONTYPE;
 END
