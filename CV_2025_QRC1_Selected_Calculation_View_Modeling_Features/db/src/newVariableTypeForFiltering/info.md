@@ -46,5 +46,16 @@ With this mapping the value of the input parameter that is entered via a prompt 
 
 RETURN SELECT "filterValues" FROM "filterTableNV" where "selectionType"= **:SELECTIONTYPE;**
 
+For example, if *C* is entered for input parameter IP_selectionType only values with selectionType *C* in table *filterTableNV* are used in the filter and the result becomes:
+
+![result with input parameter value C](./screenshots/result.png)
+
+which corresponds to the values that are marked with C in table [filterTableNV](./filterTableNV.csv):
+
+![filter table values](./screenshots/filterTable.png)
+
+This way you can influence the filter value selection at query runtime.
+
+
 > Use this functionality if you want to filter based on column values of a tabular structure
 
