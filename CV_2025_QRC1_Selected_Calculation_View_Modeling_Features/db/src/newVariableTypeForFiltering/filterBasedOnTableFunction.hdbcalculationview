@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="filterBasedOnTableFunction" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="filterBasedOnTable_cv.hdbcalculationview"/>
+<localVariables>
+  <variable id="VAR_1">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false" inputType="Derived">
+      <valueDomain type="empty"/>
+      <selection multiLine="true" type="SingleValue"/>
+      <derivationRule>
+        <resourceUri>filterFunctionThatReturnsTable</resourceUri>
+        <resultElementName>filterValues</resultElementName>
+        <variableMapping xsi:type="Variable:VariableMapping">
+          <targetVariable name="SELECTIONTYPE"/>
+          <localVariable>IP_selectionType</localVariable>
+        </variableMapping>
+      </derivationRule>
+    </variableProperties>
+  </variable>
+
+  <variable id="IP_selectionType" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false" defaultExpressionLanguage="SQL" defaultValue="A">
+      <valueDomain type="AttributeValue">
+        <externalLikeStructureName>filterTableNV</externalLikeStructureName>
+        <externalLikeElementName>selectionType</externalLikeElementName>
+      </valueDomain>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="toBeFilteredTableNV">
+    <resourceUri>toBeFilteredTableNV</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="toBeFilteredTableNV">
+  <attributes>
+    <attribute id="city" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="city"/>
+      <localVariable>VAR_1</localVariable>
+      <keyMapping columnObjectName="toBeFilteredTableNV" columnName="city"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="toBeFilteredTableNV" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

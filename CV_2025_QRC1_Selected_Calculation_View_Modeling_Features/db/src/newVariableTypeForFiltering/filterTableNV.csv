@@ -1,14 +1,14 @@
-filterValues,noPurpose
-Antioch,
-Atlanta,
-Berlin,
-Jacksonville,
-Karlsruhe,
-Koeln,
-London,
-Muenchen,
-New York,
-Paris,
-San Francisco,
-Santa Fe,
-Walldorf,
+filterValues,selectionType
+Antioch,A
+Atlanta,B
+Berlin,C
+Jacksonville,A
+Karlsruhe,A
+Koeln,B
+London,C
+Muenchen,C
+New York,C
+Paris,B
+San Francisco,A
+Santa Fe,B
+Walldorf,C
