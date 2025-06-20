@@ -1,0 +1,1 @@
+column table "aCTFtable" ("columnName1" NVARCHAR(20), "columnName2" NVARCHAR(20), "measure" Decimal(10,2))

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="rNINV_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="rNINV_cv"/>
+<localVariables>
+  <variable id="IP_MinID" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false" defaultExpressionLanguage="SQL" defaultValue="0">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="rNINV2025">
+    <resourceUri>rNINV2025</resourceUri>
+  </DataSource>
+  <DataSource id="rNINV2024">
+    <resourceUri>rNINV2024</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="2025">
+    <viewAttributes>
+      <viewAttribute id="orderID"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="rNINV2025"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="2024">
+    <viewAttributes>
+      <viewAttribute id="orderID"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="rNINV2024"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="unfilteredData">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <input node="2025"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="refactorMe" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="orderID"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="2025">
+      <mapping xsi:type="Calculation:AttributeMapping" target="orderID" source="orderID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <input node="2024">
+      <mapping xsi:type="Calculation:AttributeMapping" target="orderID" source="orderID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <filter>&quot;orderID&quot;&gt;='$$IP_MinID$$'</filter>
+  </calculationView>
+</calculationViews>
+<logicalModel id="refactorMe">
+  <attributes>
+    <attribute id="orderID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="orderID"/>
+      <keyMapping columnObjectName="refactorMe" columnName="orderID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="refactorMe" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221.11302679000914" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="refactorMe" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221.11302679000914" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="2025" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92.00000000000001" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="2024" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302.00000000000006" y="356.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="unfilteredData" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="-14" y="150"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
