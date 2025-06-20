@@ -1,0 +1,1 @@
+column table "rNINV2024" ("orderID" NVARCHAR(20), "amount" Decimal(10,2))

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="aCTF_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="aCTF_cv"/>
+<localVariables>
+  <variable id="PREFIX" parameter="true">
+    <descriptions defaultDescription=""/>
+    <variableProperties datatype="NVARCHAR" length="20" mandatory="false" defaultValue="prefix_">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources>
+  <DataSource id="aCTFtable">
+    <resourceUri>aCTFtable</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="changeColumOrder" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="columnName2"/>
+      <viewAttribute id="measure"/>
+      <viewAttribute id="columnName1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="aCTFtable"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:TableFunctionView" id="TableFunction_1" tableFunctionName="aCTF">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <input node="changeColumOrder" tableParameterName="aCTFtable">
+      <mapping xsi:type="Calculation:AttributeMapping" target="columnName2" source="columnName2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="measure" source="measure"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="columnName1" source="columnName1"/>
+    </input>
+    <variableMapping xsi:type="Variable:VariableMapping">
+      <targetVariable name="PREFIX"/>
+      <localVariable>PREFIX</localVariable>
+    </variableMapping>
+  </calculationView>
+</calculationViews>
+<logicalModel id="TableFunction_1">
+  <attributes>
+    <attribute id="columnName1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="columnName1"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="columnName1"/>
+    </attribute>
+    <attribute id="columnName2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="columnName2"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="columnName2"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="measure" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="measure"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="measure"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="changeColumOrder" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="337"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+  
+    <shape expanded="true" modelObjectName="TableFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

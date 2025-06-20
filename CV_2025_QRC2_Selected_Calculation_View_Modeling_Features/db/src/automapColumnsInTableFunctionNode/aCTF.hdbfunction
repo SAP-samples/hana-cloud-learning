@@ -1,0 +1,8 @@
+FUNCTION "aCTF" (IN "aCTFtable" TABLE ("columnName1" NVARCHAR(20), "columnName2" NVARCHAR(20), "measure" Decimal(10,2)), PREFIX NVARCHAR(20)) 
+RETURNS TABLE("columnName1" NVARCHAR(20), "columnName2" NVARCHAR(20), "measure" Decimal(10,2))
+LANGUAGE SQLSCRIPT 
+SQL SECURITY DEFINER
+AS 
+BEGIN 
+    RETURN SELECT :PREFIX||"columnName1" as "columnName1",:PREFIX||"columnName2" as "columnName2","measure" as "measure" from :"aCTFtable";
+END
