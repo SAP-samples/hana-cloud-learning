@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="sJ_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="sJ_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="sJ_toBeFiltered">
+    <resourceUri>sJ_toBeFiltered</resourceUri>
+  </DataSource>
+  <DataSource id="sJ_filter">
+    <resourceUri>sJ_filter</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" dynamic="true" joinType="semi">
+    <viewAttributes>
+      <viewAttribute id="country"/>
+      <viewAttribute id="city"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="sJ_toBeFiltered">
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="city" source="city"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amount" source="amount"/>
+    </input>
+    <input node="sJ_filter">
+      <mapping xsi:type="Calculation:AttributeMapping" target="country" source="country"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="city" source="city"/>
+    </input>
+    <joinAttribute name="country"/>
+    <joinAttribute name="city"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="country" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="country"/>
+      <keyMapping columnObjectName="Join_1" columnName="country"/>
+    </attribute>
+    <attribute id="city" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="city"/>
+      <keyMapping columnObjectName="Join_1" columnName="city"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amount" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="90" y="197"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="sJ_toBeFiltered" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="154"/>
+    </shape>
+    <shape modelObjectName="sJ_filter" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="122"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

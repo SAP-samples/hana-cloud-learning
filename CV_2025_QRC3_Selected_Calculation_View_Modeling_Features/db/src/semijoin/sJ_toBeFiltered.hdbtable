@@ -1,0 +1,1 @@
+column table "sJ_toBeFiltered" ("country" NVARCHAR(20), "city" NVARCHAR(20), "amount" Decimal(10,2))

@@ -1,0 +1,1 @@
+column table "sBSPSF" (ORG NVARCHAR(5), PRODUCTS NVARCHAR(20), AMOUNT Decimal(10,2))

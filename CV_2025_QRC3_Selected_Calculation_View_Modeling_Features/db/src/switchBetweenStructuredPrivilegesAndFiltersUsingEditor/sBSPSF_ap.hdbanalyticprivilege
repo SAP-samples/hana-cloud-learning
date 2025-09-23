@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Privilege:analyticPrivilege xmlns:Privilege="http://www.sap.com/ndb/BiModelPrivilege.ecore" id="sBSPSF_ap" privilegeType="SQL_ANALYTIC_PRIVILEGE" schemaVersion="1.1">
+    <descriptions defaultDescription="sBSPSF_ap"/>
+    <securedModels>
+      <modelUri useWildCards="true" including="true">%sBSP%</modelUri>
+    </securedModels>
+<whereSql>ORG=(SELECT ORG from AUTHORIZATION_TABLE where USER=session_user)</whereSql>
+</Privilege:analyticPrivilege>
