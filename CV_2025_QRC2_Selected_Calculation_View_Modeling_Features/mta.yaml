@@ -16,4 +16,4 @@ resources:
     hdi-container-name: ${service-name}
   parameters:
     config:
-      schema: CV_2025_QRC1
+      schema: CV_2025_QRC2
