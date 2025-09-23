@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="mGLT_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="mGLT_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="mGLT">
+    <resourceUri>mGLT</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="s1"/>
+      <viewAttribute id="s2"/>
+      <viewAttribute id="m"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="mGLT"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1" aliasLabelGeneratorExpression="&apos;b&apos;">
+  <attributes>
+    <attribute id="s2" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="s2"/>
+      <keyMapping columnObjectName="Projection_1" columnName="s2"/>
+    </attribute>
+    <attribute id="s1$local">
+      <descriptions defaultDescription="s1"/>
+      <keyMapping columnObjectName="Projection_1" columnName="s1"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="m_1" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="m"/>
+      <measureMapping columnObjectName="Projection_1" columnName="m"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions>
+    <logicalJoin associatedObjectUri="mGLD1_cv">
+      <attributes>
+        <attributeRef>s1$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>c1</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+      <associatedAttributeFeatures>
+        <attributeReference alias="mGLD1_cv_c1" attributeName="c1"/>
+        <attributeReference alias="mGLD1_cv_c2" attributeName="c2"/>
+        <attributeReference alias="mGLD1_cv_m" attributeName="m"/>
+      </associatedAttributeFeatures>
+    </logicalJoin>
+    <logicalJoin associatedObjectUri="mGLD2_cv">
+      <attributes>
+        <attributeRef>s1$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>c1</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_N" joinType="leftOuter" joinOperator="Equal"/>
+      <associatedAttributeFeatures>
+        <attributeReference alias="mGLD2_cv_c1" attributeName="c1"/>
+        <attributeReference alias="mGLD2_cv_c2" attributeName="c2"/>
+        <attributeReference alias="mGLD2_cv_m" attributeName="m"/>
+      </associatedAttributeFeatures>
+    </logicalJoin>
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="95" y="200"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="mGLD1_cv" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="242" y="30"/>
+      <rectangleSize width="126"/>
+    </shape>
+    <shape modelObjectName="mGLD2_cv" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="255" y="156"/>
+      <rectangleSize width="126"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

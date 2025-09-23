@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="vEF_cv" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="vEF_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="vEF">
+    <resourceUri>vEF</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="vEF">
+  <attributes>
+    <attribute id="c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="c1"/>
+      <keyMapping columnObjectName="vEF" columnName="c1"/>
+    </attribute>
+    <attribute id="vector" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="vector"/>
+      <keyMapping columnObjectName="vEF" columnName="vector"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="LastTwoElements" order="3" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="REAL_VECTOR" expressionLanguage="SQL">
+        <formula>SUBVECTOR(&quot;vector&quot;, CARDINALITY(&quot;vector&quot;)-1,0)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="FirstElement" order="4" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="DOUBLE" expressionLanguage="SQL">
+        <formula>MEMBER_AT(&quot;vector&quot;,1)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="L2Normalization" order="5" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="REAL_VECTOR" expressionLanguage="SQL">
+        <formula>L2NORMALIZE(&quot;vector&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="L2Norm" order="6" semanticType="empty" displayAttribute="false" attributeHierarchyActive="false">
+      <keyCalculation datatype="DOUBLE" expressionLanguage="SQL">
+        <formula>L2NORM(&quot;vector&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,1 @@
+column table "mGLT" ("s1" NVARCHAR(20), "s2" NVARCHAR(20), "m" Decimal(10,2)) 

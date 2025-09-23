@@ -1,0 +1,1 @@
+column table "sJ_filter" ("country" NVARCHAR(20),"city" NVARCHAR(20))
