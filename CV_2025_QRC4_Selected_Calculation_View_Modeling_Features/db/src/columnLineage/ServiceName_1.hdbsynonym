@@ -1,0 +1,8 @@
+{
+  "GET_CALC_VIEW_COLUMN_DEPENDENCIES_Example": {
+    "target": {
+      "object": "GET_CALC_VIEW_COLUMN_DEPENDENCIES",
+      "schema": "SYS"
+    }
+  }
+}

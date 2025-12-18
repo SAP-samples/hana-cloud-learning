@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="layer1_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="layer1_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tcL1">
+    <resourceUri>tcL1</resourceUri>
+  </DataSource>
+  <DataSource id="tcL2">
+    <resourceUri>tcL2</resourceUri>
+  </DataSource>
+  <DataSource id="tcL3">
+    <resourceUri>tcL3</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="tcL1_c1"/>
+      <viewAttribute id="tcL1_c4"/>
+      <viewAttribute id="TCL1_M" aggregationType="sum"/>
+      <viewAttribute id="tcL1_c3"/>
+      <viewAttribute id="tcL2_c2"/>
+      <viewAttribute id="TCL2_M" aggregationType="sum"/>
+      <viewAttribute hidden="true" id="JOIN$tcL1_c1$tcL2_c1"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="tcL1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="tcL1_c1" source="tcL1_c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tcL1_c4" source="tcL1_c4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TCL1_M" source="TCL1_M"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tcL1_c3" source="tcL1_c3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$tcL1_c1$tcL2_c1" source="tcL1_c1"/>
+    </input>
+    <input node="tcL2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="tcL2_c2" source="tcL2_c2"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TCL2_M" source="TCL2_M"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$tcL1_c1$tcL2_c1" source="tcL2_c1"/>
+    </input>
+    <joinAttribute name="JOIN$tcL1_c1$tcL2_c1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="tcL1_c1"/>
+      <viewAttribute id="tcL1_c4"/>
+      <viewAttribute id="TCL1_M"/>
+      <viewAttribute id="tcL1_c3"/>
+      <viewAttribute id="tcL2_c2"/>
+      <viewAttribute id="TCL2_M"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_2" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="tcL1_c1"/>
+      <viewAttribute id="TCL1_M" aggregationType="sum"/>
+      <viewAttribute id="tcL1_c4"/>
+      <viewAttribute id="tcL3_c1"/>
+      <viewAttribute id="TCL3_M" aggregationType="sum"/>
+      <viewAttribute id="tcL3_c3Renamed"/>
+      <viewAttribute hidden="true" id="JOIN$tcL1_c1$tcL3_c1"/>
+      <viewAttribute hidden="true" id="JOIN$tcL1_c4$tcL3_c4"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="tcL1_c1" source="tcL1_c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TCL1_M" source="TCL1_M"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tcL1_c4" source="tcL1_c4"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$tcL1_c1$tcL3_c1" source="tcL1_c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$tcL1_c4$tcL3_c4" source="tcL1_c4"/>
+    </input>
+    <input node="tcL3">
+      <mapping xsi:type="Calculation:AttributeMapping" target="tcL3_c1" source="tcL3_c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TCL3_M" source="TCL3_M"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="tcL3_c3Renamed" source="tcL3_c3"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$tcL1_c1$tcL3_c1" source="tcL3_c1"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$tcL1_c4$tcL3_c4" source="tcL3_c4"/>
+    </input>
+    <joinAttribute name="JOIN$tcL1_c1$tcL3_c1"/>
+    <joinAttribute name="JOIN$tcL1_c4$tcL3_c4"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_2">
+  <attributes>
+    <attribute id="tclRenamed1_c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL1_c1"/>
+      <keyMapping columnObjectName="Join_2" columnName="tcL1_c1"/>
+    </attribute>
+    <attribute id="tclRenamed1_c4" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL1_c4"/>
+      <keyMapping columnObjectName="Join_2" columnName="tcL1_c4"/>
+    </attribute>
+    <attribute id="tclRenamed3_c1" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL3_c1"/>
+      <keyMapping columnObjectName="Join_2" columnName="tcL3_c1"/>
+    </attribute>
+    <attribute id="tclRenamed3_c3Renamed" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL3_c3"/>
+      <keyMapping columnObjectName="Join_2" columnName="tcL3_c3Renamed"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="tclRenamed1_M" order="2" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TCL1_M"/>
+      <measureMapping columnObjectName="Join_2" columnName="TCL1_M"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="tclRenamed3_M" order="5" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TCL3_M"/>
+      <measureMapping columnObjectName="Join_2" columnName="TCL3_M"/>
+    
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="462"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="tcL1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="128"/>
+    </shape>
+    <shape modelObjectName="tcL2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="128"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="357"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="148"/>
+    </shape>
+    <shape modelObjectName="tcL3" modelObjectNameSpace="Join_2" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="128"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

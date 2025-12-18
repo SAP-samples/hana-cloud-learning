@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="iKC" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="iKC"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PurchaseOrder">
+    <resourceUri>PurchaseOrder</resourceUri>
+  </DataSource>
+  <DataSource id="PurchaseOrderItem">
+    <resourceUri>PurchaseOrderItem</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="leftOuter">
+    <viewAttributes>
+      <viewAttribute id="PurchaseOrder_PurchaseOrderId"/>
+      <viewAttribute id="PurchaseOrder_CreatedBy"/>
+      <viewAttribute id="PurchaseOrder_CreatedAt"/>
+      <viewAttribute id="PurchaseOrder_ChangedBy"/>
+      <viewAttribute id="PurchaseOrder_ChangedAt"/>
+      <viewAttribute id="PurchaseOrder_NoteId"/>
+      <viewAttribute id="PurchaseOrder_PartnerId"/>
+      <viewAttribute id="PurchaseOrder_Currency"/>
+      <viewAttribute id="PurchaseOrder_GrossAmount" aggregationType="sum"/>
+      <viewAttribute id="PurchaseOrder_NetAmount" aggregationType="sum"/>
+      <viewAttribute id="PurchaseOrder_TaxAmount" aggregationType="sum"/>
+      <viewAttribute id="PurchaseOrder_LifecycleStatus"/>
+      <viewAttribute id="PurchaseOrder_ApprovalStatus"/>
+      <viewAttribute id="PurchaseOrder_ConfirmStatus"/>
+      <viewAttribute id="PurchaseOrder_OrderingStatus"/>
+      <viewAttribute id="PurchaseOrder_InvoicingStatus"/>
+      <viewAttribute id="PurchaseOrderItem_PurchaseOrderId"/>
+      <viewAttribute id="PurchaseOrderItem_PurchaseOrderItem"/>
+      <viewAttribute id="PurchaseOrderItem_ProductId"/>
+      <viewAttribute id="PurchaseOrderItem_NoteId"/>
+      <viewAttribute id="PurchaseOrderItem_Currency"/>
+      <viewAttribute id="PurchaseOrderItem_GrossAmount" aggregationType="sum"/>
+      <viewAttribute id="PurchaseOrderItem_NetAmount" aggregationType="sum"/>
+      <viewAttribute id="PurchaseOrderItem_TaxAmount" aggregationType="sum"/>
+      <viewAttribute id="PurchaseOrderItem_Quantity" aggregationType="sum"/>
+      <viewAttribute id="PurchaseOrderItem_QuantityUnit"/>
+      <viewAttribute id="PurchaseOrderItem_DeliveryDate"/>
+      <viewAttribute hidden="true" id="JOIN$PurchaseOrderId$PurchaseOrderId"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PurchaseOrder">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_PurchaseOrderId" source="PurchaseOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_CreatedBy" source="CreatedBy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_CreatedAt" source="CreatedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_ChangedBy" source="ChangedBy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_ChangedAt" source="ChangedAt"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_NoteId" source="NoteId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_PartnerId" source="PartnerId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_GrossAmount" source="GrossAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_TaxAmount" source="TaxAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_LifecycleStatus" source="LifecycleStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_ApprovalStatus" source="ApprovalStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_ConfirmStatus" source="ConfirmStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_OrderingStatus" source="OrderingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrder_InvoicingStatus" source="InvoicingStatus"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PurchaseOrderId$PurchaseOrderId" source="PurchaseOrderId"/>
+    </input>
+    <input node="PurchaseOrderItem">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_PurchaseOrderId" source="PurchaseOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_PurchaseOrderItem" source="PurchaseOrderItem"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_ProductId" source="ProductId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_NoteId" source="NoteId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_Currency" source="Currency"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_GrossAmount" source="GrossAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_NetAmount" source="NetAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_TaxAmount" source="TaxAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_Quantity" source="Quantity"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_QuantityUnit" source="QuantityUnit"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderItem_DeliveryDate" source="DeliveryDate"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PurchaseOrderId$PurchaseOrderId" source="PurchaseOrderId"/>
+    </input>
+    <joinAttribute name="JOIN$PurchaseOrderId$PurchaseOrderId"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="PurchaseOrder_PurchaseOrderId" key="true" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Purchase Order ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_PurchaseOrderId"/>
+    </attribute>
+    <attribute id="PurchaseOrder_CreatedBy" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created By"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_CreatedBy"/>
+    </attribute>
+    <attribute id="PurchaseOrder_CreatedAt" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created At - Date and Time"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_CreatedAt"/>
+    </attribute>
+    <attribute id="PurchaseOrder_ChangedBy" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last Changed By"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_ChangedBy"/>
+    </attribute>
+    <attribute id="PurchaseOrder_ChangedAt" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last Changed At - Date and Time"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_ChangedAt"/>
+    </attribute>
+    <attribute id="PurchaseOrder_NoteId" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO Note Text ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_NoteId"/>
+    </attribute>
+    <attribute id="PurchaseOrder_PartnerId" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Partner ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_PartnerId"/>
+    </attribute>
+    <attribute id="PurchaseOrder_Currency" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency Code"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_Currency"/>
+    </attribute>
+    <attribute id="PurchaseOrder_LifecycleStatus" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO Lifecycle Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_LifecycleStatus"/>
+    </attribute>
+    <attribute id="PurchaseOrder_ApprovalStatus" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO Approval Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_ApprovalStatus"/>
+    </attribute>
+    <attribute id="PurchaseOrder_ConfirmStatus" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO Confirmation Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_ConfirmStatus"/>
+    </attribute>
+    <attribute id="PurchaseOrder_OrderingStatus" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO Ordering Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_OrderingStatus"/>
+    </attribute>
+    <attribute id="PurchaseOrder_InvoicingStatus" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PO Invoicing Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrder_InvoicingStatus"/>
+    </attribute>
+    <attribute id="PurchaseOrderItem_PurchaseOrderId" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderItem_PurchaseOrderId"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_PurchaseOrderId"/>
+    </attribute>
+    <attribute id="PurchaseOrderItem_PurchaseOrderItem" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderItem_PurchaseOrderItem"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_PurchaseOrderItem"/>
+    </attribute>
+    <attribute id="PurchaseOrderItem_ProductId" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderItem_ProductId"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_ProductId"/>
+    </attribute>
+    <attribute id="PurchaseOrderItem_NoteId" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderItem_NoteId"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_NoteId"/>
+    </attribute>
+    <attribute id="PurchaseOrderItem_Currency" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderItem_Currency"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_Currency"/>
+    </attribute>
+    <attribute id="PurchaseOrderItem_QuantityUnit" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderItem_QuantityUnit"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_QuantityUnit"/>
+    </attribute>
+    <attribute id="PurchaseOrderItem_DeliveryDate" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderItem_DeliveryDate"/>
+      <keyMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_DeliveryDate"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PurchaseOrder_GrossAmount" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Total Gross Amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="PurchaseOrder_GrossAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PurchaseOrder_NetAmount" order="10" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Total Net Amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="PurchaseOrder_NetAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PurchaseOrder_TaxAmount" order="11" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Total Tax Amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="PurchaseOrder_TaxAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PurchaseOrderItem_GrossAmount" order="22" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PurchaseOrderItem_GrossAmount"/>
+      <measureMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_GrossAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PurchaseOrderItem_NetAmount" order="23" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PurchaseOrderItem_NetAmount"/>
+      <measureMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_NetAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PurchaseOrderItem_TaxAmount" order="24" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PurchaseOrderItem_TaxAmount"/>
+      <measureMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_TaxAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PurchaseOrderItem_Quantity" order="25" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PurchaseOrderItem_Quantity"/>
+      <measureMapping columnObjectName="Join_1" columnName="PurchaseOrderItem_Quantity"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="94" y="186"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="PurchaseOrder" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="150"/>
+    </shape>
+    <shape modelObjectName="PurchaseOrderItem" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="175"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

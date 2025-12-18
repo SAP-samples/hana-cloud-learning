@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="tcL3_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="tcL3_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tcL3">
+    <resourceUri>tcL3</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="tcL3">
+  <attributes>
+    <attribute id="tcL3_c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL3_c1"/>
+      <keyMapping columnObjectName="tcL3" columnName="tcL3_c1"/>
+    </attribute>
+    <attribute id="tcL3_c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL3_c2"/>
+      <keyMapping columnObjectName="tcL3" columnName="tcL3_c2"/>
+    </attribute>
+    <attribute id="tcL3_c3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL3_c3"/>
+      <keyMapping columnObjectName="tcL3" columnName="tcL3_c3"/>
+    </attribute>
+    <attribute id="tcL3_c4" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL3_c4"/>
+      <keyMapping columnObjectName="tcL3" columnName="tcL3_c4"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="TCL3_M" order="5" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TCL3_M"/>
+      <measureMapping columnObjectName="tcL3" columnName="TCL3_M"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
