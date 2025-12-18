@@ -1,0 +1,17 @@
+COLUMN TABLE "PurchaseOrderItem"(
+	"PurchaseOrderId" NVARCHAR(10) NOT NULL COMMENT 'Purchase Order ID',
+	"PurchaseOrderItem" NVARCHAR(10) NOT NULL COMMENT 'Purchase Order Item',
+	"ProductId" NVARCHAR(10) NOT NULL COMMENT 'Product ID',
+	"NoteId" NVARCHAR(10) COMMENT 'PO Note Text ID',
+	"Currency" NVARCHAR(5) NOT NULL COMMENT 'Currency Code',
+	"GrossAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Gross Amount',
+	"NetAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Net Amount',
+	"TaxAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Tax Amount',
+	"Quantity" DECIMAL(13, 3) DEFAULT 0 NOT NULL COMMENT 'Quantity',
+	"QuantityUnit" NVARCHAR(3) NOT NULL COMMENT 'Quantity Unit',
+	"DeliveryDate" DATE COMMENT 'Scheduled Delivery Date',
+	PRIMARY KEY INVERTED VALUE(
+		"PurchaseOrderId",
+		"PurchaseOrderItem"
+	)
+)

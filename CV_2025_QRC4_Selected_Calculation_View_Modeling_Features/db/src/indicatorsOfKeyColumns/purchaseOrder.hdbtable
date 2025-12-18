@@ -1,0 +1,21 @@
+COLUMN TABLE "PurchaseOrder"(
+	"PurchaseOrderId" NVARCHAR(10) NOT NULL COMMENT 'Purchase Order ID',
+	"CreatedBy" NVARCHAR(10) NOT NULL COMMENT 'Created By',
+	"CreatedAt" DATE NOT NULL COMMENT 'Created At - Date and Time',
+	"ChangedBy" NVARCHAR(10) COMMENT 'Last Changed By',
+	"ChangedAt" DATE COMMENT 'Last Changed At - Date and Time',
+	"NoteId" NVARCHAR(10) COMMENT 'PO Note Text ID',
+	"PartnerId" NVARCHAR(10) COMMENT 'Partner ID',
+	"Currency" NVARCHAR(5) NOT NULL COMMENT 'Currency Code',
+	"GrossAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Total Gross Amount',
+	"NetAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Total Net Amount',
+	"TaxAmount" DECIMAL(15, 2) DEFAULT 0 NOT NULL COMMENT 'Total Tax Amount',
+	"LifecycleStatus" NVARCHAR(1) COMMENT 'PO Lifecycle Status',
+	"ApprovalStatus" NVARCHAR(1) COMMENT 'PO Approval Status',
+	"ConfirmStatus" NVARCHAR(1) COMMENT 'PO Confirmation Status',
+	"OrderingStatus" NVARCHAR(1) COMMENT 'PO Ordering Status',
+	"InvoicingStatus" NVARCHAR(1) COMMENT 'PO Invoicing Status',
+	PRIMARY KEY(
+		"PurchaseOrderId"
+	)
+)

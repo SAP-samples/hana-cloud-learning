@@ -1,0 +1,1 @@
+column table "tcL3" ("tcL3_c1" NVARCHAR(20),"tcL3_c2" NVARCHAR(20),"tcL3_c3" NVARCHAR(20),"tcL3_c4" NVARCHAR(20),tcL3_m Decimal(10,2))

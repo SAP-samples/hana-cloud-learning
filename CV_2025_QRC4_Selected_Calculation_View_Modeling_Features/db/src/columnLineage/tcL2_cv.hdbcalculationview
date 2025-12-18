@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="tcL2_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="tcL2_cv.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="tcL2">
+    <resourceUri>tcL2</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="tcL2">
+  <attributes>
+    <attribute id="tcL2_c1" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL2_c1"/>
+      <keyMapping columnObjectName="tcL2" columnName="tcL2_c1"/>
+    </attribute>
+    <attribute id="tcL2_c2" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL2_c2"/>
+      <keyMapping columnObjectName="tcL2" columnName="tcL2_c2"/>
+    </attribute>
+    <attribute id="tcL2_c3" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL2_c3"/>
+      <keyMapping columnObjectName="tcL2" columnName="tcL2_c3"/>
+    </attribute>
+    <attribute id="tcL2_c4" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="tcL2_c4"/>
+      <keyMapping columnObjectName="tcL2" columnName="tcL2_c4"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="TCL2_M" order="5" aggregationType="sum" measureType="simple" restrictionExpressionLanguage="SQL">
+      <descriptions defaultDescription="TCL2_M"/>
+      <measureMapping columnObjectName="tcL2" columnName="TCL2_M"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
