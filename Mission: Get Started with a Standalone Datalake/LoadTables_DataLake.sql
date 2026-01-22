@@ -1,0 +1,76 @@
+set temporary option escape_character='on';
+set temporary option date_order='ymd';
+set temporary option date_format='YYYY-MM-DD';
+
+TRUNCATE TABLE TPCH.REGION
+COMMIT;
+
+LOAD TABLE TPCH.REGION (
+    R_REGIONKEY,
+    R_NAME,
+    R_COMMENT
+)
+FROM 'hdlfs:///region.tbl' 
+FORMAT ASCII 
+DELIMITED BY '|' 
+ROW DELIMITED BY '\n' 
+ESCAPES OFF 
+QUOTES OFF;
+
+TRUNCATE TABLE TPCH.NATION
+COMMIT;
+
+LOAD TABLE TPCH.NATION (
+    N_NATIONKEY,
+    N_NAME,
+    N_REGIONKEY,
+    N_COMMENT
+)
+FROM 'hdlfs:///nation.tbl' 
+FORMAT ASCII 
+DELIMITED BY '|' 
+ROW DELIMITED BY '\n' 
+ESCAPES OFF 
+QUOTES OFF;
+
+TRUNCATE TABLE TPCH.SUPPLIER
+COMMIT;
+
+LOAD TABLE TPCH.SUPPLIER (
+    S_SUPPKEY,
+    S_NAME,
+    S_ADDRESS,
+    S_NATIONKEY,
+    S_PHONE,
+    S_ACCTBAL,
+    S_COMMENT
+)
+FROM 'hdlfs:///supplier.tbl' 
+FORMAT ASCII 
+DELIMITED BY '|' 
+ROW DELIMITED BY '\n' 
+ESCAPES OFF 
+QUOTES OFF;
+
+TRUNCATE TABLE TPCH.CUSTOMER
+COMMIT;
+
+LOAD TABLE TPCH.CUSTOMER (
+    C_CUSTKEY,
+    C_NAME,
+    C_ADDRESS,
+    C_NATIONKEY,
+    C_PHONE,
+    C_ACCTBAL,
+    C_MKTSEGMENT,
+    C_COMMENT   
+)
+FROM 'hdlfs:///customer.tbl' 
+FORMAT ASCII 
+DELIMITED BY '|' 
+ROW DELIMITED BY '\n' 
+ESCAPES OFF 
+QUOTES OFF;
+
+COMMIT;
+
