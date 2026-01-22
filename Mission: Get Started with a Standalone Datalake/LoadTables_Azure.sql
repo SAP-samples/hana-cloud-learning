@@ -1,12 +1,9 @@
 /* Create an S3 bucket in AWS */
 /* Change the following variables: <azure_container_name>, <azure_connection_string> */
 
-set temporary option escape_character='on'
-go
-set temporary option date_order='ymd'
-go
-set temporary option date_format='YYYY-MM-DD'
-go
+set temporary option escape_character='on';
+set temporary option date_order='ymd';
+set temporary option date_format='YYYY-MM-DD';
 
 truncate table TPCH.REGION;
 commit;
@@ -22,12 +19,7 @@ quotes off
 escapes off
 format ascii
 delimited by '|'
-row delimited by '\n'
-;
-commit
-;
-rollback
-;
+row delimited by '\n';
 
 truncate table TPCH.NATION;
 commit;
@@ -44,12 +36,7 @@ quotes off
 escapes off
 format ascii
 delimited by '|'
-row delimited by '\n'
-;
-commit
-;
-rollback
-;
+row delimited by '\n';
 
 truncate table TPCH.SUPPLIER;
 commit;
@@ -69,12 +56,7 @@ quotes off
 escapes off
 format ascii
 delimited by '|'
-row delimited by '\n'
-;
-commit
-;
-rollback
-;
+row delimited by '\n';
 
 truncate table TPCH.CUSTOMER;
 commit;
@@ -95,10 +77,7 @@ quotes off
 escapes off
 format ascii
 delimited by '|'
-row delimited by '\n'
-;
-commit
-;
-rollback
-;
+row delimited by '\n';
+
+commit;
 
