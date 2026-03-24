@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="vOFB_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="vOFB_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="vOFB">
+    <resourceUri>vOFB</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SalesOrders" ignoreMultipleOutputsForFilter="true">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="vOFB"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="All">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SalesOrders"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Top1NoSocks" filterExpressionLanguage="SQL" allowFilterPushdown="true">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SalesOrders"/>
+    <rankingFilter type="RANK" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <partitionViewAttributeName id="color"/>
+      <order byViewAttributeName="amount" direction="DESC"/>
+      <rankThreshold>
+        <value>1</value>
+      </rankThreshold>
+    </rankingFilter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:RankView" id="Top1All">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="All"/>
+    <rankingFilter type="RANK" offsetReference="FRONT" dynamicPartitionAttributes="false">
+      <partitionViewAttributeName id="color"/>
+      <order byViewAttributeName="amount" direction="DESC"/>
+      <rankThreshold>
+        <value>1</value>
+      </rankThreshold>
+    </rankingFilter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="NoSocks" filterExpressionLanguage="SQL">
+    <viewAttributes>
+      <viewAttribute id="article"/>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amount"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Top1NoSocks"/>
+    <filter>&quot;article&quot;!='socks'</filter>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="AllArticles">
+    <viewAttributes>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amountNoSocks" aggregationType="sum"/>
+      <viewAttribute id="amountAll" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="NoSocks">
+      <mapping xsi:type="Calculation:AttributeMapping" target="color" source="color"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amountNoSocks" source="amount"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="amountAll" null="true"/>
+    </input>
+    <input node="Top1All">
+      <mapping xsi:type="Calculation:AttributeMapping" target="color" source="color"/>
+      <mapping xsi:type="Calculation:ConstantAttributeMapping" target="amountNoSocks" null="true"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="amountAll" source="amount"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="AggregateByColor">
+    <viewAttributes>
+      <viewAttribute id="color"/>
+      <viewAttribute id="amountNoSocks" aggregationType="sum"/>
+      <viewAttribute id="amountAll" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="PercentageSocks" datatype="DECIMAL" length="13" scale="2" expressionLanguage="SQL">
+        <formula>100*(1-(&quot;amountNoSocks&quot;/&quot;amountAll&quot;))</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="AllArticles"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="AggregateByColor">
+  <attributes>
+    <attribute id="color" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="color"/>
+      <keyMapping columnObjectName="AggregateByColor" columnName="color"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="amountNoSocks" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="AggregateByColor" columnName="amountNoSocks"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="amountAll" order="3" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="AggregateByColor" columnName="amountAll"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="PercentageSocks" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PercentageSocks"/>
+      <measureMapping columnObjectName="AggregateByColor" columnName="PercentageSocks"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="245.25951957885277" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SalesOrders" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="118.66666666666663" y="751.9999952316284"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="All" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="626.9999964237213"/>
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="AllArticles" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="226.7395300140832" y="341.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="AggregateByColor" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="226.7395300140832" y="236.9999988079071"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Top1NoSocks" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="301.99999999999994" y="626.9999964237213"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Top1All" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="91.99999999999994" y="491.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="NoSocks" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="303.3694777255128" y="481.9999976158142"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
