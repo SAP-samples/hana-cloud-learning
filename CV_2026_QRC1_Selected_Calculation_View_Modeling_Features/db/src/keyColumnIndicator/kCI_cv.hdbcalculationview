@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="kCI_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" mdsCubeConversionExecution="AT_LOADING_TIME">
+<descriptions defaultDescription="kCI_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="kCI1">
+    <resourceUri>kCI1</resourceUri>
+  </DataSource>
+  <DataSource id="kCI2">
+    <resourceUri>kCI2</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="PurchaseOrderId"/>
+      <viewAttribute id="CreatedBy"/>
+      <viewAttribute id="CreatedAt"/>
+      <viewAttribute id="ChangedBy"/>
+      <viewAttribute id="ChangedAt"/>
+      <viewAttribute id="NoteId"/>
+      <viewAttribute id="PartnerId"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="GrossAmount"/>
+      <viewAttribute id="NetAmount"/>
+      <viewAttribute id="TaxAmount"/>
+      <viewAttribute id="LifecycleStatus"/>
+      <viewAttribute id="ApprovalStatus"/>
+      <viewAttribute id="ConfirmStatus"/>
+      <viewAttribute id="OrderingStatus"/>
+      <viewAttribute id="InvoicingStatus"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="kCI1"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_2">
+    <viewAttributes>
+      <viewAttribute id="PurchaseOrderId"/>
+      <viewAttribute id="ProductId"/>
+      <viewAttribute id="NoteId"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="GrossAmount"/>
+      <viewAttribute id="NetAmount"/>
+      <viewAttribute id="TaxAmount"/>
+      <viewAttribute id="Quantity"/>
+      <viewAttribute id="QuantityUnit"/>
+      <viewAttribute id="DeliveryDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="kCI2"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PurchaseOrderId"/>
+      <viewAttribute id="GrossAmount" aggregationType="sum"/>
+      <viewAttribute id="CreatedBy"/>
+      <viewAttribute hidden="true" id="JOIN$PurchaseOrderId$PurchaseOrderId"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossAmount" source="GrossAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PurchaseOrderId$PurchaseOrderId" source="PurchaseOrderId"/>
+    </input>
+    <input node="Projection_2">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderId" source="PurchaseOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$PurchaseOrderId$PurchaseOrderId" source="PurchaseOrderId"/>
+    </input>
+    <joinAttribute name="JOIN$PurchaseOrderId$PurchaseOrderId"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:WindowFunctionView" id="WindowFunction_1">
+    <viewAttributes>
+      <viewAttribute id="PurchaseOrderId"/>
+      <viewAttribute id="GrossAmount" aggregationType="sum"/>
+      <viewAttribute id="CreatedBy"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Join_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PurchaseOrderId" source="PurchaseOrderId"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GrossAmount" source="GrossAmount"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CreatedBy" source="CreatedBy"/>
+    </input>
+    <functions>
+      <function name="RANK">
+        <arguments/>
+        <resultColumn datatype="DOUBLE">RankingGrossAmount</resultColumn>
+      </function>
+    </functions>
+    <orderAttributes>
+      <orderAttribute direction="DESC">GrossAmount</orderAttribute>
+    </orderAttributes>
+    <partitionAttributes>
+      <partitionAttribute>CreatedBy</partitionAttribute>
+    </partitionAttributes>
+  </calculationView>
+</calculationViews>
+<logicalModel id="WindowFunction_1">
+  <attributes>
+    <attribute id="PurchaseOrderId" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PurchaseOrderId"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="PurchaseOrderId"/>
+    </attribute>
+    <attribute id="CreatedBy" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedBy"/>
+      <keyMapping columnObjectName="WindowFunction_1" columnName="CreatedBy"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GrossAmount" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GrossAmount"/>
+      <measureMapping columnObjectName="WindowFunction_1" columnName="GrossAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="RankingGrossAmount" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="RankingGrossAmount"/>
+      <measureMapping columnObjectName="WindowFunction_1" columnName="RankingGrossAmount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="241" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="501"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_2" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="501"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="222" y="341"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="189"/>
+    </shape>
+    <shape modelObjectName="Projection_2" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="201"/>
+    </shape>
+    <shape expanded="true" modelObjectName="WindowFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="222" y="230"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
