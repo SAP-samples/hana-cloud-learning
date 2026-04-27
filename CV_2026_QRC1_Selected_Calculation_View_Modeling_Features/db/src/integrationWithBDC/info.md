@@ -4,7 +4,7 @@ To reuse existing calculation views in the context of BDC, calculation views can
 
 Semantic onboarding transfers the semantics of the calculation view but not the data into BDC. It creates BDC proxies that subsequently can be used in BDC modeling.
 
-## [Semantic Onboarding](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b37282c4c0d142e3bca256a46cd40278.html)
+## Semantic Onboarding
 
 The semantic onboarding process starts in Business Application Studio by selecting a BDC Integration mode.
 
@@ -22,7 +22,7 @@ All integration modes create BDC proxies for the calculation views. Queries targ
 
 ### BDC Onboarding Process
 
-In BDC go to option *Semantic Onboarding* and choose connection type *SAP HANA*
+In BDC go to option [*Semantic Onboarding*](https://help.sap.com/docs/SAP_DATASPHERE/c8a54ee704e94e15926551293243fd1d/b37282c4c0d142e3bca256a46cd40278.html) and choose connection type *SAP HANA*
 
 ![semantic onboarding](./screenshots/semanticOnboarding.png)
 
