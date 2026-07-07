@@ -24,6 +24,6 @@ com.sap.hana.di.calculationview/optimized_replace=true
 The resulting `start` script in `package.json`:
 
 ```json
-"start": "node node_modules/@sap/hdi-deploy/deploy.js --parameter com.sap.hana.di.calculationview/optimized_replace=true"
+"start": "node node_modules/@sap/hdi-deploy/deploy.js --parameter optimized_replace=true"
 ```
 > Use this option together with the optimized redeployment option to preserve privileges on the redeployed calculation view and to speed up redeployment
