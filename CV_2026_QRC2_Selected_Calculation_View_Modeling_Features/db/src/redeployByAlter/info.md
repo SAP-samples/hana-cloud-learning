@@ -18,7 +18,7 @@ The benefit is most significant when combined with [optimized redeployment](../o
 To enable the replace behavior for calculation views, pass the following parameter to the `hdi-deploy` command in `package.json`:
 
 ```text
-com.sap.hana.di.calculationview/optimized_replace=true
+--parameter optimized_replace=true
 ```
 
 The resulting `start` script in `package.json`:
