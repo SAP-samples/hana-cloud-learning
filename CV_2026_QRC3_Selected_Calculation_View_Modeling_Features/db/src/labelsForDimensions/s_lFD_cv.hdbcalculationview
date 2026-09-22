@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="s_lFD_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="s_lFD_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="lFDsales">
+    <resourceUri>lFDsales</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="SalesOrderID"/>
+      <viewAttribute id="ItemNumber"/>
+      <viewAttribute id="OrderType"/>
+      <viewAttribute id="SalesOrg"/>
+      <viewAttribute id="DistChannel"/>
+      <viewAttribute id="Division"/>
+      <viewAttribute id="OrderDate"/>
+      <viewAttribute id="RequestedDelDate"/>
+      <viewAttribute id="Sold_To"/>
+      <viewAttribute id="SoldToName"/>
+      <viewAttribute id="ShipTo"/>
+      <viewAttribute id="MaterialNumber"/>
+      <viewAttribute id="MaterialDesc"/>
+      <viewAttribute id="OrderQty"/>
+      <viewAttribute id="UOM"/>
+      <viewAttribute id="NetPrice"/>
+      <viewAttribute id="NetValue"/>
+      <viewAttribute id="Currency"/>
+      <viewAttribute id="Plant"/>
+      <viewAttribute id="StorageLoc"/>
+      <viewAttribute id="OrderStatus"/>
+      <viewAttribute id="DeliveryBlock"/>
+      <viewAttribute id="BillingBlock"/>
+      <viewAttribute id="CreatedBy"/>
+      <viewAttribute id="CreatedDate"/>
+      <viewAttribute id="ChangedBy"/>
+      <viewAttribute id="ChangedDate"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="lFDsales"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Projection_1">
+  <attributes>
+    <attribute id="SalesOrderID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrderID"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SalesOrderID"/>
+    </attribute>
+    <attribute id="OrderType" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OrderType"/>
+      <keyMapping columnObjectName="Projection_1" columnName="OrderType"/>
+    </attribute>
+    <attribute id="SalesOrg" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SalesOrg"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SalesOrg"/>
+    </attribute>
+    <attribute id="DistChannel" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DistChannel"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DistChannel"/>
+    </attribute>
+    <attribute id="Division" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Division"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Division"/>
+    </attribute>
+    <attribute id="Sold_To" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Sold_To"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Sold_To"/>
+    </attribute>
+    <attribute id="SoldToName" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SoldToName"/>
+      <keyMapping columnObjectName="Projection_1" columnName="SoldToName"/>
+    </attribute>
+    <attribute id="ShipTo" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ShipTo"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ShipTo"/>
+    </attribute>
+    <attribute id="MaterialNumber" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialNumber"/>
+      <keyMapping columnObjectName="Projection_1" columnName="MaterialNumber"/>
+    </attribute>
+    <attribute id="MaterialDesc" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MaterialDesc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="MaterialDesc"/>
+    </attribute>
+    <attribute id="UOM" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UOM"/>
+      <keyMapping columnObjectName="Projection_1" columnName="UOM"/>
+    </attribute>
+    <attribute id="Currency" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Currency"/>
+    </attribute>
+    <attribute id="Plant" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Plant"/>
+      <keyMapping columnObjectName="Projection_1" columnName="Plant"/>
+    </attribute>
+    <attribute id="StorageLoc" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="StorageLoc"/>
+      <keyMapping columnObjectName="Projection_1" columnName="StorageLoc"/>
+    </attribute>
+    <attribute id="OrderStatus" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OrderStatus"/>
+      <keyMapping columnObjectName="Projection_1" columnName="OrderStatus"/>
+    </attribute>
+    <attribute id="DeliveryBlock" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DeliveryBlock"/>
+      <keyMapping columnObjectName="Projection_1" columnName="DeliveryBlock"/>
+    </attribute>
+    <attribute id="BillingBlock" order="21" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="BillingBlock"/>
+      <keyMapping columnObjectName="Projection_1" columnName="BillingBlock"/>
+    </attribute>
+    <attribute id="CreatedBy" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedBy"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CreatedBy"/>
+    </attribute>
+    <attribute id="ChangedBy" order="23" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChangedBy"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ChangedBy"/>
+    </attribute>
+    <attribute id="OrderDate" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OrderDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="OrderDate"/>
+    </attribute>
+    <attribute id="RequestedDelDate" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="RequestedDelDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="RequestedDelDate"/>
+    </attribute>
+    <attribute id="CreatedDate" order="26" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CreatedDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CreatedDate"/>
+    </attribute>
+    <attribute id="ChangedDate" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ChangedDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ChangedDate"/>
+    </attribute>
+    <attribute id="ChangedDate$local">
+      <descriptions defaultDescription="ChangedDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="ChangedDate"/>
+    </attribute>
+    <attribute id="RequestedDelDate$local">
+      <descriptions defaultDescription="RequestedDelDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="RequestedDelDate"/>
+    </attribute>
+    <attribute id="OrderDate$local">
+      <descriptions defaultDescription="OrderDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="OrderDate"/>
+    </attribute>
+    <attribute id="CreatedDate$local">
+      <descriptions defaultDescription="CreatedDate"/>
+      <keyMapping columnObjectName="Projection_1" columnName="CreatedDate"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ItemNumber" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ItemNumber"/>
+      <measureMapping columnObjectName="Projection_1" columnName="ItemNumber"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="OrderQty" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="OrderQty"/>
+      <measureMapping columnObjectName="Projection_1" columnName="OrderQty"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NetPrice" order="14" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NetPrice"/>
+      <measureMapping columnObjectName="Projection_1" columnName="NetPrice"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="NetValue" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="NetValue"/>
+      <measureMapping columnObjectName="Projection_1" columnName="NetValue"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+
+  <sharedDimensions>
+
+    <logicalJoin associatedObjectUri="s_ChangedDate">
+
+      <attributes>
+
+        <attributeRef>ChangedDate$local</attributeRef>
+
+      </attributes>
+
+      <associatedAttributeNames>
+
+        <attributeName>DATE_SQL</attributeName>
+
+      </associatedAttributeNames>
+
+      <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+
+      <associatedAttributeFeatures>
+
+        <attributeReference alias="s_ChangedDate_DATE_SQL" attributeName="DATE_SQL"/>
+
+        <attributeReference alias="s_ChangedDate_YEAR" attributeName="YEAR"/>
+
+        <attributeReference alias="s_ChangedDate_QUARTER" attributeName="QUARTER"/>
+
+        <attributeReference alias="s_ChangedDate_MONTH" attributeName="MONTH"/>
+
+        <attributeReference alias="s_ChangedDate_WEEK" attributeName="WEEK"/>
+
+        <attributeReference alias="s_ChangedDate_DAY_OF_WEEK" attributeName="DAY_OF_WEEK"/>
+
+        <attributeReference alias="s_ChangedDate_DAY" attributeName="DAY"/>
+
+      </associatedAttributeFeatures>
+
+    </logicalJoin>
+
+    <logicalJoin associatedObjectUri="s_RequestedDelDate">
+
+      <attributes>
+
+        <attributeRef>RequestedDelDate$local</attributeRef>
+
+      </attributes>
+
+      <associatedAttributeNames>
+
+        <attributeName>DATE_SQL</attributeName>
+
+      </associatedAttributeNames>
+
+      <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+
+      <associatedAttributeFeatures>
+
+        <attributeReference alias="s_RequestedDelDate_DATE_SQL" attributeName="DATE_SQL"/>
+
+        <attributeReference alias="s_RequestedDelDate_YEAR" attributeName="YEAR"/>
+
+        <attributeReference alias="s_RequestedDelDate_QUARTER" attributeName="QUARTER"/>
+
+        <attributeReference alias="s_RequestedDelDate_MONTH" attributeName="MONTH"/>
+
+        <attributeReference alias="s_RequestedDelDate_WEEK" attributeName="WEEK"/>
+
+        <attributeReference alias="s_RequestedDelDate_DAY_OF_WEEK" attributeName="DAY_OF_WEEK"/>
+
+        <attributeReference alias="s_RequestedDelDate_DAY" attributeName="DAY"/>
+
+      </associatedAttributeFeatures>
+
+    </logicalJoin>
+
+    <logicalJoin associatedObjectUri="s_OrderDate">
+
+      <attributes>
+
+        <attributeRef>OrderDate$local</attributeRef>
+
+      </attributes>
+
+      <associatedAttributeNames>
+
+        <attributeName>DATE_SQL</attributeName>
+
+      </associatedAttributeNames>
+
+      <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+
+      <associatedAttributeFeatures>
+
+        <attributeReference alias="s_OrderDate_DATE_SQL" attributeName="DATE_SQL"/>
+
+        <attributeReference alias="s_OrderDate_YEAR" attributeName="YEAR"/>
+
+        <attributeReference alias="s_OrderDate_QUARTER" attributeName="QUARTER"/>
+
+        <attributeReference alias="s_OrderDate_MONTH" attributeName="MONTH"/>
+
+        <attributeReference alias="s_OrderDate_WEEK" attributeName="WEEK"/>
+
+        <attributeReference alias="s_OrderDate_DAY_OF_WEEK" attributeName="DAY_OF_WEEK"/>
+
+        <attributeReference alias="s_OrderDate_DAY" attributeName="DAY"/>
+
+      </associatedAttributeFeatures>
+
+    </logicalJoin>
+
+    <logicalJoin associatedObjectUri="s_CreatedDate">
+
+      <attributes>
+
+        <attributeRef>CreatedDate$local</attributeRef>
+
+      </attributes>
+
+      <associatedAttributeNames>
+
+        <attributeName>DATE_SQL</attributeName>
+
+      </associatedAttributeNames>
+
+      <properties cardinality="CN_1" joinType="leftOuter" joinOperator="Equal"/>
+
+      <associatedAttributeFeatures>
+
+        <attributeReference alias="s_CreatedDate_DATE_SQL" attributeName="DATE_SQL"/>
+
+        <attributeReference alias="s_CreatedDate_YEAR" attributeName="YEAR"/>
+
+        <attributeReference alias="s_CreatedDate_QUARTER" attributeName="QUARTER"/>
+
+        <attributeReference alias="s_CreatedDate_MONTH" attributeName="MONTH"/>
+
+        <attributeReference alias="s_CreatedDate_WEEK" attributeName="WEEK"/>
+
+        <attributeReference alias="s_CreatedDate_DAY_OF_WEEK" attributeName="DAY_OF_WEEK"/>
+
+        <attributeReference alias="s_CreatedDate_DAY" attributeName="DAY"/>
+
+      </associatedAttributeFeatures>
+
+    </logicalJoin>
+
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="92" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="277"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="267" y="16"/>
+      <rectangleSize width="198"/>
+    </shape>
+    <shape modelObjectName="s_ChangedDate" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="16" y="287"/>
+      <rectangleSize width="187"/>
+    </shape>
+    <shape modelObjectName="s_RequestedDelDate" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="16" y="96"/>
+      <rectangleSize width="187"/>
+    </shape>
+    <shape modelObjectName="s_OrderDate" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="530" y="96"/>
+      <rectangleSize width="187"/>
+    </shape>
+    <shape modelObjectName="s_CreatedDate" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="530" y="287"/>
+      <rectangleSize width="187"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

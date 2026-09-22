@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="D_IFDtime_cv" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="D_IFDtime_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="lFDtimeData">
+    <resourceUri>lFDtimeData</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<inlineHierarchy xsi:type="Dimension:LeveledHierarchy" id="YMD" aggregateAllNodes="true" orphanedNodesHandling="ROOT_NODES" rootNodeVisibility="DO_NOT_ADD_ROOT_NODE" withRootNode="false" nodeStyle="NAME_PATH_ENFORCED" cacheEnabled="true" cycleHandling="BREAKUP" emptyValueIsNull="true">
+  <descriptions defaultDescription="Year, Month &amp; Date"/>
+  <unassignedMemberProperties mode="FALSE"/>
+  <levels>
+    <level levelAttribute="YEAR" levelType="MDLEVEL_TYPE_REGULAR" order="1" orderAttribute="YEAR" sortDirection="ASC"/>
+    <level levelAttribute="MONTH" levelType="MDLEVEL_TYPE_REGULAR" order="2" orderAttribute="MONTH" sortDirection="ASC"/>
+    <level levelAttribute="DAY" levelType="MDLEVEL_TYPE_REGULAR" order="3" orderAttribute="DAY" sortDirection="ASC"/>
+    <level levelAttribute="DATE_SQL" levelType="MDLEVEL_TYPE_REGULAR" order="4" orderAttribute="DATE_SQL" sortDirection="ASC"/>
+  </levels>
+</inlineHierarchy>
+<logicalModel id="lFDtimeData">
+  <attributes>
+    <attribute id="DATE_SQL" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATE_SQL"/>
+      <keyMapping columnObjectName="lFDtimeData" columnName="DATE_SQL"/>
+    </attribute>
+    <attribute id="YEAR" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YEAR"/>
+      <keyMapping columnObjectName="lFDtimeData" columnName="YEAR"/>
+    </attribute>
+    <attribute id="QUARTER" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUARTER"/>
+      <keyMapping columnObjectName="lFDtimeData" columnName="QUARTER"/>
+    </attribute>
+    <attribute id="MONTH" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MONTH"/>
+      <keyMapping columnObjectName="lFDtimeData" columnName="MONTH"/>
+    </attribute>
+    <attribute id="WEEK" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEEK"/>
+      <keyMapping columnObjectName="lFDtimeData" columnName="WEEK"/>
+    </attribute>
+    <attribute id="DAY_OF_WEEK" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DAY_OF_WEEK"/>
+      <keyMapping columnObjectName="lFDtimeData" columnName="DAY_OF_WEEK"/>
+    </attribute>
+    <attribute id="DAY" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DAY"/>
+      <keyMapping columnObjectName="lFDtimeData" columnName="DAY"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

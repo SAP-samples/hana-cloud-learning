@@ -1,0 +1,1 @@
+column table "AIEG" ("product" NVARCHAR(200), "nbAvailable" Integer, "category" NVARCHAR(200), "marketingStatus" NVARCHAR(200),"amount" Decimal(10,2))
