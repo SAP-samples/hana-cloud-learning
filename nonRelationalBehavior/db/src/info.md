@@ -182,3 +182,58 @@ group by
 ![](./differenceSQLQuery.png)
 
 ==> **Requesting COLUMN2 in the join partner leads to higher granularity and thus more records being joined. This inflates the measure**
+
+# Example of the Impact of Filters
+
+If filters are used on a column, then the column has to be available in the output of views. This has the consequence that the filter column is also available in the aggregations of the underlying views. If the setting *Transparent Filter* is set to *true* for a column in calculation views then the column is ignored in aggregations if the column is only requested for filtering. Calculation view [tF_cv](./transparentFilter/tF_cv.hdbcalculationview) demonstrates this behavior. Given that in the topmost aggregation node (Default node) of calculation views all columns act as if they have the transparent filter setting if the calculation view is directly accessed, an additional artificial aggregation was added to demonstrate the effect of the transparent filter setting. The default behavior on topmost aggregation nodes is demonstrated with [tF_cv_top](./transparentFilter/tF_cv_top.hdbcalculationview).
+
+## Data
+
+`select * from  "tF_tab"`
+**year**|**month**|**day**|**amount**
+:-----:|:-----:|:-----:|:-----:
+2026|1|1|2.00
+2026|1|1|3.00
+2026|1|2|1.00
+2026|1|3|1.00
+
+
+## Filter on column "day" requires that column "day" is available in the output of the views
+
+```SQL
+select 
+	'calculation view aggregation top node' "condition",
+	"year",
+	avg("amount")
+from 
+	"tF_cv_top"()
+WHERE "day"!='2' group by "year"
+
+union
+
+select 
+	'calculation view aggregation inner node' "condition",
+	"year",
+	avg("amount")
+from 
+	"tF_cv"()
+WHERE "day"!='2' group by "year"
+
+union
+
+select 
+	'table function' "condition",
+	"year",
+	avg("amount")
+from 
+	"tF"()
+WHERE "day"!='2' group by "year"
+``` 
+
+**condition**|**year**|**AVG(amount)**
+:-----|:-----:|:-----:
+calculation view aggregation top node|2026|2.00
+calculation view aggregation inner node|2026|2.00
+table function|2026|1.75
+
+==> The transparent filter option gives fine granular control over whether a column that is only used for filtering should be included in aggregations or not. SQL table functions and views will include the filter column in the aggregations.

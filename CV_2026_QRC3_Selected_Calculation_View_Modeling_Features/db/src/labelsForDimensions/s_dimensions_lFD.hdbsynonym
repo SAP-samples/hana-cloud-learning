@@ -1,0 +1,22 @@
+{
+  "s_RequestedDelDate": {
+    "target": {
+      "object": "D_IFDtime_cv"
+    }
+  },
+   "s_OrderDate": {
+    "target": {
+      "object": "D_IFDtime_cv"
+    }
+  },
+   "s_CreatedDate": {
+    "target": {
+      "object": "D_IFDtime_cv"
+    }
+  },
+   "s_ChangedDate": {
+    "target": {
+      "object": "D_IFDtime_cv"
+    }
+  }
+}
