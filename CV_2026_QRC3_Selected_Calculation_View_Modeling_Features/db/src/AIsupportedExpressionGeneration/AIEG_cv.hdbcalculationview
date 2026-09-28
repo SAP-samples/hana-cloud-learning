@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="AIEG_cv" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" application="BAS" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="AIEG_cv"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="AIEG">
+    <resourceUri>AIEG</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews/>
+<logicalModel id="AIEG">
+  <attributes>
+    <attribute id="product" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="product"/>
+      <keyMapping columnObjectName="AIEG" columnName="product"/>
+    </attribute>
+    <attribute id="category" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="category"/>
+      <keyMapping columnObjectName="AIEG" columnName="category"/>
+    </attribute>
+    <attribute id="marketingStatus" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="marketingStatus"/>
+      <keyMapping columnObjectName="AIEG" columnName="marketingStatus"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="nbAvailable" order="2" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="nbAvailable"/>
+      <measureMapping columnObjectName="AIEG" columnName="nbAvailable"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+    <measure id="amount" order="5" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="amount"/>
+      <measureMapping columnObjectName="AIEG" columnName="amount"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

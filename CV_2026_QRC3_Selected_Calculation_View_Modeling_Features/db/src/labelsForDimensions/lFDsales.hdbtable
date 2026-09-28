@@ -1,0 +1,46 @@
+column table "lFDsales" (
+    -- Order identification
+    "SalesOrderID"        VARCHAR(10)     NOT NULL,   -- VBELN
+    "ItemNumber"          INT             NOT NULL,   -- POSNR (10, 20, 30 ...)
+
+    -- Order classification
+    "OrderType"           VARCHAR(4)      NOT NULL,   -- AUART: OR, ZOR, CS, RO
+    "SalesOrg"            VARCHAR(4)      NOT NULL,   -- VKORG: 1000, 2000, 3000
+    "DistChannel"         VARCHAR(2)      NOT NULL,   -- VTWEG: 10, 20, 30
+    "Division"            VARCHAR(2)      NOT NULL,   -- SPART: 00, 01, 02
+
+    -- Dates
+    "OrderDate"           DATE            NOT NULL,   -- AUDAT
+    "RequestedDelDate"    DATE,                       -- VDATU
+
+    -- Partner functions (required columns)
+    "Sold_To"             VARCHAR(10)     NOT NULL,   -- KUNNR / Partner func. AG
+    "SoldToName"          VARCHAR(100)    NOT NULL,
+    "ShipTo"              VARCHAR(10),                -- Partner func. WE
+
+    -- Material / product
+    "MaterialNumber"      VARCHAR(18)     NOT NULL,   -- MATNR
+    "MaterialDesc"        VARCHAR(100),               -- ARKTX
+    "OrderQty"            DECIMAL(13,3)   NOT NULL,   -- KWMENG
+    "UOM"                 VARCHAR(3)      NOT NULL,   -- MEINS
+    "NetPrice"            DECIMAL(11,2)   NOT NULL,   -- NETPR
+    "NetValue"            DECIMAL(15,2)   NOT NULL,   -- NETWR  (Qty * Price)
+    "Currency"            VARCHAR(5)      NOT NULL,   -- WAERK
+
+    -- Logistics
+    "Plant"               VARCHAR(4)      NOT NULL,   -- WERKS
+    "StorageLoc"          VARCHAR(4),                 -- LGORT
+
+    -- Status & blocks
+    "OrderStatus"         VARCHAR(20)     NOT NULL,   -- derived from GBSTK/LVSTK
+    "DeliveryBlock"       VARCHAR(2),                 -- LIFSK
+    "BillingBlock"        VARCHAR(2),                 -- FAKSK
+
+    -- Audit
+    "CreatedBy"           VARCHAR(12)     NOT NULL,   -- ERNAM
+    "CreatedDate"         DATE            NOT NULL,   -- ERDAT
+    "ChangedBy"           VARCHAR(12),                -- AENAM
+    "ChangedDate"         DATE,                       -- AEDAT
+
+    PRIMARY KEY ("SalesOrderID", "ItemNumber")
+);
