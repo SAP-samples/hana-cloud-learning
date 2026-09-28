@@ -1,0 +1,1 @@
+column table "iMR1" ("ID" NVARCHAR(10), "amount" Decimal(10,2))

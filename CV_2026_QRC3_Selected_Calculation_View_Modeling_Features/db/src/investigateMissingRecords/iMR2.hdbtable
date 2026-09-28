@@ -1,0 +1,1 @@
+column table "iMR2" ("ID" NVARCHAR(10), "product" NVARCHAR(20))
